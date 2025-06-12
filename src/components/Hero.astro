@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import vintageWarehouse from '../assets/vintage-warehouse.png';
 export interface Props {
     title: string;
     tagline: string;
@@ -19,8 +21,8 @@ const {
 ---
 
 <section class="relative bg-slate-900 overflow-hidden">
-  <img
-      src="https://source.unsplash.com/random/1920x1080?technology,power,energy"
+  <Image
+      src={vintageWarehouse}
       alt="An abstract background image representing technology and power."
       class="absolute inset-0 w-full h-full object-cover z-0"
       loading="eager"
@@ -48,5 +50,6 @@ const {
             </a>
           </div>
       )}
+    <p class="text-white mt-8 max-w-2xl mx-auto text-sm">{disclaimerText}</p>
   </div>
 </section>

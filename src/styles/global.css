@@ -8,8 +8,8 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
+	--accent: #fc5252;
+	--accent-dark: #e52a2a;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -57,7 +57,7 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
+	margin: 2rem 0 0.5rem 0;
 	/*color: rgb(var(--black));*/
 	line-height: 1.2;
 }

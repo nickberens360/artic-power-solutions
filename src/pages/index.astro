@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import ContentCard from '../components/ContentCard.astro';
 import { Image } from 'astro:assets';
 import articLogoIcon from '../assets/artic-logo-icon.png';
+import vintageWarehouse from '../assets/vintage-warehouse.jpg';
 import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
 ---
 
@@ -12,15 +13,15 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
     title={SITE_TITLE}
     description={SITE_DESCRIPTION}
 >
+  <Hero
+      title="Expert Repair for Your RollMover™ Compatible Equipment"
+      tagline="Fast, Reliable Repair & Quality Parts for equipment compatible with RollMover™ RX, HD, XD, and LR series. Maximize uptime and save costs!"
+      buttonText="Get a Free Quote"
+      buttonUrl="#contact"
+      disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
+      imageUrl="https://images.unsplash.com/photo-1727517786578-ff2bb896b852?q=80&w=2842&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  />
   <main>
-    <Hero
-        title="Expert Repair for Your RollMover™ Compatible Equipment"
-        tagline="Fast, Reliable Repair & Quality Parts for equipment compatible with RollMover™ RX, HD, XD, and LR series. Maximize uptime and save costs!"
-        buttonText="Get a Free Quote"
-        buttonUrl="#contact"
-        disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
-        imageUrl="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop"
-    />
 
     <!-- Section 2: The Challenge -->
     <section
@@ -241,188 +242,5 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
       </div>
     </section>
 
-    <!-- Section 6: Contact Us -->
-    <section
-        id="contact"
-        class="py-16 md:py-24 bg-white"
-    >
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Let's Get Your Equipment Back to Work!</h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ready to discuss your repair needs or order parts? Contact
-            our team today! We serve clients nationwide.</p>
-        </div>
-        <div class="max-w-3xl mx-auto bg-gray-50 p-8 md:p-12 rounded-xl shadow-2xl">
-          <form id="contactForm">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label
-                    for="name"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                >Full Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    placeholder="John Doe"
-                >
-              </div>
-              <div>
-                <label
-                    for="company"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                >Company (Optional)</label>
-                <input
-                    type="text"
-                    name="company"
-                    id="company"
-                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    placeholder="Your Company Inc."
-                >
-              </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label
-                    for="email"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                >Email Address</label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    placeholder="you@example.com"
-                >
-              </div>
-              <div>
-                <label
-                    for="phone"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                >Phone (Optional)</label>
-                <input
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    placeholder="(555) 123-4567"
-                >
-              </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label
-                    for="rollmover_model"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                >Equipment/Model (Optional)</label>
-                <input
-                    type="text"
-                    name="rollmover_model"
-                    id="rollmover_model"
-                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                    placeholder="e.g., Compatible with RollMover RX"
-                >
-              </div>
-              <div>
-                <label
-                    for="inquiry_type"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                >Inquiry Type</label>
-                <select
-                    id="inquiry_type"
-                    name="inquiry_type"
-                    required
-                    class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                >
-                  <option value="">Select Inquiry Type</option>
-                  <option value="Repair">Repair</option>
-                  <option value="Parts">Parts</option>
-                  <option value="General Question">General Question</option>
-                </select>
-              </div>
-            </div>
-            <div class="mb-6">
-              <label
-                  for="message"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-              >Message</label>
-              <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  required
-                  class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
-                  placeholder="Tell us about your needs..."
-              ></textarea>
-            </div>
-            <div>
-              <button
-                  type="submit"
-                  class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition duration-300"
-              >
-                Send Inquiry
-              </button>
-            </div>
-          </form>
-          <div
-              id="form-status"
-              class="mt-6 text-center"
-          ></div>
-
-          <div class="mt-12 text-center border-t border-gray-200 pt-8">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Or Contact Us Directly:</h3>
-            <p class="text-gray-600 mb-2"><strong>Email:</strong>
-              <a
-                  href="mailto:sales@articpowersolutions.com"
-                  class="text-sky-600 hover:underline"
-              >sales@articpowersolutions.com
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 </Layout>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const contactForm = document.getElementById('contactForm');
-        const formStatus = document.getElementById('form-status');
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                // Basic form processing simulation
-                formStatus.textContent = 'Submitting...';
-                formStatus.className = 'mt-6 text-center text-blue-600';
-
-                setTimeout(() => {
-                    formStatus.textContent = 'Thank you for your inquiry! We will get back to you shortly.';
-                    formStatus.className = 'mt-6 text-center text-green-600';
-                    (contactForm as HTMLFormElement).reset();
-                }, 1000);
-            });
-        }
-
-        const serviceQuoteButtons = document.querySelectorAll('.service-quote-button');
-        const inquiryTypeSelect = document.getElementById('inquiry_type') as HTMLSelectElement;
-
-        serviceQuoteButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const service = (e.currentTarget as HTMLElement).dataset.service;
-                if (inquiryTypeSelect && service) {
-                    if (service === 'repair') {
-                        inquiryTypeSelect.value = 'Repair';
-                    } else if (service === 'parts') {
-                        inquiryTypeSelect.value = 'Parts';
-                    }
-                }
-            });
-        });
-    });
-</script>

@@ -1,0 +1,225 @@
+---
+// src/components/CallToAction.astro
+---
+
+<section
+    id="contact"
+    class="py-16 md:py-24 bg-gray-100"
+>
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Let's Get Your Equipment Back to Work!</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ready to discuss your repair needs or order parts? Contact
+        our team today! We serve clients nationwide.</p>
+    </div>
+    <div class="max-w-3xl mx-auto bg-gray-50 p-8 md:p-12 rounded-xl shadow-2xl">
+      <form id="contactForm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label
+                for="name"
+                class="block text-sm font-medium text-gray-700 mb-1"
+            >Full Name</label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                placeholder="John Doe"
+            >
+          </div>
+          <div>
+            <label
+                for="company"
+                class="block text-sm font-medium text-gray-700 mb-1"
+            >Company (Optional)</label>
+            <input
+                type="text"
+                name="company"
+                id="company"
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                placeholder="Your Company Inc."
+            >
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label
+                for="email"
+                class="block text-sm font-medium text-gray-700 mb-1"
+            >Email Address</label>
+            <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                placeholder="you@example.com"
+            >
+          </div>
+          <div>
+            <label
+                for="phone"
+                class="block text-sm font-medium text-gray-700 mb-1"
+            >Phone (Optional)</label>
+            <input
+                type="tel"
+                name="phone"
+                id="phone"
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                placeholder="(555) 123-4567"
+            >
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label
+                for="rollmover_model"
+                class="block text-sm font-medium text-gray-700 mb-1"
+            >Equipment/Model (Optional)</label>
+            <input
+                type="text"
+                name="rollmover_model"
+                id="rollmover_model"
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                placeholder="e.g., Compatible with RollMover RX"
+            >
+          </div>
+          <div>
+            <label
+                for="inquiry_type"
+                class="block text-sm font-medium text-gray-700 mb-1"
+            >Inquiry Type</label>
+            <select
+                id="inquiry_type"
+                name="inquiry_type"
+                required
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+            >
+              <option value="">Select Inquiry Type</option>
+              <option value="Repair">Repair</option>
+              <option value="Parts">Parts</option>
+              <option value="General Question">General Question</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label
+              for="message"
+              class="block text-sm font-medium text-gray-700 mb-1"
+          >Message</label>
+          <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+              placeholder="Tell us about your needs..."
+          ></textarea>
+        </div>
+        <div>
+          <button
+              type="submit"
+              class="cta-button w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition duration-300"
+          >
+            Send Inquiry
+          </button>
+        </div>
+      </form>
+      <div
+          id="form-status"
+          class="mt-6 text-center"
+      ></div>
+
+      <div class="mt-12 text-center border-t border-gray-200 pt-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Or Contact Us Directly:</h3>
+        <p class="text-gray-600 mb-2"><strong>Email:</strong>
+          <a
+              href="mailto:sales@articpowersolutions.com"
+              class="text-sky-600 hover:underline"
+          >sales@articpowersolutions.com
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+    .cta-container {
+        //background-color: var(--gray-light);
+        border-radius: 8px;
+        padding: 2.5em;
+        text-align: center;
+        //margin-top: 4em;
+        //margin-bottom: 2em;
+    }
+
+    .cta-container h2 {
+        font-size: 1.953em; /* h3 size from global.css */
+        line-height: 1.2;
+        margin-bottom: 0.5em;
+    }
+
+    .cta-container p {
+        margin-bottom: 1.5em;
+        max-width: 60ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent);
+        color: white;
+        padding: 0.75em 1.5em;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: var(--accent-dark);
+    }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Basic form processing simulation
+        formStatus.textContent = 'Submitting...';
+        formStatus.className = 'mt-6 text-center text-blue-600';
+
+        setTimeout(() => {
+          formStatus.textContent = 'Thank you for your inquiry! We will get back to you shortly.';
+          formStatus.className = 'mt-6 text-center text-green-600';
+          (contactForm as HTMLFormElement).reset();
+        }, 1000);
+      });
+    }
+
+    const serviceQuoteButtons = document.querySelectorAll('.service-quote-button');
+    const inquiryTypeSelect = document.getElementById('inquiry_type') as HTMLSelectElement;
+
+    serviceQuoteButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const service = (e.currentTarget as HTMLElement).dataset.service;
+        if (inquiryTypeSelect && service) {
+          if (service === 'repair') {
+            inquiryTypeSelect.value = 'Repair';
+          } else if (service === 'parts') {
+            inquiryTypeSelect.value = 'Parts';
+          }
+        }
+      });
+    });
+  });
+</script>
