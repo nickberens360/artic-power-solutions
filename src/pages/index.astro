@@ -1,49 +1,428 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ContentCard from '../components/ContentCard.astro';
+import { Image } from 'astro:assets';
+import articLogoIcon from '../assets/artic-logo-icon.png';
+import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout
+    title={SITE_TITLE}
+    description={SITE_DESCRIPTION}
+>
+  <main>
+    <Hero
+        title="Expert Repair for Your RollMover™ Compatible Equipment"
+        tagline="Fast, Reliable Repair & Quality Parts for equipment compatible with RollMover™ RX, HD, XD, and LR series. Maximize uptime and save costs!"
+        buttonText="Get a Free Quote"
+        buttonUrl="#contact"
+        disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
+        imageUrl="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop"
+    />
+
+    <!-- Section 2: The Challenge -->
+    <section
+        id="challenge"
+        class="py-16 md:py-24 bg-white"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Is Your Material Handling Equipment Performing at
+          Its Best?</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-4">
+          Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity to a
+          halt.
+        </p>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Finding fast, reliable, and cost-effective repair service can be a challenge, especially when faced with
+          warranty denials or providers who lack specialized knowledge.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: Why Choose Us? -->
+    <section
+        id="why-us"
+        class="py-16 md:py-24 bg-gray-50"
+    >
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">The Artic Power Solutions Advantage</h2>
+        </div>
+
+        <div class="mb-16 bg-yellow-100 border-l-4 border-yellow-500 p-8 rounded-r-lg shadow-lg max-w-4xl mx-auto">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg
+                  class="h-16 w-16 text-yellow-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+              >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-2xl font-semibold text-gray-800">Warranty Claim Denied? We Are Your Solution.</h3>
+              <div class="mt-2 text-base text-gray-700">
+                <p>Manufacturer warranties often have exclusions for "improper use," "unauthorized modifications," or
+                  "normal wear and tear," leading to denied claims. <strong>If your repair isn't covered, you are not
+                    out of options.</strong> We provide the fast, cost-effective repair solutions you need to get your
+                  equipment running, regardless of its warranty status.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <ContentCard
+              title="Specialized Expertise"
+              description="We don't just fix equipment; we know roll moving systems inside and out. This is our focus, not a sideline."
+          />
+          <ContentCard
+              title="Faster Turnaround"
+              description="Our specialized focus means quicker diagnostics and repairs, minimizing your critical downtime."
+          />
+          <ContentCard
+              title="Significant Cost Savings"
+              description="Repair your equipment for a fraction of the cost of replacement, with transparent and fair pricing."
+          />
+          <ContentCard
+              title="Nationwide Service"
+              description="We serve clients nationwide, with a commitment to excellence and customer satisfaction."
+          />
+
+
+          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
+          <!--	<div class="flex items-center mb-4">-->
+          <!--		<svg class="w-16 h-16 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.33 12.33A3 3 0 0112 15a3 3 0 01-2.33-2.67m3.001-4.66A2.989 2.989 0 0012 6a2.989 2.989 0 00-2.33 1.67M16.5 9.5l1.5 1.5-1.5 1.5"></path></svg>-->
+          <!--		<h3 class="text-xl font-semibold text-gray-800">Specialized Expertise</h3>-->
+          <!--	</div>-->
+          <!--	<p class="text-gray-600">We don't just fix equipment; we know roll moving systems inside and out. This is our focus, not a sideline.</p>-->
+          <!--</div>-->
+          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
+          <!--	<div class="flex items-center mb-4">-->
+          <!--		<svg class="w-8 h-8 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>-->
+          <!--		<h3 class="text-xl font-semibold text-gray-800">Faster Turnaround</h3>-->
+          <!--	</div>-->
+          <!--	<p class="text-gray-600">Our specialized focus means quicker diagnostics and repairs, minimizing your critical downtime.</p>-->
+          <!--</div>-->
+          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
+          <!--	<div class="flex items-center mb-4">-->
+          <!--		<svg class="w-8 h-8 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
+          <!--		<h3 class="text-xl font-semibold text-gray-800">Significant Cost Savings</h3>-->
+          <!--	</div>-->
+          <!--	<p class="text-gray-600">Repair your equipment for a fraction of the cost of replacement, with transparent and fair pricing.</p>-->
+          <!--</div>-->
+          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
+          <!--	<div class="flex items-center mb-4">-->
+          <!--		<svg class="w-8 h-8 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>-->
+          <!--		<h3 class="text-xl font-semibold text-gray-800">Customer-First Support</h3>-->
+          <!--	</div>-->
+          <!--	<p class="text-gray-600">We view ourselves as your partners in productivity. Our goal is to provide the best solution for you, not just a one-time fix.</p>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Our Services -->
+    <section
+        id="services"
+        class="py-16 md:py-24 bg-white"
+    >
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Core Services</h2>
+        </div>
+        <div class="flex flex-wrap -mx-4">
+          <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+            <div class="bg-gray-50 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+              <img
+                  src="https://placehold.co/600x400/818cf8/ffffff?text=Equipment+Repair"
+                  alt="Equipment Repair"
+                  class="w-full"
+              >
+              <div class="p-8 flex-grow">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Expert Repair Services</h3>
+                <p class="text-gray-600 mb-6">We diagnose and resolve common and complex issues to get your equipment
+                  back to work quickly. Our process includes diagnostics, component-level repair, and full performance
+                  testing.</p>
+                <h4 class="font-semibold text-gray-700 mb-2">Common Problems We Solve:</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-1 pl-4">
+                  <li>Motor or gearbox failure</li>
+                  <li>Battery and charging issues</li>
+                  <li>Unresponsive controls & electrical faults</li>
+                  <li>Worn drive wheels and casters</li>
+                </ul>
+              </div>
+              <div class="p-8 pt-0">
+                <a
+                    href="#contact"
+                    class="service-quote-button mt-auto inline-block bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                >
+                  Request Repair Info
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 px-4">
+            <div class="bg-gray-50 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+              <img
+                  src="https://placehold.co/600x400/a5b4fc/ffffff?text=Compatible+Parts"
+                  alt="Compatible Parts"
+                  class="w-full"
+              >
+              <div class="p-8 flex-grow">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Premium Replacement Parts</h3>
+                <p class="text-gray-600 mb-4">Keep your equipment running with our extensive inventory of high-quality
+                  components compatible with many roll mover systems, including the RollMover™ series.</p>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-1 pl-4">
+                  <li>Drive Wheels & Casters</li>
+                  <li>Batteries & Chargers</li>
+                  <li>Motors & Gearboxes</li>
+                  <li>Controls, Switches & Electrical Components</li>
+                </ul>
+              </div>
+              <div class="p-8 pt-0">
+                <a
+                    href="#contact"
+                    class="service-quote-button mt-auto inline-block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                >
+                  Find Your Parts
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: About Us -->
+    <section
+        id="about"
+        class="py-16 md:py-24 bg-gray-50"
+    >
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About Artic Power Solutions</h2>
+        </div>
+        <div class="flex flex-wrap items-center -mx-4">
+          <div class="w-full md:w-1/3 px-8 mb-8 md:mb-0 text-center ">
+            <Image
+                src={articLogoIcon}
+                alt="Artic Power Solutions Logo"
+                class="rounded-full shadow-xl w-48 h-48 mx-auto"
+            />
+          </div>
+          <div class="w-full md:w-2/3 px-4">
+            <p class="text-lg text-gray-700 mb-4">
+              <strong>Artic Power Solutions is your trusted independent partner for material handling equipment
+                repair.</strong> We were founded on the principle that businesses need a reliable, expert alternative to
+              slow and costly OEM service.
+            </p>
+            <p class="text-lg text-gray-700 mb-4">
+              Our team has deep, hands-on experience with the specific machinery used in the paper, converting, and
+              nonwovens industries. We understand the critical nature of your equipment and are committed to providing
+              solutions that are not only effective but also make financial sense.
+            </p>
+            <p class="text-lg text-gray-700">
+              We proudly serve clients nationwide, offering specialized repair services and a comprehensive catalog of
+              compatible parts to keep your operations moving.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Contact Us -->
+    <section
+        id="contact"
+        class="py-16 md:py-24 bg-white"
+    >
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Let's Get Your Equipment Back to Work!</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ready to discuss your repair needs or order parts? Contact
+            our team today! We serve clients nationwide.</p>
+        </div>
+        <div class="max-w-3xl mx-auto bg-gray-50 p-8 md:p-12 rounded-xl shadow-2xl">
+          <form id="contactForm">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                >Full Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    required
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                    placeholder="John Doe"
+                >
+              </div>
+              <div>
+                <label
+                    for="company"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                >Company (Optional)</label>
+                <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                    placeholder="Your Company Inc."
+                >
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                >Email Address</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                    placeholder="you@example.com"
+                >
+              </div>
+              <div>
+                <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                >Phone (Optional)</label>
+                <input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                    placeholder="(555) 123-4567"
+                >
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label
+                    for="rollmover_model"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                >Equipment/Model (Optional)</label>
+                <input
+                    type="text"
+                    name="rollmover_model"
+                    id="rollmover_model"
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                    placeholder="e.g., Compatible with RollMover RX"
+                >
+              </div>
+              <div>
+                <label
+                    for="inquiry_type"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                >Inquiry Type</label>
+                <select
+                    id="inquiry_type"
+                    name="inquiry_type"
+                    required
+                    class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                >
+                  <option value="">Select Inquiry Type</option>
+                  <option value="Repair">Repair</option>
+                  <option value="Parts">Parts</option>
+                  <option value="General Question">General Question</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-6">
+              <label
+                  for="message"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+              >Message</label>
+              <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                  placeholder="Tell us about your needs..."
+              ></textarea>
+            </div>
+            <div>
+              <button
+                  type="submit"
+                  class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition duration-300"
+              >
+                Send Inquiry
+              </button>
+            </div>
+          </form>
+          <div
+              id="form-status"
+              class="mt-6 text-center"
+          ></div>
+
+          <div class="mt-12 text-center border-t border-gray-200 pt-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Or Contact Us Directly:</h3>
+            <p class="text-gray-600 mb-2"><strong>Email:</strong>
+              <a
+                  href="mailto:sales@articpowersolutions.com"
+                  class="text-sky-600 hover:underline"
+              >sales@articpowersolutions.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('form-status');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Basic form processing simulation
+                formStatus.textContent = 'Submitting...';
+                formStatus.className = 'mt-6 text-center text-blue-600';
+
+                setTimeout(() => {
+                    formStatus.textContent = 'Thank you for your inquiry! We will get back to you shortly.';
+                    formStatus.className = 'mt-6 text-center text-green-600';
+                    (contactForm as HTMLFormElement).reset();
+                }, 1000);
+            });
+        }
+
+        const serviceQuoteButtons = document.querySelectorAll('.service-quote-button');
+        const inquiryTypeSelect = document.getElementById('inquiry_type') as HTMLSelectElement;
+
+        serviceQuoteButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const service = (e.currentTarget as HTMLElement).dataset.service;
+                if (inquiryTypeSelect && service) {
+                    if (service === 'repair') {
+                        inquiryTypeSelect.value = 'Repair';
+                    } else if (service === 'parts') {
+                        inquiryTypeSelect.value = 'Parts';
+                    }
+                }
+            });
+        });
+    });
+</script>

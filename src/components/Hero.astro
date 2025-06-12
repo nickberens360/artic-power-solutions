@@ -1,0 +1,52 @@
+---
+export interface Props {
+    title: string;
+    tagline: string;
+    buttonText?: string;
+    buttonUrl?: string;
+    disclaimerText?: string;
+    imageUrl?: string;
+}
+
+const {
+    title = "Empowering Your World",
+    tagline = "Reliable, efficient, and sustainable power solutions tailored for the toughest environments. We keep you running, no matter what.",
+    buttonText = "Explore Our Services",
+    buttonUrl = "/services",
+    disclaimerText = "Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg.",
+    imageUrl = "https://source.unsplash.com/random/1920x1080?technology,power,energy"
+} = Astro.props;
+---
+
+<section class="relative bg-slate-900 overflow-hidden">
+  <img
+      src="https://source.unsplash.com/random/1920x1080?technology,power,energy"
+      alt="An abstract background image representing technology and power."
+      class="absolute inset-0 w-full h-full object-cover z-0"
+      loading="eager"
+      onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/1a202c/718096?text=Image+Not+Found';"
+  />
+
+  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/50 to-transparent z-10"></div>
+
+  <div class="relative z-20 container mx-auto px-6 py-24 sm:py-32 text-center">
+    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl drop-shadow-lg">
+        {title}
+    </h1>
+
+    <p class="mt-6 text-lg leading-8 text-slate-300 max-w-2xl mx-auto drop-shadow-md">
+        {tagline}
+    </p>
+
+      {buttonText && buttonUrl && (
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a
+                href={buttonUrl}
+                class="rounded-md bg-sky-500 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+                {buttonText}
+            </a>
+          </div>
+      )}
+  </div>
+</section>

@@ -3,7 +3,6 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './Layout.astro'; // Import BaseLayout
 import FormattedDate from '../components/FormattedDate.astro';
 import { Image } from 'astro:assets';
-// Removed redundant global.css import, as BaseLayout handles it
 
 type Props = CollectionEntry<'blog'>['data'];
 
