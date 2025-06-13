@@ -2,7 +2,7 @@
 title: "Everything You Need to Know About Your RollMover's Drive Wheel"
 description: "A deep-dive into the most critical component of your RollMover. Learn how the drive wheel works, how to spot signs of wear, and why a quality replacement is crucial for safety and performance."
 pubDate: 'Jun 12 2025'
-#heroImage: '../../assets/blog-placeholder-4.jpg'
+heroImage: '../../assets/blog/drive-wheel.png'
 ---
 
 When you think about your RollMover's performance, you might focus on the motor or the battery. But there's one component that's absolutely critical for turning power into motion: the drive wheel. This single part is responsible for gripping the floor and propelling your heavy loads.
@@ -21,6 +21,8 @@ A worn drive wheel can cause a variety of problems. Look out for these common sy
 -   **Loss of Traction:** If you notice the drive wheel slipping or spinning without moving the load, it's a clear indication that the tread is worn down and can no longer grip the floor effectively.
 -   **Reduced Speed and Power:** A worn wheel can lead to a noticeable decrease in your RollMover's top speed and pulling power.
 -   **Increased Vibration or Noise:** A wheel that is no longer perfectly round will cause vibrations and noise during operation.
+
+These symptoms are among the [5 Common Issues with RollMovers](/blog/common-issues) that can indicate a need for maintenance.
 
 ## The Risks of Using a Worn Drive Wheel
 

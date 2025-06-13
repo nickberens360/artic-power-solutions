@@ -4,9 +4,18 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ContentCard from '../components/ContentCard.astro';
 import { Image } from 'astro:assets';
-import articLogoIcon from '../assets/artic-logo-icon.png';
+import articLogoIcon from '../assets/aps-icon-white.png';
+import rollMoverTech from '../assets/rollmover-technician.png';
+import compatibleBatteries from '../assets/compatible-batteries.png';
 import vintageWarehouse from '../assets/vintage-warehouse.jpg';
-import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+// Fetch and sort the latest 3 blog posts
+const latestPosts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+).slice(0, 3);
 ---
 
 <Layout
@@ -21,42 +30,41 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
       disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
       imageUrl="https://images.unsplash.com/photo-1727517786578-ff2bb896b852?q=80&w=2842&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   />
-  <main>
+  <main class="p-0">
 
-    <!-- Section 2: The Challenge -->
     <section
         id="challenge"
-        class="py-16 md:py-24 bg-white"
+        class="py-16 md:py-24 bg-gray-800 rounded-xl"
     >
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-md md:text-md font-bold text-gray-800 mb-6">Is Your Material Handling Equipment Performing at
+        <h2 class="text-md md:text-md font-bold text-white mb-6">Is Your Material Handling Equipment Performing at
           Its Best?</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-4">
+        <p class="text-lg text-white max-w-3xl mx-auto mb-4">
           Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity to a
           halt.
         </p>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        <p class="text-lg text-white max-w-3xl mx-auto">
           Finding fast, reliable, and cost-effective repair service can be a challenge, especially when faced with
           warranty denials or providers who lack specialized knowledge.
         </p>
       </div>
     </section>
 
-    <!-- Section 3: Why Choose Us? -->
     <section
         id="why-us"
-        class="py-16 md:py-24 bg-gray-50"
+        class="py-16 md:py-24"
+        style="background: #050a1c"
     >
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">The Artic Power Solutions Advantage</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Artic Power Solutions Advantage</h2>
         </div>
 
-        <div class="mb-16 bg-yellow-100 border-l-4 border-yellow-500 p-8 rounded-r-lg shadow-lg max-w-4xl mx-auto">
+        <div class="mb-16 bg-sky-200 border-l-4 border-sky-500 p-8 rounded-r-lg shadow-lg max-w-4xl mx-auto">
           <div class="flex">
             <div class="flex-shrink-0">
               <svg
-                  class="h-16 w-16 text-yellow-600"
+                  class="h-16 w-16 text-sky-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -101,62 +109,34 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
           />
 
 
-          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
-          <!--	<div class="flex items-center mb-4">-->
-          <!--		<svg class="w-16 h-16 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.33 12.33A3 3 0 0112 15a3 3 0 01-2.33-2.67m3.001-4.66A2.989 2.989 0 0012 6a2.989 2.989 0 00-2.33 1.67M16.5 9.5l1.5 1.5-1.5 1.5"></path></svg>-->
-          <!--		<h3 class="text-xl font-semibold text-gray-800">Specialized Expertise</h3>-->
-          <!--	</div>-->
-          <!--	<p class="text-gray-600">We don't just fix equipment; we know roll moving systems inside and out. This is our focus, not a sideline.</p>-->
-          <!--</div>-->
-          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
-          <!--	<div class="flex items-center mb-4">-->
-          <!--		<svg class="w-8 h-8 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>-->
-          <!--		<h3 class="text-xl font-semibold text-gray-800">Faster Turnaround</h3>-->
-          <!--	</div>-->
-          <!--	<p class="text-gray-600">Our specialized focus means quicker diagnostics and repairs, minimizing your critical downtime.</p>-->
-          <!--</div>-->
-          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
-          <!--	<div class="flex items-center mb-4">-->
-          <!--		<svg class="w-8 h-8 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>-->
-          <!--		<h3 class="text-xl font-semibold text-gray-800">Significant Cost Savings</h3>-->
-          <!--	</div>-->
-          <!--	<p class="text-gray-600">Repair your equipment for a fraction of the cost of replacement, with transparent and fair pricing.</p>-->
-          <!--</div>-->
-          <!--<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">-->
-          <!--	<div class="flex items-center mb-4">-->
-          <!--		<svg class="w-8 h-8 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>-->
-          <!--		<h3 class="text-xl font-semibold text-gray-800">Customer-First Support</h3>-->
-          <!--	</div>-->
-          <!--	<p class="text-gray-600">We view ourselves as your partners in productivity. Our goal is to provide the best solution for you, not just a one-time fix.</p>-->
-          <!--</div>-->
+
         </div>
       </div>
     </section>
 
-    <!-- Section 4: Our Services -->
     <section
         id="services"
-        class="py-16 md:py-24 bg-white"
+        class="py-16 md:py-24"
     >
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Core Services</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Core Services</h2>
         </div>
         <div class="flex flex-wrap -mx-4">
           <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
-            <div class="bg-gray-50 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
-              <img
-                  src="https://placehold.co/600x400/818cf8/ffffff?text=Equipment+Repair"
-                  alt="Equipment Repair"
-                  class="w-full"
-              >
+            <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+              <Image
+                  src={rollMoverTech}
+                  alt="RollMover Technician"
+                  class="rounded-full shadow-xl mx-auto"
+              />
               <div class="p-8 flex-grow">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Expert Repair Services</h3>
-                <p class="text-gray-600 mb-6">We diagnose and resolve common and complex issues to get your equipment
+                <h3 class="text-2xl font-bold text-white mb-4">Expert Repair Services</h3>
+                <p class="text-white mb-6">We diagnose and resolve common and complex issues to get your equipment
                   back to work quickly. Our process includes diagnostics, component-level repair, and full performance
                   testing.</p>
-                <h4 class="font-semibold text-gray-700 mb-2">Common Problems We Solve:</h4>
-                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-1 pl-4">
+                <h4 class="font-semibold text-white mb-2">Common Problems We Solve:</h4>
+                <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
                   <li>Motor or gearbox failure</li>
                   <li>Battery and charging issues</li>
                   <li>Unresponsive controls & electrical faults</li>
@@ -174,17 +154,17 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
             </div>
           </div>
           <div class="w-full md:w-1/2 px-4">
-            <div class="bg-gray-50 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
-              <img
-                  src="https://placehold.co/600x400/a5b4fc/ffffff?text=Compatible+Parts"
-                  alt="Compatible Parts"
-                  class="w-full"
-              >
+            <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+              <Image
+                  src={compatibleBatteries}
+                  alt="RollMover Technician"
+                  class="rounded-full shadow-xl mx-auto"
+              />
               <div class="p-8 flex-grow">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Premium Replacement Parts</h3>
-                <p class="text-gray-600 mb-4">Keep your equipment running with our extensive inventory of high-quality
+                <h3 class="text-2xl font-bold text-white mb-4">Premium Replacement Parts</h3>
+                <p class="text-white mb-4">Keep your equipment running with our extensive inventory of high-quality
                   components compatible with many roll mover systems, including the RollMover™ series.</p>
-                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-1 pl-4">
+                <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
                   <li>Drive Wheels & Casters</li>
                   <li>Batteries & Chargers</li>
                   <li>Motors & Gearboxes</li>
@@ -205,15 +185,49 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
       </div>
     </section>
 
-    <!-- Section 5: About Us -->
+    <section id="blog" class="py-16 md:py-24 bg-gray-800 rounded-xl">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">From Our Blog</h2>
+          <p class="text-lg text-gray-300">Tips, guides, and insights to help you get the most out of your equipment.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            latestPosts.map(post => (
+                <a href={`/blog/${post.id}/`} class="group block bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
+                  {post.data.heroImage && (
+                      <Image
+                          src={post.data.heroImage}
+                          alt={`Hero image for ${post.data.title}`}
+                          width={720}
+                          height={360}
+                          class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                  )}
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-2 leading-tight">{post.data.title}</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                    <p class="text-gray-300 text-base">{post.data.description}</p>
+                  </div>
+                </a>
+            ))
+          }
+        </div>
+        <div class="text-center mt-12">
+          <a href="/blog" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300">
+            View All Articles
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section
         id="about"
-        class="py-16 md:py-24 bg-gray-50"
+        class="py-16 md:py-24"
     >
       <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About Artic Power Solutions</h2>
-        </div>
         <div class="flex flex-wrap items-center -mx-4">
           <div class="w-full md:w-1/3 px-8 mb-8 md:mb-0 text-center ">
             <Image
@@ -223,17 +237,20 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
             />
           </div>
           <div class="w-full md:w-2/3 px-4">
-            <p class="text-lg text-gray-700 mb-4">
+            <div class="mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Artic Power Solutions</h2>
+            </div>
+            <p class="text-lg text-white">
               <strong>Artic Power Solutions is your trusted independent partner for material handling equipment
                 repair.</strong> We were founded on the principle that businesses need a reliable, expert alternative to
               slow and costly OEM service.
             </p>
-            <p class="text-lg text-gray-700 mb-4">
+            <p class="text-lg text-white mb-4">
               Our team has deep, hands-on experience with the specific machinery used in the paper, converting, and
               nonwovens industries. We understand the critical nature of your equipment and are committed to providing
               solutions that are not only effective but also make financial sense.
             </p>
-            <p class="text-lg text-gray-700">
+            <p class="text-lg text-white">
               We proudly serve clients nationwide, offering specialized repair services and a comprehensive catalog of
               compatible parts to keep your operations moving.
             </p>

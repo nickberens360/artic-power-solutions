@@ -2,7 +2,7 @@
 title: 'Creating a Safer Workplace: Best Practices for RollMover Operation'
 description: 'Safety is paramount. Learn the essential best practices for operating your RollMover to prevent accidents, protect your team, and ensure a safer, more efficient workplace.'
 pubDate: 'Jun 12 2025'
-#heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '../../assets/blog/safe-workplace.png'
 ---
 
 A RollMover is an incredibly powerful tool for enhancing efficiency and reducing physical strain in your workplace. However, like any piece of heavy machinery, its safe operation is paramount to preventing accidents and ensuring the well-being of your team.

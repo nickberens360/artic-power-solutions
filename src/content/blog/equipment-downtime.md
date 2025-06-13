@@ -2,7 +2,7 @@
 title: 'How the Print and Paper Industry Can Reduce Downtime with Proactive RollMover Maintenance'
 description: 'Discover maintenance tips specifically for RollMovers used in the demanding print and paper industry. Learn how to combat paper dust and high-stress wear to maximize uptime and efficiency.'
 pubDate: 'Jun 12 2025'
-#heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/blog/reduce-downtime.png'
 ---
 
 The print and paper industry operates on tight deadlines and thin margins. In this fast-paced environment, every minute of uptime counts. Your RollMover is a workhorse, but the unique challenges of a paper mill or pressroom—from heavy, delicate rolls to pervasive paper dust—put extraordinary demands on your equipment.
@@ -29,7 +29,7 @@ The constant, precise movements required to load a press or maneuver a multi-ton
 
 ### Choosing Parts That Withstand the Pressure
 
-Given these challenges, using standard, off-the-shelf replacement parts may not be enough. To truly maximize uptime, you need components designed for the job.
+Given these challenges, using standard, off-the-shelf replacement parts may not be enough. To truly maximize uptime, you need components designed for the job. Making the right choice between [OEM vs. Compatible RollMover Parts](/blog/oem-vs-compatible) is a key first step in this process.
 
 * **High-Durometer Polyurethane Wheels:** Invest in a drive wheel made from a harder polyurethane. This type of material is more durable and less likely to pick up and embed debris, ensuring better traction for longer.
 * **Heavy-Duty, High-Cycle Batteries:** When it's time to replace your battery, choose one that is specifically designed for high-demand, high-cycle applications. These batteries provide more consistent power and a longer service life in a 24/7 operational environment.

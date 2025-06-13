@@ -2,7 +2,7 @@
 title: '5 Common Issues with RollMovers and How to Troubleshoot Them'
 description: 'Learn how to troubleshoot the 5 most common issues with RollMovers. This guide from Artic Power Solutions helps you diagnose and solve problems quickly.'
 pubDate: 'Jun 12 2025'
-#heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/blog/common-issues.png'
 ---
 
 Is your RollMover acting up? Don't let unexpected downtime disrupt your operations! At Artic Power Solutions, we know how vital your RollMover is for keeping your materials and workflow moving smoothly. That's why we've put together this guide to help you identify and troubleshoot 5 of the most common issues you might encounter.

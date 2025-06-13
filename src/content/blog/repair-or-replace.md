@@ -2,7 +2,7 @@
 title: 'Repair or Replace? A Cost-Benefit Analysis for Your RollMover'
 description: 'Struggling to decide whether to repair or replace your aging RollMover? This guide from Artic Power Solutions breaks down the costs and benefits to help you make the best financial decision for your business.'
 pubDate: 'Jun 12 2025'
-#heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/blog/repair-replace.png'
 ---
 
 When a critical piece of equipment like your RollMover starts to show its age or breaks down, it can bring your operations to a halt. This leaves you with a major decision: should you invest in a repair, or is it time to replace the unit entirely?
@@ -23,7 +23,7 @@ Beyond the sticker price, you should also consider the "hidden costs" of replace
 
 In many cases, repairing your existing RollMover is the most cost-effective solution. Here's why:
 
--   **Significant Cost Savings:** The cost of common repairs, such as replacing a battery, a wheel, or even a motor, is often just a fraction of the price of a new machine.
+-   **Significant Cost Savings:** The cost of common repairs, such as replacing a battery, a wheel, or even a motor, is often just a fraction of the price of a new machine. When considering the price of parts, it's also worth weighing the benefits of [OEM vs. Compatible RollMover Parts](/blog/oem-vs-compatible).
 -   **Extend the Lifespan of Your Asset:** A well-built RollMover can last for many years with proper maintenance and high-quality repairs. By replacing worn components, you can significantly extend the life of your initial investment.
 -   **No Hidden Costs:** With a repair, your team can get back to work with the equipment they already know and trust. There are no new procedures to learn or integrate into your workflow.
 

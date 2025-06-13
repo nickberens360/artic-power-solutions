@@ -2,12 +2,12 @@
 title: 'The Ultimate Maintenance Checklist for Your RollMover'
 description: 'A comprehensive guide to keeping your RollMover in top condition. Follow this checklist to ensure the longevity and reliability of your equipment.'
 pubDate: 'Jun 12 2025'
-#heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '../../assets/blog/checklist.png'
 ---
 
 Your RollMover is a critical piece of equipment, and like any hard-working machine, it requires regular maintenance to perform at its best. Consistent care not only extends the life of your RollMover but also ensures the safety of your operators and the efficiency of your operations.
 
-At Artic Power Solutions, we're not just about providing high-quality compatible parts and expert repair services; we're also committed to empowering you to get the most out of your equipment. That's why we've created this ultimate maintenance checklist to help you keep your RollMover in peak condition.
+At Artic Power Solutions, we're not just about providing high-quality compatible parts and expert repair services; we're also committed to empowering you to get the most out of your equipment. That's why we've created this ultimate maintenance checklist to help you keep your RollMover in peak condition, which is a cornerstone of [creating a safer workplace](/blog/safe-workplace).
 
 ## The Ultimate RollMover Maintenance Checklist
 

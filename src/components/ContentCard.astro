@@ -8,9 +8,9 @@ export interface Props {
 const { title, description, image } = Astro.props;
 ---
 
-<div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+<div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
   <div class="flex items-center mb-4">
-    <h3 class="text-xl font-semibold text-gray-800">{title}</h3>
+    <h3 class="text-md font-semibold text-white">{title}</h3>
   </div>
-  <p class="text-gray-600">{description}</p>
+  <p class="text-white">{description}</p>
 </div>
