@@ -15,4 +15,16 @@ const blog = defineCollection({
 	}),
 });
 
-export const collections = { blog };
+// New collection for Parts
+const parts = defineCollection({
+	loader: glob({ base: './src/content/parts', pattern: '**/*.{md,mdx}' }),
+	schema: ({ image }) => z.object({
+		title: z.string(),
+		partNumber: z.string(),
+		description: z.string(),
+		heroImage: image().optional(),
+	}),
+});
+
+
+export const collections = { blog, parts };
