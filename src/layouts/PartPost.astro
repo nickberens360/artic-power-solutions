@@ -2,13 +2,15 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets'; // Import the Astro Image component
+import type { ImageMetadata } from 'astro'; // Import the ImageMetadata type
 
 // The Props interface is now flattened
 export interface Props {
   title: string;
   description: string;
   partNumber: string;
-  heroImage?: string;
+  heroImage?: ImageMetadata; // Correct type for heroImage
 }
 
 // Destructuring is now directly from Astro.props
