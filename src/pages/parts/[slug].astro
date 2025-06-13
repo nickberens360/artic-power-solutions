@@ -2,10 +2,21 @@
 import { getCollection } from 'astro:content';
 import PartPost from '../../layouts/PartPost.astro';
 
+const slugify = (text: string) => text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+
 export async function getStaticPaths() {
   const partsCollection = await getCollection('parts');
   return partsCollection.map(entry => ({
-    params: { partNumber: entry.data.partNumber }, // Use partNumber for the slug
+    params: {
+      slug: `${slugify(entry.data.title)}-${entry.data.partNumber}`
+    },
     props: { entry },
   }));
 }

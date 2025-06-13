@@ -4,11 +4,19 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import FormattedDate from '../../components/FormattedDate.astro';
 
 const parts = (await getCollection('parts')).sort(
     (a, b) => a.data.title.localeCompare(b.data.title)
 );
+
+const slugify = (text: string) => text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 ---
 
 <!doctype html>
@@ -79,21 +87,24 @@ const parts = (await getCollection('parts')).sort(
     <h1 class="text-4xl font-bold mb-8 text-center">Compatible Parts</h1>
     <ul>
       {
-        parts.map((part) => (
-            <li>
-              <a href={`/parts/${part.data.partNumber}/`}>
-                <img
-                    width={720}
-                    height={360}
-                    src={part.data.heroImage}
-                    alt=""
-                    class="w-full h-auto mb-4"
-                />
-                <h4 class="title">{part.data.title}</h4>
-                <p class="part-number">Part #: {part.data.partNumber}</p>
-              </a>
-            </li>
-        ))
+        parts.map((part) => {
+          const slug = `${slugify(part.data.title)}-${part.data.partNumber}`;
+          return (
+              <li>
+                <a href={`/parts/${slug}/`}>
+                  <img
+                      width={720}
+                      height={360}
+                      src={part.data.heroImage}
+                      alt=""
+                      class="w-full h-auto mb-4"
+                  />
+                  <h4 class="title">{part.data.title}</h4>
+                  <p class="part-number">Part #: {part.data.partNumber}</p>
+                </a>
+              </li>
+          )
+        })
       }
     </ul>
   </section>
