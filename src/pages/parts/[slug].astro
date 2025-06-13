@@ -1,15 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import PartPost from '../../layouts/PartPost.astro';
-
-const slugify = (text: string) => text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '');
+import { slugify } from '../../utils/slugify';
 
 export async function getStaticPaths() {
   const partsCollection = await getCollection('parts');
