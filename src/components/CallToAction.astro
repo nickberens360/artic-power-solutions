@@ -1,7 +1,5 @@
 ---
-// src/components/CallToAction.astro
 ---
-
 <section
     id="contact"
     class="py-16 md:py-24 bg-[radial-gradient(ellipse_at_center,theme(colors.gray.700)_0%,theme(colors.gray.900)_100%)]"
@@ -13,7 +11,12 @@
         our team today! We serve clients nationwide.</p>
     </div>
     <div class="max-w-3xl mx-auto bg-gray-900 p-8 md:p-12 rounded-xl shadow-2xl">
-      <form id="contactForm">
+      {/* --- NETLIFY FORM CHANGES START --- */}
+      <form name="contact" method="POST" data-netlify="true">
+        {/* This hidden input is required for Netlify to identify the form */}
+        <input type="hidden" name="form-name" value="contact" />
+        {/* --- NETLIFY FORM CHANGES END --- */}
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <label
@@ -127,16 +130,12 @@
           </button>
         </div>
       </form>
-      <div
-          id="form-status"
-          class="mt-6 text-center"
-      ></div>
 
       <div class="mt-12 text-center border-t border-gray-200 pt-8">
         <h3 class="text-xl font-semibold text-white mb-4">Or Contact Us Directly:</h3>
         <p class="text-white mb-2"><strong>Email:</strong>
           <a
-              href="mailto:sales@articpowersolutions.com"
+              href="mailto:admin@articpowersolutions.com"
               class="text-sky-300 hover:underline"
           >sales@articpowersolutions.com
           </a>
@@ -147,83 +146,41 @@
 </section>
 
 <style>
-    .cta-container {
-        //background-color: var(--gray-light);
-        border-radius: 8px;
-        padding: 2.5em;
-        text-align: center;
-        //margin-top: 4em;
-        //margin-bottom: 2em;
-    }
+  .cta-container {
+    border-radius: 8px;
+    padding: 2.5em;
+    text-align: center;
+  }
 
-    .cta-container h2 {
-        font-size: 1.953em; /* h3 size from global.css */
-        line-height: 1.2;
-        margin-bottom: 0.5em;
-    }
+  .cta-container h2 {
+    font-size: 1.953em; /* h3 size from global.css */
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+  }
 
-    .cta-container p {
-        margin-bottom: 1.5em;
-        max-width: 60ch;
-        margin-left: auto;
-        margin-right: auto;
-    }
+  .cta-container p {
+    margin-bottom: 1.5em;
+    max-width: 60ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    .cta-button {
-        display: inline-block;
-        background-color: var(--accent);
-        color: white;
-        padding: 0.75em 1.5em;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 700;
-        transition: background-color 0.3s ease;
-    }
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent);
+    color: white;
+    padding: 0.75em 1.5em;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+  }
 
-    .cta-button:hover {
-        background-color: var(--accent-dark);
-    }
-    form input::placeholder,
-    form textarea::placeholder {
-      color: #6f88a2;
-    }
+  .cta-button:hover {
+    background-color: var(--accent-dark);
+  }
+  form input::placeholder,
+  form textarea::placeholder {
+    color: #6f88a2;
+  }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('form-status');
-
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Basic form processing simulation
-        formStatus.textContent = 'Submitting...';
-        formStatus.className = 'mt-6 text-center text-blue-600';
-
-        setTimeout(() => {
-          formStatus.textContent = 'Thank you for your inquiry! We will get back to you shortly.';
-          formStatus.className = 'mt-6 text-center text-green-600';
-          (contactForm as HTMLFormElement).reset();
-        }, 1000);
-      });
-    }
-
-    const serviceQuoteButtons = document.querySelectorAll('.service-quote-button');
-    const inquiryTypeSelect = document.getElementById('inquiry_type') as HTMLSelectElement;
-
-    serviceQuoteButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const service = (e.currentTarget as HTMLElement).dataset.service;
-        if (inquiryTypeSelect && service) {
-          if (service === 'repair') {
-            inquiryTypeSelect.value = 'Repair';
-          } else if (service === 'parts') {
-            inquiryTypeSelect.value = 'Parts';
-          }
-        }
-      });
-    });
-  });
-</script>
