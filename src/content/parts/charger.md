@@ -2,7 +2,7 @@
 title: 'Fast-Charging Battery Charger'
 partNumber: 'APS-CHG-01'
 description: 'The plug-and-go battery charger with a clear LED display. Charges your 36V lithium iron phosphate battery anywhere there is a 110V outlet.'
-#heroImage: '/images/parts/placeholder.jpg'
+heroImage: '../../assets/parts/parts-fallback.png'
 ---
 
 Downtime costs money. Our compatible fast-charging battery charger ensures your RollMover batteries are ready when you are. Featuring a simple plug-and-go design, this charger works with any standard 110V outlet. The bright LED display provides a clear status of the charging cycle at a glance.

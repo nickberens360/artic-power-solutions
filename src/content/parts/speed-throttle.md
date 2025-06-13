@@ -2,7 +2,7 @@
 title: 'Variable Speed Twist Grip Throttle'
 partNumber: 'APS-THL-01'
 description: 'An ergonomic, variable-speed twist grip throttle that provides intuitive and precise control over your RollMover.'
-#heroImage: '/images/parts/placeholder.jpg'
+heroImage: '../../assets/parts/parts-fallback.png'
 ---
 
 Operator control is key to a safe and efficient workplace. Our compatible variable-speed twist grip throttle is designed for intuitive and precise maneuverability. The ergonomic handle reduces operator strain, and the variable control allows for smooth acceleration and deceleration, preventing sudden movements that could damage rolls.

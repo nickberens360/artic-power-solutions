@@ -2,7 +2,7 @@
 title: 'Durable Polyurethane Drive Wheel'
 partNumber: 'APS-WHL-01'
 description: 'A high-durometer polyurethane drive wheel designed for maximum traction and longevity on warehouse floors. The most critical component for turning power into motion.'
-#heroImage: '/images/parts/placeholder.jpg'
+heroImage: '../../assets/parts/parts-fallback.png'
 ---
 
 The drive wheel is where the rubber meets the road. Our compatible high-durometer polyurethane drive wheel is engineered to provide maximum grip and durability, reducing slippage and ensuring efficient movement of heavy rolls. This wheel is resistant to picking up floor debris, which helps maintain traction and extends its service life.
