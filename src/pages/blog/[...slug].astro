@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import { render } from 'astro:content';
+import ArticleSchema from '../../components/ArticleSchema.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -16,5 +17,9 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 <BlogPost {...post.data}>
+	{/* This uses the "head" slot in BaseHead.astro to inject the schema */}
+	<Fragment slot="head">
+		<ArticleSchema post={post} />
+	</Fragment>
 	<Content />
 </BlogPost>

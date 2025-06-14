@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { SITE_TITLE } from '../consts';
+
+interface Props {
+    post: CollectionEntry<'blog'>;
+    }
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage } = post.data;
+
+// Default image if heroImage is not set
+const imageSrc = heroImage ? new URL(heroImage.src, Astro.site).href : new URL('/placeholder-image.jpg', Astro.site).href;
+
+const jsonLD = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "image": imageSrc,
+    "datePublished": pubDate.toISOString(),
+    "dateModified": (updatedDate || pubDate).toISOString(),
+    "author": {
+    "@type": "Organization",
+    "name": SITE_TITLE
+    },
+    "publisher": {
+    "@type": "Organization",
+    "name": SITE_TITLE,
+    "logo": {
+        "@type": "ImageObject",
+        // IMPORTANT: Replace with a URL to your actual logo
+      "url": new URL("/logo.png", Astro.site).href
+        }
+    }
+    };
+---
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
