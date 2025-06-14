@@ -1,0 +1,56 @@
+---
+// src/components/ServiceCard.astro
+import { Image } from 'astro:assets';
+
+export interface Props {
+    image: ImageMetadata;
+    imageAlt: string;
+    title: string;
+    description: string;
+    listItems: string[];
+    listHeading?: string;
+    buttonText: string;
+    buttonUrl: string;
+    class?: string;
+}
+
+const {
+    image,
+    imageAlt,
+    title,
+    description,
+    listItems,
+    listHeading,
+    buttonText,
+    buttonUrl,
+    class: className
+} = Astro.props;
+---
+
+<div class:list={[className]}>
+  <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+    <Image
+        src={image}
+        alt={imageAlt}
+        class="rounded-full shadow-xl mx-auto"
+    />
+    <div class="p-8 flex-grow">
+      <h3 class="text-2xl font-bold text-white mb-4">{title}</h3>
+      <p class="text-white mb-4">{description}</p>
+      {listHeading && <h4 class="font-semibold text-white mb-2">{listHeading}</h4>}
+      <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
+          {listItems.map(item => (
+              <li>{item}</li>
+          ))}
+      </ul>
+    </div>
+    <div class="p-8 pt-0">
+      <a
+          href={buttonUrl}
+          class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 text-sm md:py-3 md:px-6 md:text-base rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+      >
+          {buttonText}
+      </a>
+    </div>
+  </div>
+</div>

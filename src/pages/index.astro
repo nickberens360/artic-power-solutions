@@ -4,16 +4,17 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ContentCard from '../components/ContentCard.astro';
 import CalloutBox from '../components/CalloutBox.astro';
-import { Image } from 'astro:assets';
+import {Image} from 'astro:assets';
 import articLogoIcon from '../assets/aps-icon-white.png';
 import rollMoverIllustration from '../assets/rollMoverIllustration.png';
 import rollMoverTech from '../assets/rollmover-technician.png';
 import compatibleBatteries from '../assets/compatible-batteries.png';
 import vintageWarehouse from '../assets/vintage-warehouse.jpg';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import { getCollection } from 'astro:content';
+import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
+import {getCollection} from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import SectionBlock from "../components/SectionBlock.astro";
+import ServiceCard from "../components/ServiceCard.astro";
 
 // Fetch and sort the latest 3 blog posts
 const latestPosts = (await getCollection('blog')).sort(
@@ -54,7 +55,8 @@ const latestPosts = (await getCollection('blog')).sort(
             <h2 class="text-md md:text-md font-bold text-white mb-6">Is Your Material Handling Equipment Performing at
               Its Best?</h2>
             <p class="text-lg text-white mb-4">
-              Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity to a
+              Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity
+              to a
               halt.
             </p>
             <p class="text-lg text-white">
@@ -73,7 +75,7 @@ const latestPosts = (await getCollection('blog')).sort(
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Artic Power Solutions Advantage</h2>
           </div>
 
-          <CalloutBox />
+          <CalloutBox/>
 
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ContentCard
@@ -94,7 +96,6 @@ const latestPosts = (await getCollection('blog')).sort(
             />
 
 
-
           </div>
         </div>
       </Fragment>
@@ -107,63 +108,39 @@ const latestPosts = (await getCollection('blog')).sort(
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Core Services</h2>
           </div>
           <div class="flex flex-wrap -mx-4">
-            <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
-              <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
-                <Image
-                    src={rollMoverTech}
-                    alt="RollMover Technician"
-                    class="rounded-full shadow-xl mx-auto"
-                />
-                <div class="p-8 flex-grow">
-                  <h3 class="text-2xl font-bold text-white mb-4">Expert Repair Services</h3>
-                  <p class="text-white mb-6">We diagnose and resolve common and complex issues to get your equipment
-                    back to work quickly. Our process includes diagnostics, component-level repair, and full performance
-                    testing.</p>
-                  <h4 class="font-semibold text-white mb-2">Common Problems We Solve:</h4>
-                  <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
-                    <li>Motor or gearbox failure</li>
-                    <li>Battery and charging issues</li>
-                    <li>Unresponsive controls & electrical faults</li>
-                    <li>Worn drive wheels and casters</li>
-                  </ul>
-                </div>
-                <div class="p-8 pt-0">
-                  <a
-                      href="#contact"
-                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 text-sm md:py-3 md:px-6 md:text-base rounded-lg transition duration-300 shadow-md hover:shadow-lg"
-                  >
-                    Request Repair Info
-                  </a>
-                </div>
-              </div>
+            <div class="w-full md:w-1/2 px-4">
+              <ServiceCard
+                  image={rollMoverTech}
+                  imageAlt="RollMover Technician"
+                  title="Expert Repair Services"
+                  description="We diagnose and resolve common and complex issues to get your equipment back to work quickly. Our process includes diagnostics, component-level repair, and full performance testing."
+                  listHeading="Common Problems We Solve:"
+                  listItems={[
+                      "Motor or gearbox failure",
+                      "Battery and charging issues",
+                      "Unresponsive controls & electrical faults",
+                      "Worn drive wheels and casters"
+                  ]}
+                  buttonText="Request Repair Info"
+                  buttonUrl="#contact"
+                  class="mb-12 md:mb-0"
+              />
             </div>
             <div class="w-full md:w-1/2 px-4">
-              <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
-                <Image
-                    src={compatibleBatteries}
-                    alt="RollMover Technician"
-                    class="rounded-full shadow-xl mx-auto"
-                />
-                <div class="p-8 flex-grow">
-                  <h3 class="text-2xl font-bold text-white mb-4">Premium Replacement Parts</h3>
-                  <p class="text-white mb-4">Keep your equipment running with our extensive inventory of high-quality
-                    components compatible with many roll mover systems, including the RollMover™ series.</p>
-                  <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
-                    <li>Drive Wheels & Casters</li>
-                    <li>Batteries & Chargers</li>
-                    <li>Motors & Gearboxes</li>
-                    <li>Controls, Switches & Electrical Components</li>
-                  </ul>
-                </div>
-                <div class="p-8 pt-0">
-                  <a
-                      href="/parts"
-                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 text-sm md:py-3 md:px-6 md:text-base rounded-lg transition duration-300 shadow-md hover:shadow-lg"
-                  >
-                    Find Your Parts
-                  </a>
-                </div>
-              </div>
+              <ServiceCard
+                  image={compatibleBatteries}
+                  imageAlt="RollMover Technician"
+                  title="Premium Replacement Parts"
+                  description="Keep your equipment running with our extensive inventory of high-quality components compatible with many roll mover systems, including the RollMover™ series."
+                  listItems={[
+                      "Drive Wheels & Casters",
+                      "Batteries & Chargers",
+                      "Motors & Gearboxes",
+                      "Controls, Switches & Electrical Components"
+                  ]}
+                  buttonText="Find Your Parts"
+                  buttonUrl="/parts"
+              />
             </div>
           </div>
         </div>
@@ -171,39 +148,46 @@ const latestPosts = (await getCollection('blog')).sort(
     </SectionBlock>
 
     <SectionBlock
-      innerRounded
+        innerRounded
     >
       <Fragment>
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">From Our Blog</h2>
-          <p class="text-lg text-gray-300">Tips, guides, and insights to help you get the most out of your equipment.</p>
+          <p class="text-lg text-gray-300">Tips, guides, and insights to help you get the most out of your
+            equipment.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {
-            latestPosts.map(post => (
-                <a href={`/blog/${post.id}/`} class="group block bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                  {post.data.heroImage && (
-                      <Image
-                          src={post.data.heroImage}
-                          alt={`Hero image for ${post.data.title}`}
-                          width={720}
-                          height={360}
-                          class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                  )}
-                  <div class="p-6">
-                    <h3 class="text-xl font-bold text-white mb-2 leading-tight">{post.data.title}</h3>
-                    <p class="text-gray-400 text-sm mb-4">
-                      <FormattedDate date={post.data.pubDate} />
-                    </p>
-                    <p class="text-gray-300 text-base">{post.data.description}</p>
-                  </div>
-                </a>
-            ))
-          }
+            {
+                latestPosts.map(post => (
+                    <a
+                        href={`/blog/${post.id}/`}
+                        class="group block bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
+                    >
+                        {post.data.heroImage && (
+                            <Image
+                                src={post.data.heroImage}
+                                alt={`Hero image for ${post.data.title}`}
+                                width={720}
+                                height={360}
+                                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                        )}
+                      <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">{post.data.title}</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                          <FormattedDate date={post.data.pubDate}/>
+                        </p>
+                        <p class="text-gray-300 text-base">{post.data.description}</p>
+                      </div>
+                    </a>
+                ))
+            }
         </div>
         <div class="text-center mt-12">
-          <a href="/blog" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300">
+          <a
+              href="/blog"
+              class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
+          >
             View All Articles
           </a>
         </div>
