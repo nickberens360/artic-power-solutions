@@ -90,37 +90,27 @@ import Layout from '../layouts/BlogPost.astro';
 
 <style>
 	.hero {
-		text-align: center;
-		padding: 3em 1em;
-		background-color: var(--gray-light);
-		border-radius: 8px;
-		margin-bottom: 3em;
+		@apply text-center py-12 px-4 bg-[rgb(229,233,240)] rounded-lg mb-12;
 	}
 	.hero h1 {
-		margin: 0;
-		font-size: 3.052em;
+		@apply m-0 text-[3.052em];
 	}
 	.subtitle {
-		font-size: 1.25em;
-		color: var(--gray);
-		margin-top: 0.5rem;
+		@apply text-xl text-[rgb(96,115,159)] mt-2;
 	}
 	section {
-		margin-bottom: 3em;
+		@apply mb-12;
 	}
 	h2 {
-		border-bottom: 1px solid var(--gray-light);
-		padding-bottom: 0.5em;
-		margin-bottom: 1em;
+		@apply border-b border-[rgb(229,233,240)] pb-2 mb-4;
 	}
 	ul {
-		list-style-position: inside;
+		@apply list-inside;
 	}
 	li {
-		margin-bottom: 1em;
-		line-height: 1.6;
+		@apply mb-4 leading-relaxed;
 	}
 	li strong {
-		font-weight: 700;
+		@apply font-bold;
 	}
 </style>

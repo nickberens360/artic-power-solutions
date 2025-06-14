@@ -5,14 +5,14 @@ import articLogoIcon from '../assets/aps-icon-white.png';
 import { SITE_TITLE } from '../consts';
 ---
 
-<header>
-	<nav>
+<header class="m-0 px-4 py-0 bg-[#0e162a] shadow-md">
+	<nav class="flex items-center justify-between">
 		<div class="flex items-center">
 			<Image
 				class="w-10 h-10 max-w-full h-auto"
 				src={articLogoIcon}
 				alt="Artic Power Solutions Logo" />
-			<h2><a href="/">{SITE_TITLE}</a></h2>
+			<h2 class="m-0 text-base"><a href="/" class="no-underline">{SITE_TITLE}</a></h2>
 		</div>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
@@ -20,29 +20,12 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/parts">Parts</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
+		<div class="social-links md:flex hidden">
+			<!-- Social links would go here if needed -->
+		</div>
 	</nav>
 </header>
 <style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: #0e162a;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
 	nav a {
 		padding: 1em 0.5em;
 		color: white;
@@ -51,15 +34,9 @@ import { SITE_TITLE } from '../consts';
 	}
 	nav a.active {
 		text-decoration: none;
-		border-bottom-color: var(--accent);
+		border-bottom-color: #fc5252;
 	}
-	.social-links,
 	.social-links a {
 		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
 	}
 </style>

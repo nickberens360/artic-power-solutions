@@ -2,7 +2,7 @@
 ---
 <section
     id="contact"
-    class="py-16 md:py-24 bg-[radial-gradient(ellipse_at_center,theme(colors.gray.700)_0%,theme(colors.gray.900)_100%)]"
+    class="py-16 md:py-24 bg-[radial-gradient(ellipse_at_center,#374151_0%,#111827_100%)]"
 >
   <div class="container mx-auto px-6">
     <div class="text-center mb-12">
@@ -166,18 +166,11 @@
   }
 
   .cta-button {
-    display: inline-block;
-    background-color: var(--accent);
-    color: white;
-    padding: 0.75em 1.5em;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
+    @apply inline-block bg-[#fc5252] text-white px-6 py-3 rounded font-bold transition-colors duration-300;
   }
 
   .cta-button:hover {
-    background-color: var(--accent-dark);
+    @apply bg-[#e52a2a];
   }
   form input::placeholder,
   form textarea::placeholder {
