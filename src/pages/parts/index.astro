@@ -19,27 +19,34 @@ const parts = (await getCollection('parts')).sort(
 </head>
 <body>
 <Header />
-<main class="text-white max-w-3xl mx-auto px-4">
-  <section>
-    <h1 class="text-4xl font-bold mb-8 text-center">Compatible Parts</h1>
-    <ul>
+<main class="max-w-4xl mx-auto">
+  <section class="p-12">
+    <h1 class="text-4xl text-white font-bold mb-16 text-center">Compatible Parts</h1>
+    <ul class="flex flex-wrap list-none m-0 p-0 gap-y-8 md:gap-x-8">
       {
-        parts.map((part) => {
+        parts.map((part, index) => {
           const slug = `${slugify(part.data.title)}-${part.data.partNumber}`;
           return (
-              <li>
-                <a href={`/parts/${slug}/`}>
+              <li class="bg-gray-800 p-4 rounded-xl w-full md:w-[calc(50%-1rem)]">
+                <a 
+                  href={`/parts/${slug}/`}
+                  class="block no-underline group transition-all duration-200 ease-in-out"
+                >
                   {part.data.heroImage && (
                       <Image
                           width={720}
                           height={360}
                           src={part.data.heroImage}
                           alt={`Image for ${part.data.title}`}
-                          class="w-full h-auto mb-4"
+                          class="w-full mb-2 rounded-xl group-hover:shadow-xl"
                       />
                   )}
-                  <h4 class="title">{part.data.title}</h4>
-                  <p class="part-number">Part #: {part.data.partNumber}</p>
+                  <h4 class="m-0 text-white text-2xl leading-tight break-words overflow-wrap-anywhere group-hover:text-accent">
+                    {part.data.title}
+                  </h4>
+                  <p class="text-white group-hover:text-accent">
+                    Part #: {part.data.partNumber}
+                  </p>
                 </a>
               </li>
           )
