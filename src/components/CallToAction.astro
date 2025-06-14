@@ -12,7 +12,12 @@
     </div>
     <div class="max-w-3xl mx-auto bg-gray-900 p-8 md:p-12 rounded-xl shadow-2xl">
       {/* --- NETLIFY FORM CHANGES START --- */}
-      <form name="contact" method="POST" data-netlify="true">
+      <form
+          name="contact"
+          method="POST"
+          action="/pages/success"
+          data-netlify="true"
+      >
         {/* This hidden input is required for Netlify to identify the form */}
         <input type="hidden" name="sales-form" value="contact" />
         {/* --- NETLIFY FORM CHANGES END --- */}
