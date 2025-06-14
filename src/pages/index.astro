@@ -46,18 +46,18 @@ const latestPosts = (await getCollection('blog')).sort(
             <Image
                 src={rollMoverIllustration}
                 alt="RollMover Technician"
-                style="max-width: 300px"
+                style="max-width: 300px; width: 100%;"
                 class=" mx-auto"
             />
           </div>
-          <div class="container mx-auto px-6">
+          <div>
             <h2 class="text-md md:text-md font-bold text-white mb-6">Is Your Material Handling Equipment Performing at
               Its Best?</h2>
-            <p class="text-lg text-white max-w-3xl mx-auto mb-4">
+            <p class="text-lg text-white mb-4">
               Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity to a
               halt.
             </p>
-            <p class="text-lg text-white max-w-3xl mx-auto">
+            <p class="text-lg text-white">
               Finding fast, reliable, and cost-effective repair service can be a challenge, especially when faced with
               warranty denials or providers who lack specialized knowledge.
             </p>
@@ -68,7 +68,7 @@ const latestPosts = (await getCollection('blog')).sort(
 
     <SectionBlock>
       <Fragment>
-        <div class="container mx-auto px-6">
+        <div>
           <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Artic Power Solutions Advantage</h2>
           </div>
@@ -102,12 +102,12 @@ const latestPosts = (await getCollection('blog')).sort(
 
     <SectionBlock>
       <Fragment>
-        <div class="container mx-auto px-6">
+        <div>
           <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Core Services</h2>
           </div>
           <div class="flex flex-wrap -mx-4">
-            <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+            <div class="w-full md:w-1/2 mb-12 md:mb-0">
               <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
                 <Image
                     src={rollMoverTech}
@@ -130,14 +130,14 @@ const latestPosts = (await getCollection('blog')).sort(
                 <div class="p-8 pt-0">
                   <a
                       href="#contact"
-                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 text-sm md:py-3 md:px-6 md:text-base rounded-lg transition duration-300 shadow-md hover:shadow-lg"
                   >
                     Request Repair Info
                   </a>
                 </div>
               </div>
             </div>
-            <div class="w-full md:w-1/2 px-4">
+            <div class="w-full md:w-1/2">
               <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
                 <Image
                     src={compatibleBatteries}
@@ -157,8 +157,8 @@ const latestPosts = (await getCollection('blog')).sort(
                 </div>
                 <div class="p-8 pt-0">
                   <a
-                      href="#contact"
-                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                      href="/parts"
+                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 text-sm md:py-3 md:px-6 md:text-base rounded-lg transition duration-300 shadow-md hover:shadow-lg"
                   >
                     Find Your Parts
                   </a>

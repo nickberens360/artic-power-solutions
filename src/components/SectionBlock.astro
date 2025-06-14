@@ -16,7 +16,7 @@ const { id, title, class: className, innerRounded } = Astro.props;
   <div
     class:list={[
       "section-block__inner max-w-[1200px] mx-auto px-4",
-      { "rounded-xl bg-gray-800 py-16 px-8": innerRounded },
+      { "rounded-xl bg-gray-800 py-8 px-4": innerRounded },
     ]}
   >
     {title && <h2 class="text-3xl font-bold text-center mb-12 text-white">{title}</h2>}
