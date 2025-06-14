@@ -6,6 +6,7 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../../consts';
 import {getCollection} from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import {Image} from 'astro:assets';
+import SectionBlock from "../../components/SectionBlock.astro";
 
 const posts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -22,55 +23,57 @@ const posts = (await getCollection('blog')).sort(
 </head>
 <body>
 <Header/>
-<main class="max-w-4xl mx-auto">
-  <section class="p-12">
-    <ul class="flex flex-wrap list-none m-0 p-0 gap-y-8 md:gap-x-8">
+<main>
+  <SectionBlock>
+    <Fragment>
+      <ul class="flex flex-wrap list-none m-0 p-0 gap-y-8 md:gap-x-8">
         {
-            posts.map((post, index) => (
-                <li
-                    class:list={[
-                        'bg-gray-800 p-4 rounded-xl w-full',
-                        {
-                            'md:w-[calc(50%-1rem)]': index > 0,
-                            'text-center': index > 0,
-                            'mb-4 text-center': index === 0,
-                        },
-                    ]}
+          posts.map((post, index) => (
+              <li
+                  class:list={[
+                    'bg-gray-800 p-4 rounded-xl w-full',
+                    {
+                      'md:w-[calc(50%-1rem)]': index > 0,
+                      'text-center': index > 0,
+                      'mb-4 text-center': index === 0,
+                    },
+                  ]}
+              >
+                <a
+                    href={`/blog/${post.id}/`}
+                    class="block no-underline group transition-all duration-200 ease-in-out"
                 >
-                  <a
-                      href={`/blog/${post.id}/`}
-                      class="block no-underline group transition-all duration-200 ease-in-out"
+                  {post.data.heroImage && (
+                      <Image
+                          width={720}
+                          height={360}
+                          src={post.data.heroImage}
+                          alt={`Hero image for ${post.data.title}`}
+                          class="w-full mb-2 rounded-xl group-hover:shadow-xl"
+                      />
+                  )}
+                  <h3
+                      class:list={[
+                        'm-0 text-white leading-tight break-words overflow-wrap-anywhere group-hover:text-accent',
+                        {
+                          'text-2xl md:text-4xl': index === 0,
+                        },
+                      ]}
                   >
-                      {post.data.heroImage && (
-                          <Image
-                              width={720}
-                              height={360}
-                              src={post.data.heroImage}
-                              alt={`Hero image for ${post.data.title}`}
-                              class="w-full mb-2 rounded-xl group-hover:shadow-xl"
-                          />
-                      )}
-                    <h3
-                        class:list={[
-                            'm-0 text-white leading-tight break-words overflow-wrap-anywhere group-hover:text-accent',
-                            {
-                                'text-2xl md:text-4xl': index === 0,
-                            },
-                        ]}
-                    >
-                        {post.data.title}
-                    </h3>
-                    <p
-                        class="group-hover:text-accent"
-                    >
-                      <FormattedDate date={post.data.pubDate}/>
-                    </p>
-                  </a>
-                </li>
-            ))
+                    {post.data.title}
+                  </h3>
+                  <p
+                      class="group-hover:text-accent"
+                  >
+                    <FormattedDate date={post.data.pubDate}/>
+                  </p>
+                </a>
+              </li>
+          ))
         }
-    </ul>
-  </section>
+      </ul>
+    </Fragment>
+  </SectionBlock>
 </main>
 <Footer/>
 </body>

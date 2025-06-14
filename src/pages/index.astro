@@ -13,6 +13,7 @@ import vintageWarehouse from '../assets/vintage-warehouse.jpg';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
+import SectionBlock from "../components/SectionBlock.astro";
 
 // Fetch and sort the latest 3 blog posts
 const latestPosts = (await getCollection('blog')).sort(
@@ -32,143 +33,147 @@ const latestPosts = (await getCollection('blog')).sort(
       disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
       imageUrl="https://images.unsplash.com/photo-1727517786578-ff2bb896b852?q=80&w=2842&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   />
-  <main class="p-0">
-
-    <section
-        id="challenge"
-        class="py-16 md:py-24 flex flex-col md:flex-row bg-gray-800 rounded-xl"
+  <main>
+    <SectionBlock
+        innerRounded
     >
-    <div class="px-12">
-        <Image
-            src={rollMoverIllustration}
-            alt="RollMover Technician"
-            style="max-width: 300px"
-            class=" mx-auto"
-        />
-      </div>
-      <div class="container mx-auto px-6">
-        <h2 class="text-md md:text-md font-bold text-white mb-6">Is Your Material Handling Equipment Performing at
-          Its Best?</h2>
-        <p class="text-lg text-white max-w-3xl mx-auto mb-4">
-          Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity to a
-          halt.
-        </p>
-        <p class="text-lg text-white max-w-3xl mx-auto">
-          Finding fast, reliable, and cost-effective repair service can be a challenge, especially when faced with
-          warranty denials or providers who lack specialized knowledge.
-        </p>
-      </div>
-    </section>
-
-    <section
-        id="why-us"
-        class="py-16 md:py-24"
-        style="background: #050a1c"
-    >
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Artic Power Solutions Advantage</h2>
+      <Fragment>
+        <div
+            id="challenge"
+            class=" flex flex-col md:flex-row"
+        >
+          <div class="px-12">
+            <Image
+                src={rollMoverIllustration}
+                alt="RollMover Technician"
+                style="max-width: 300px"
+                class=" mx-auto"
+            />
+          </div>
+          <div class="container mx-auto px-6">
+            <h2 class="text-md md:text-md font-bold text-white mb-6">Is Your Material Handling Equipment Performing at
+              Its Best?</h2>
+            <p class="text-lg text-white max-w-3xl mx-auto mb-4">
+              Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity to a
+              halt.
+            </p>
+            <p class="text-lg text-white max-w-3xl mx-auto">
+              Finding fast, reliable, and cost-effective repair service can be a challenge, especially when faced with
+              warranty denials or providers who lack specialized knowledge.
+            </p>
+          </div>
         </div>
+      </Fragment>
+    </SectionBlock>
 
-        <CalloutBox />
+    <SectionBlock>
+      <Fragment>
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Artic Power Solutions Advantage</h2>
+          </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <ContentCard
-              title="Specialized Expertise"
-              description="We don't just fix equipment; we know roll moving systems inside and out. This is our focus, not a sideline."
-          />
-          <ContentCard
-              title="Faster Turnaround"
-              description="Our specialized focus means quicker diagnostics and repairs, minimizing your critical downtime."
-          />
-          <ContentCard
-              title="Significant Cost Savings"
-              description="Repair your equipment for a fraction of the cost of replacement, with transparent and fair pricing."
-          />
-          <ContentCard
-              title="Nationwide Service"
-              description="We serve clients nationwide, with a commitment to excellence and customer satisfaction."
-          />
+          <CalloutBox />
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <ContentCard
+                title="Specialized Expertise"
+                description="We don't just fix equipment; we know roll moving systems inside and out. This is our focus, not a sideline."
+            />
+            <ContentCard
+                title="Faster Turnaround"
+                description="Our specialized focus means quicker diagnostics and repairs, minimizing your critical downtime."
+            />
+            <ContentCard
+                title="Significant Cost Savings"
+                description="Repair your equipment for a fraction of the cost of replacement, with transparent and fair pricing."
+            />
+            <ContentCard
+                title="Nationwide Service"
+                description="We serve clients nationwide, with a commitment to excellence and customer satisfaction."
+            />
 
 
 
+          </div>
         </div>
-      </div>
-    </section>
+      </Fragment>
+    </SectionBlock>
 
-    <section
-        id="services"
-        class="py-16 md:py-24"
-    >
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Core Services</h2>
-        </div>
-        <div class="flex flex-wrap -mx-4">
-          <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
-            <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
-              <Image
-                  src={rollMoverTech}
-                  alt="RollMover Technician"
-                  class="rounded-full shadow-xl mx-auto"
-              />
-              <div class="p-8 flex-grow">
-                <h3 class="text-2xl font-bold text-white mb-4">Expert Repair Services</h3>
-                <p class="text-white mb-6">We diagnose and resolve common and complex issues to get your equipment
-                  back to work quickly. Our process includes diagnostics, component-level repair, and full performance
-                  testing.</p>
-                <h4 class="font-semibold text-white mb-2">Common Problems We Solve:</h4>
-                <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
-                  <li>Motor or gearbox failure</li>
-                  <li>Battery and charging issues</li>
-                  <li>Unresponsive controls & electrical faults</li>
-                  <li>Worn drive wheels and casters</li>
-                </ul>
+    <SectionBlock>
+      <Fragment>
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Core Services</h2>
+          </div>
+          <div class="flex flex-wrap -mx-4">
+            <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+              <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+                <Image
+                    src={rollMoverTech}
+                    alt="RollMover Technician"
+                    class="rounded-full shadow-xl mx-auto"
+                />
+                <div class="p-8 flex-grow">
+                  <h3 class="text-2xl font-bold text-white mb-4">Expert Repair Services</h3>
+                  <p class="text-white mb-6">We diagnose and resolve common and complex issues to get your equipment
+                    back to work quickly. Our process includes diagnostics, component-level repair, and full performance
+                    testing.</p>
+                  <h4 class="font-semibold text-white mb-2">Common Problems We Solve:</h4>
+                  <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
+                    <li>Motor or gearbox failure</li>
+                    <li>Battery and charging issues</li>
+                    <li>Unresponsive controls & electrical faults</li>
+                    <li>Worn drive wheels and casters</li>
+                  </ul>
+                </div>
+                <div class="p-8 pt-0">
+                  <a
+                      href="#contact"
+                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                  >
+                    Request Repair Info
+                  </a>
+                </div>
               </div>
-              <div class="p-8 pt-0">
-                <a
-                    href="#contact"
-                    class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
-                >
-                  Request Repair Info
-                </a>
+            </div>
+            <div class="w-full md:w-1/2 px-4">
+              <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+                <Image
+                    src={compatibleBatteries}
+                    alt="RollMover Technician"
+                    class="rounded-full shadow-xl mx-auto"
+                />
+                <div class="p-8 flex-grow">
+                  <h3 class="text-2xl font-bold text-white mb-4">Premium Replacement Parts</h3>
+                  <p class="text-white mb-4">Keep your equipment running with our extensive inventory of high-quality
+                    components compatible with many roll mover systems, including the RollMover™ series.</p>
+                  <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
+                    <li>Drive Wheels & Casters</li>
+                    <li>Batteries & Chargers</li>
+                    <li>Motors & Gearboxes</li>
+                    <li>Controls, Switches & Electrical Components</li>
+                  </ul>
+                </div>
+                <div class="p-8 pt-0">
+                  <a
+                      href="#contact"
+                      class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+                  >
+                    Find Your Parts
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-1/2 px-4">
-            <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
-              <Image
-                  src={compatibleBatteries}
-                  alt="RollMover Technician"
-                  class="rounded-full shadow-xl mx-auto"
-              />
-              <div class="p-8 flex-grow">
-                <h3 class="text-2xl font-bold text-white mb-4">Premium Replacement Parts</h3>
-                <p class="text-white mb-4">Keep your equipment running with our extensive inventory of high-quality
-                  components compatible with many roll mover systems, including the RollMover™ series.</p>
-                <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
-                  <li>Drive Wheels & Casters</li>
-                  <li>Batteries & Chargers</li>
-                  <li>Motors & Gearboxes</li>
-                  <li>Controls, Switches & Electrical Components</li>
-                </ul>
-              </div>
-              <div class="p-8 pt-0">
-                <a
-                    href="#contact"
-                    class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
-                >
-                  Find Your Parts
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </Fragment>
+    </SectionBlock>
 
-    <section id="blog" class="py-16 md:py-24 bg-gray-800 rounded-xl">
-      <div class="container mx-auto px-6">
+    <SectionBlock
+      innerRounded
+    >
+      <Fragment>
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">From Our Blog</h2>
           <p class="text-lg text-gray-300">Tips, guides, and insights to help you get the most out of your equipment.</p>
@@ -202,14 +207,11 @@ const latestPosts = (await getCollection('blog')).sort(
             View All Articles
           </a>
         </div>
-      </div>
-    </section>
+      </Fragment>
+    </SectionBlock>
 
-    <section
-        id="about"
-        class="py-16 md:py-24"
-    >
-      <div class="container mx-auto px-6">
+    <SectionBlock>
+      <Fragment>
         <div class="flex flex-wrap items-center -mx-4">
           <div class="w-full md:w-1/3 px-8 mb-8 md:mb-0 text-center ">
             <Image
@@ -238,8 +240,8 @@ const latestPosts = (await getCollection('blog')).sort(
             </p>
           </div>
         </div>
-      </div>
-    </section>
+      </Fragment>
+    </SectionBlock>
 
   </main>
 </Layout>
