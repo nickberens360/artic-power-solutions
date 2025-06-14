@@ -14,18 +14,36 @@ import { SITE_TITLE } from '../consts';
 				alt="Artic Power Solutions Logo" />
 			<h2><a href="/">{SITE_TITLE}</a></h2>
 		</div>
-		<div class="internal-links">
+
+		<!-- Desktop Navigation -->
+		<div class="internal-links desktop-nav">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Resources</HeaderLink>
 			<HeaderLink href="/parts">Parts</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
+
+		<!-- Mobile Hamburger Button -->
+		<button class="hamburger-menu" aria-label="Menu">
+			<span class="hamburger-icon text-white"></span>
+			<span class="hamburger-icon text-white"></span>
+			<span class="hamburger-icon text-white"></span>
+		</button>
 	</nav>
+
+	<!-- Mobile Navigation Dropdown -->
+	<div class="mobile-nav bg-gray-800 rounded-xl mt-8">
+		<HeaderLink href="/">Home</HeaderLink>
+		<HeaderLink href="/blog">Resources</HeaderLink>
+		<HeaderLink href="/parts">Parts</HeaderLink>
+		<HeaderLink href="/about">About</HeaderLink>
+	</div>
 </header>
+
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
+		padding: 1rem 1em;
 		background: #0e162a;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
@@ -57,9 +75,88 @@ import { SITE_TITLE } from '../consts';
 	.social-links a {
 		display: flex;
 	}
+
+	/* Hamburger Menu Styles */
+	.hamburger-menu {
+		display: none;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 30px;
+		height: 21px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		z-index: 10;
+	}
+
+	.hamburger-icon {
+		display: block;
+		width: 100%;
+		height: 3px;
+		background-color: white;
+		border-radius: 3px;
+		transition: all 0.3s ease-in-out;
+	}
+
+	/* Mobile Navigation Styles */
+	.mobile-nav {
+		display: none;
+		flex-direction: column;
+		//background: #0e162a;
+		width: 100%;
+		padding: 1rem 0;
+	}
+
+	.mobile-nav a {
+		color: white;
+		padding: 0.75rem 1rem;
+		display: block;
+		text-align: center;
+	}
+
+	/* Mobile Styles */
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;
 		}
+
+		.desktop-nav {
+			display: none;
+		}
+
+		.hamburger-menu {
+			display: flex;
+		}
+
+		.mobile-nav.active {
+			display: flex;
+		}
+	}
+
+	/* Animation for hamburger to X */
+	.hamburger-menu.active .hamburger-icon:nth-child(1) {
+		transform: translateY(9px) rotate(45deg);
+	}
+
+	.hamburger-menu.active .hamburger-icon:nth-child(2) {
+		opacity: 0;
+	}
+
+	.hamburger-menu.active .hamburger-icon:nth-child(3) {
+		transform: translateY(-9px) rotate(-45deg);
 	}
 </style>
+
+<script>
+	// Client-side JavaScript to toggle the mobile menu
+	document.addEventListener('DOMContentLoaded', () => {
+		const hamburgerButton = document.querySelector('.hamburger-menu');
+		const mobileNav = document.querySelector('.mobile-nav');
+
+		hamburgerButton?.addEventListener('click', () => {
+			hamburgerButton.classList.toggle('active');
+			mobileNav?.classList.toggle('active');
+		});
+	});
+</script>
