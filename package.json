@@ -18,5 +18,8 @@
     "sharp": "^0.34.2",
     "tailwindcss": "^4.1.10",
     "vue": "^3.5.16"
+  },
+  "devDependencies": {
+    "@netlify/plugin-lighthouse": "^6.0.1"
   }
 }
