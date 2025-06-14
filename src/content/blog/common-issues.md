@@ -20,8 +20,8 @@ A dead or underperforming battery is one of the most frequent and frustrating is
 **Possible Causes & Troubleshooting:**
 
 -   **Check the Connections:** Ensure the charger is firmly plugged into both the wall outlet and the RollMover. Check the battery terminals for any corrosion or looseness. A good, clean connection is essential for proper charging.
--   **Inspect the Charger:** Look for any signs of damage to the charging cable or the charger itself. If the charger has indicator lights, see if they signal a fault.
--   **Evaluate Battery Age:** Like all rechargeable batteries, your RollMover's battery has a finite lifespan. If it's several years old and its performance has been steadily declining, it may be time for a replacement.
+-   **Inspect the Charger:** Look for any signs of damage to the charging cable or the [charger](/parts/fast-charging-battery-charger-APS-CHG-01) itself. If the charger has indicator lights, see if they signal a fault.
+-   **Evaluate Battery Age:** Like all rechargeable batteries, your RollMover's battery has a finite lifespan. If it's several years old and its performance has been steadily declining, it may be time for a [replacement](/parts/high-performance-lithium-battery-APS-BAT-01).
 
 ### 2. RollMover Won't Move
 
@@ -34,7 +34,7 @@ You press the controls, but nothing happens. This is another common problem that
 
 -   **Check the Battery Level:** The most common culprit is simply a dead battery. Ensure it has a sufficient charge.
 -   **Verify Safety Switches:** Many RollMovers have safety features, like an emergency stop button or a "belly button" switch on the handle. Make sure none of these have been accidentally triggered.
--   **Inspect the Wheels:** Check for any obstructions around the wheels, such as debris, shrink wrap, or pallet fragments.
+-   **Inspect the Wheels:** Check for any obstructions around the [wheels](/parts/durable-polyurethane-drive-wheel-APS-WHL-01), such as debris, shrink wrap, or pallet fragments.
 
 ### 3. Unusual Noises During Operation
 
@@ -46,7 +46,7 @@ Grinding, squeaking, or clicking noises are signs that your RollMover needs atte
 **Possible Causes & Troubleshooting:**
 
 -   **Look for Loose Hardware:** Inspect the unit for any loose bolts, nuts, or panels.
--   **Check the Wheels:** Worn-out wheel bearings are a common source of noise. Also, check for debris caught in the wheel assemblies.
+-   **Check the Wheels:** Worn-out wheel bearings are a common source of noise. Also, check for debris caught in the [wheel assemblies](/parts/durable-polyurethane-drive-wheel-APS-WHL-01).
 -   **Lubrication:** Refer to your owner's manual for recommended lubrication points and schedules.
 
 ### 4. Difficulty Steering or Maneuvering
@@ -73,7 +73,7 @@ An overheating motor is a serious issue that should be addressed immediately to 
 **Possible Causes & Troubleshooting:**
 
 -   **Check for Overloading:** Ensure you are not exceeding the RollMover's maximum load capacity.
--   **Inspect for Blockages:** Make sure there is nothing restricting the movement of the wheels, causing the motor to work harder than it should.
+-   **Inspect for Blockages:** Make sure there is nothing restricting the movement of the wheels, causing the motor to work harder than it should. This can also put strain on the [speed controller](/parts/programmable-speed-controller-APS-CTL-01).
 -   **Clean the Motor Housing:** Dust and debris can build up on the motor, trapping heat. Carefully clean any accumulation off the motor housing.
 
 ## When to Call the Experts

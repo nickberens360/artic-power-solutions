@@ -23,7 +23,7 @@ Beyond the sticker price, you should also consider the "hidden costs" of replace
 
 In many cases, repairing your existing RollMover is the most cost-effective solution. Here's why:
 
--   **Significant Cost Savings:** The cost of common repairs, such as replacing a battery, a wheel, or even a motor, is often just a fraction of the price of a new machine. When considering the price of parts, it's also worth weighing the benefits of [OEM vs. Compatible RollMover Parts](/blog/oem-vs-compatible).
+-   **Significant Cost Savings:** The cost of common repairs, such as replacing a [battery](/parts/high-performance-lithium-battery-APS-BAT-01), a [wheel](/parts/durable-polyurethane-drive-wheel-APS-WHL-01), or even a [motor controller](/parts/programmable-speed-controller-APS-CTL-01), is often just a fraction of the price of a new machine. When considering the price of parts, it's also worth weighing the benefits of [OEM vs. Compatible RollMover Parts](/blog/oem-vs-compatible).
 -   **Extend the Lifespan of Your Asset:** A well-built RollMover can last for many years with proper maintenance and high-quality repairs. By replacing worn components, you can significantly extend the life of your initial investment.
 -   **No Hidden Costs:** With a repair, your team can get back to work with the equipment they already know and trust. There are no new procedures to learn or integrate into your workflow.
 

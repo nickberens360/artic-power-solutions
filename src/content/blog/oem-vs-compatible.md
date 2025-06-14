@@ -30,7 +30,7 @@ This is the most significant difference. OEM parts are almost always more expens
 
 This is where the myth of "OEM is always better" needs to be addressed. While there are certainly low-quality aftermarket parts on the market, a reputable supplier of compatible parts is committed to excellence.
 
-At Artic Power Solutions, we source and manufacture our parts to meet or exceed OEM standards. We use durable materials and rigorous testing to ensure that every component we sell, from a battery to a drive wheel, will perform reliably under the demanding conditions of your workplace. For a detailed look at a critical component, read [Everything You Need to Know About Your RollMover's Drive Wheel](/blog/drive-wheel).
+At Artic Power Solutions, we source and manufacture our parts to meet or exceed OEM standards. We use durable materials and rigorous testing to ensure that every component we sell, from a [battery](/parts/high-performance-lithium-battery-APS-BAT-01) to a [drive wheel](/parts/durable-polyurethane-drive-wheel-APS-WHL-01), will perform reliably under the demanding conditions of your workplace. For a detailed look at a critical component, read [Everything You Need to Know About Your RollMover's Drive Wheel](/blog/drive-wheel).
 
 **Winner: It's a Tie** (with a reputable supplier)
 
