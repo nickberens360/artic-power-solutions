@@ -6,6 +6,7 @@ import ContentCard from '../components/ContentCard.astro';
 import CalloutBox from '../components/CalloutBox.astro';
 import { Image } from 'astro:assets';
 import articLogoIcon from '../assets/aps-icon-white.png';
+import rollMoverIllustration from '../assets/rollMoverIllustration.png';
 import rollMoverTech from '../assets/rollmover-technician.png';
 import compatibleBatteries from '../assets/compatible-batteries.png';
 import vintageWarehouse from '../assets/vintage-warehouse.jpg';
@@ -35,9 +36,17 @@ const latestPosts = (await getCollection('blog')).sort(
 
     <section
         id="challenge"
-        class="py-16 md:py-24 bg-gray-800 rounded-xl"
+        class="py-16 md:py-24 flex flex-col md:flex-row bg-gray-800 rounded-xl"
     >
-      <div class="container mx-auto px-6 text-center">
+    <div class="px-12">
+        <Image
+            src={rollMoverIllustration}
+            alt="RollMover Technician"
+            style="max-width: 300px"
+            class=" mx-auto"
+        />
+      </div>
+      <div class="container mx-auto px-6">
         <h2 class="text-md md:text-md font-bold text-white mb-6">Is Your Material Handling Equipment Performing at
           Its Best?</h2>
         <p class="text-lg text-white max-w-3xl mx-auto mb-4">
