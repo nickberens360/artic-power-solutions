@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+business-steps.md
+startup_costs_markdown.md
+competitor_analysis_markdown.md
