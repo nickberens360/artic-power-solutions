@@ -26,10 +26,11 @@ const posts = (await getCollection('blog')).sort(
 <main>
   <SectionBlock>
     <Fragment>
-      <ul class="flex flex-wrap list-none m-0 p-0 gap-y-8 md:gap-x-8">
+      <!-- Replace the ul/li structure with more semantic section/article elements -->
+      <section class="flex flex-wrap m-0 p-0 gap-y-8 md:gap-x-8">
         {
           posts.map((post, index) => (
-              <li
+              <article
                   class:list={[
                     'bg-gray-800 p-4 rounded-xl w-full',
                     {
@@ -68,10 +69,10 @@ const posts = (await getCollection('blog')).sort(
                     <FormattedDate date={post.data.pubDate}/>
                   </p>
                 </a>
-              </li>
+              </article>
           ))
         }
-      </ul>
+      </section>
     </Fragment>
   </SectionBlock>
 </main>

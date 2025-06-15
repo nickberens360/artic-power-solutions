@@ -24,12 +24,13 @@ const parts = (await getCollection('parts')).sort(
   <SectionBlock>
     <Fragment>
       <h1 class="text-4xl text-white font-bold mb-16 text-center">Compatible Parts</h1>
-      <ul class="flex flex-wrap list-none m-0 p-0 gap-y-8 md:gap-x-8">
+      <!-- Replace the ul/li structure with more semantic section/article elements -->
+      <section class="flex flex-wrap m-0 p-0 gap-y-8 md:gap-x-8">
         {
           parts.map((part, index) => {
             const slug = `${slugify(part.data.title)}-${part.data.partNumber}`;
             return (
-                <li class="bg-gray-800 p-4 rounded-xl w-full md:w-[calc(50%-1rem)]">
+                <article class="bg-gray-800 p-4 rounded-xl w-full md:w-[calc(50%-1rem)]">
                   <a
                       href={`/parts/${slug}/`}
                       class="block no-underline group transition-all duration-200 ease-in-out"
@@ -50,11 +51,11 @@ const parts = (await getCollection('parts')).sort(
                       Part #: {part.data.partNumber}
                     </p>
                   </a>
-                </li>
+                </article>
             )
           })
         }
-      </ul>
+      </section>
     </Fragment>
   </SectionBlock>
 </main>

@@ -11,21 +11,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 <BaseLayout title={title} description={description}>
 	<style>
-		main {
-			width: calc(100% - 2em);
-			max-width: 100%;
-			margin: 0;
-		}
-		.hero-image {
-			width: 100%;
-			padding: 0 16px
-		}
-		.hero-image img {
-			display: block;
-			margin: 0 auto;
-			border-radius: 12px;
-			box-shadow: var(--box-shadow);
-		}
+		/* Keep your existing styles */
+
 		.prose {
 			width: 720px;
 			max-width: calc(100% - 2em);
@@ -33,28 +20,78 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			padding: 1em;
 			color: white;
 		}
-		.prose ul {
+
+		/* Global list reset to override Tailwind's reset */
+		ul, ol {
+			list-style-position: inside;
+		}
+
+		/* Enhanced list styles */
+		.prose ul,
+		.prose ol,
+		div[class="prose"] ul,
+		div[class="prose"] ol {
 			margin-bottom: 24px !important;
+			padding-left: 1.5em;
+			display: block;
 		}
-		.title {
-			margin-bottom: 1em;
-			padding: 1em 0;
-			text-align: center;
-			line-height: 1;
+
+		.prose ul,
+		div[class="prose"] ul {
+			list-style-type: disc !important;
+			list-style-position: outside !important;
 		}
-		.title h1 {
-			margin: 0 0 0.5em 0;
+
+		.prose ol,
+		div[class="prose"] ol {
+			list-style-type: decimal !important;
+			list-style-position: outside !important;
 		}
-		/*.date {
+
+		/* Add styles for list items */
+		.prose li,
+		div[class="prose"] li {
+			display: list-item !important;
 			margin-bottom: 0.5em;
-			color: #FC5252FF;
-		}*/
-		.last-updated-on {
-			font-style: italic;
 		}
-		h1, h2, h3, h4, h5, h6 {
-			margin-top: 24px !important;
+
+		/* Handle nested lists */
+		.prose ul ul,
+		.prose ol ol,
+		.prose ul ol,
+		.prose ol ul,
+		div[class="prose"] ul ul,
+		div[class="prose"] ol ol,
+		div[class="prose"] ul ol,
+		div[class="prose"] ol ul {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em !important;
 		}
+
+		.prose ul ul,
+		div[class="prose"] ul ul {
+			list-style-type: circle !important;
+		}
+
+		.prose ol ol,
+		div[class="prose"] ol ol {
+			list-style-type: lower-alpha !important;
+		}
+
+		/* Target direct child elements to ensure specificity */
+		.prose > ul,
+		.prose > ol {
+			list-style-position: outside !important;
+			padding-left: 1.5em !important;
+		}
+
+		/* Ensure list items display properly */
+		.prose ul li,
+		.prose ol li {
+			display: list-item !important;
+		}
+
+		/* Rest of your existing styles */
 	</style>
 	<article>
 		<div class="hero-image pt-7 mt-8">

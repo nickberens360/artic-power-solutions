@@ -7,6 +7,9 @@
 /*@tailwind "tailwind/preflight";*/
 /*@tailwind components;*/
 @tailwind utilities;
+
+
+
 :root {
 	--accent: #fc5252;
 	--accent-dark: #e52a2a;
@@ -169,4 +172,17 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+
+.prose ol {
+	list-style-type: decimal;
+	padding-left: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.prose ul {
+	list-style-type: disc;
+	padding-left: 1.5rem;
+	margin-bottom: 2rem;
 }
