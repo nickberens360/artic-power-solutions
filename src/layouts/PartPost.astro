@@ -4,9 +4,14 @@ import BaseLayout from './Layout.astro'; // Using the same base layout as the bl
 import FeaturedImage from '../components/FeaturedImage.astro';
 import { Image } from 'astro:assets';
 
-type Props = CollectionEntry<'parts'>['data'];
+// Extend the Props type to include Shopify-specific fields
+type Props = CollectionEntry<'parts'>['data'] & {
+  isShopify?: boolean;
+  price?: string;
+  currency?: string;
+};
 
-const { title, description, partNumber, heroImage } = Astro.props;
+const { title, description, partNumber, heroImage, isShopify = false, price, currency } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -54,19 +59,62 @@ const { title, description, partNumber, heroImage } = Astro.props;
     .part-number {
       color: var(--accent);
     }
+    /* Shopify-specific styles */
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .shopify-buy-section {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .buy-button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .buy-button:hover {
+      background-color: var(--accent-dark);
+    }
   </style>
   <article>
     <FeaturedImage>
-      {heroImage && <Image width={720} height={360} src={heroImage} alt={title} />}
+      {heroImage && (
+        isShopify 
+          ? <img src={heroImage} alt={title} width="720" height="360" class="w-full h-auto rounded-xl" /> 
+          : <Image width={720} height={360} src={heroImage} alt={title} />
+      )}
     </FeaturedImage>
     <div class="prose">
       <div class="title">
         <div class="part-number">Part #: {partNumber}</div>
         <h1>{title}</h1>
+        {isShopify && price && currency && (
+          <div class="price">
+            {new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: currency
+            }).format(parseFloat(price))}
+          </div>
+        )}
         <p>{description}</p>
         <hr />
       </div>
       <slot />
+
+      {isShopify && (
+        <div class="shopify-buy-section">
+          <button class="buy-button">Add to Cart</button>
+        </div>
+      )}
     </div>
   </article>
 </BaseLayout>

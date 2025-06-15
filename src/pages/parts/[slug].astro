@@ -4,26 +4,116 @@ import PartPost from '../../layouts/PartPost.astro';
 import { slugify } from '../../utils/slugify';
 import ProductSchema from '../../components/ProductSchema.astro';
 
+// Shopify API setup
+const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
+const storefrontToken = import.meta.env.SHOPIFY_STOREFRONT_API_TOKEN;
+const storefrontUrl = `https://${storefrontDomain}/api/2023-10/graphql.json`;
+
 export async function getStaticPaths() {
+  // Get content collection parts
   const partsCollection = await getCollection('parts');
-  return partsCollection.map(entry => ({
+  const contentPaths = partsCollection.map(entry => ({
     params: {
       slug: `${slugify(entry.data.title)}-${entry.data.partNumber}`
     },
-    props: { entry },
+    props: { entry, type: 'content' },
   }));
+
+  // Get Shopify products
+  const query = `{
+    products(first: 50) {
+      edges {
+        node {
+          id
+          title
+          handle
+          descriptionHtml
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          images(first: 5) {
+            edges {
+              node {
+                url
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
+  }`;
+
+  let shopifyPaths = [];
+  try {
+    const response = await fetch(storefrontUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontToken,
+      },
+      body: JSON.stringify({ query }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      shopifyPaths = data.data.products.edges.map(({ node }) => ({
+        params: { slug: node.handle },
+        props: { product: node, type: 'shopify' },
+      }));
+    }
+  } catch (error) {
+    console.error('Error fetching Shopify products:', error);
+  }
+
+  // Combine both types of paths
+  return [...contentPaths, ...shopifyPaths];
 }
+
 type Props = {
-  entry: CollectionEntry<'parts'>
+  entry?: CollectionEntry<'parts'>;
+  product?: any;
+  type: 'content' | 'shopify';
 };
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { entry, product, type } = Astro.props;
+
+// For content collection parts
+let Content;
+if (type === 'content' && entry) {
+  const rendered = await entry.render();
+  Content = rendered.Content;
+}
 ---
-<PartPost {...entry.data}>
-  {/* This uses the "head" slot in BaseHead.astro to inject the schema */}
-  <Fragment slot="head">
-    <ProductSchema part={entry} />
-  </Fragment>
-  <Content />
-</PartPost>
+
+{type === 'content' && entry ? (
+  <PartPost {...entry.data}>
+    <Fragment slot="head">
+      <ProductSchema part={entry} />
+    </Fragment>
+    <Content />
+  </PartPost>
+) : (
+  <PartPost 
+    title={product.title}
+    description={product.descriptionHtml}
+    partNumber={product.id.split('/').pop()}
+    heroImage={product.images.edges[0]?.node.url}
+    price={product.priceRange.minVariantPrice.amount}
+    currency={product.priceRange.minVariantPrice.currencyCode}
+    isShopify={true}
+  >
+    <Fragment slot="head">
+      <ProductSchema part={{ data: {
+        title: product.title,
+        description: product.descriptionHtml,
+        partNumber: product.id.split('/').pop(),
+        price: product.priceRange.minVariantPrice.amount
+      }}} />
+    </Fragment>
+    <div set:html={product.descriptionHtml} />
+  </PartPost>
+)}
