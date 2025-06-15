@@ -1,16 +1,74 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { slugify } from '../../utils/slugify';
 import SectionBlock from "../../components/SectionBlock.astro";
 
-const parts = (await getCollection('parts')).sort(
-    (a, b) => a.data.title.localeCompare(b.data.title)
-);
+// Shopify API setup
+const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
+const storefrontToken = import.meta.env.SHOPIFY_STOREFRONT_API_TOKEN;
+
+// Check if the environment variables are set
+if (!storefrontDomain || !storefrontToken) {
+    throw new Error(
+        'Shopify environment variables are missing. Please check your .env file and restart the server.'
+    );
+}
+
+// Define the GraphQL query to fetch products
+const query = `{
+  products(first: 50) {
+    edges {
+      node {
+        id
+        title
+        handle
+        descriptionHtml
+        priceRange {
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              url
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
+// Construct the full Shopify Storefront API URL
+const storefrontUrl = `https://${storefrontDomain}/api/2023-10/graphql.json`;
+
+// Make the fetch request to the Shopify API
+let products = [];
+try {
+    const response = await fetch(storefrontUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token': storefrontToken,
+        },
+        body: JSON.stringify({ query }),
+    });
+
+    if (!response.ok) {
+        throw new Error(`Shopify API responded with status: ${response.status}`);
+    }
+
+    const shopifyData = await response.json();
+    products = shopifyData.data.products.edges.map(edge => edge.node);
+
+} catch (error) {
+    console.error('Error fetching from Shopify:', error);
+}
 ---
 
 <!doctype html>
@@ -26,43 +84,48 @@ const parts = (await getCollection('parts')).sort(
       <h1 class="text-4xl text-white font-bold mb-16 text-center">Compatible Parts</h1>
       <!-- Replace the ul/li structure with more semantic section/article elements -->
       <section class="flex flex-wrap m-0 p-0 gap-y-8 md:gap-x-8">
-        {
-          parts.map((part, index) => {
-            const slug = `${slugify(part.data.title)}-${part.data.partNumber}`;
+        {products.length > 0 ? (
+          products.map((product) => {
+            const image = product.images.edges[0]?.node;
+            const partNumber = product.id.split('/').pop();
             return (
                 <article class="bg-gray-800 p-4 rounded-xl w-full md:w-[calc(50%-1rem)]">
                   <a
-                      href={`/parts/${slug}/`}
+                      href={`/parts/${product.handle}/`}
                       class="block no-underline group transition-all duration-200 ease-in-out"
                   >
-                    {part.data.heroImage && (
-                        <Image
-                            width={720}
-                            height={360}
-                            src={part.data.heroImage}
-                            alt={`Image for ${part.data.title}`}
+                    {image && (
+                        <img
+                            src={image.url}
+                            alt={image.altText || product.title}
+                            width="720"
+                            height="360"
                             class="w-full mb-2 rounded-xl group-hover:shadow-xl"
                         />
                     )}
                     <h4 class="m-0 text-white text-2xl leading-tight break-words overflow-wrap-anywhere group-hover:text-accent">
-                      {part.data.title}
+                      {product.title}
                     </h4>
                     <p class="text-white group-hover:text-accent">
-                      Part #: {part.data.partNumber}
+                      Part #: {partNumber}
                     </p>
                   </a>
                 </article>
             )
           })
-        }
+        ) : (
+          <p class="text-white text-center w-full">
+            There was an issue loading our products. Please check back soon or contact us for assistance.
+          </p>
+        )}
       </section>
 
-      <!-- Link to shop-parts page -->
-      <div class="text-center mt-12">
+      <!-- Since we're now showing Shopify products directly, we can remove this link -->
+      <!-- <div class="text-center mt-12">
         <a href="/shop-parts" class="inline-block bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-lg transition">
           Shop More Parts Online
         </a>
-      </div>
+      </div> -->
     </Fragment>
   </SectionBlock>
 </main>

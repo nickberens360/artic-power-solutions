@@ -1,17 +1,43 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './Layout.astro'; // Using the same base layout as the blog
 import FeaturedImage from '../components/FeaturedImage.astro';
 import { Image } from 'astro:assets';
 
-// Extend the Props type to include Shopify-specific fields
-type Props = CollectionEntry<'parts'>['data'] & {
+// Define the base part data structure
+interface PartData {
+  title: string;
+  description: string;
+  partNumber: string;
+  heroImage: any;
   isShopify?: boolean;
   price?: string;
   currency?: string;
-};
+  variantId?: string;
+  shopDomain?: string;
+}
 
-const { title, description, partNumber, heroImage, isShopify = false, price, currency } = Astro.props;
+// Use the custom interface for Props
+type Props = PartData;
+
+const { 
+  title, 
+  description, 
+  partNumber, 
+  heroImage, 
+  isShopify = false, 
+  price, 
+  currency,
+  variantId,
+  shopDomain
+} = Astro.props;
+
+// Create checkout URL for Shopify products
+let checkoutUrl = '';
+if (isShopify && variantId && shopDomain) {
+  // Format: https://{shop-domain}/cart/{variant-id}:1
+  // The ":1" at the end represents the quantity
+  checkoutUrl = `https://${shopDomain}/cart/${variantId.replace('gid://shopify/ProductVariant/', '')}:1`;
+}
 ---
 
 <BaseLayout title={title} description={description}>
@@ -80,6 +106,8 @@ const { title, description, partNumber, heroImage, isShopify = false, price, cur
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.2s;
+      display: inline-block;
+      text-decoration: none;
     }
     .buy-button:hover {
       background-color: var(--accent-dark);
@@ -110,9 +138,11 @@ const { title, description, partNumber, heroImage, isShopify = false, price, cur
       </div>
       <slot />
 
-      {isShopify && (
+      {isShopify && checkoutUrl && (
         <div class="shopify-buy-section">
-          <button class="buy-button">Add to Cart</button>
+          <a href={checkoutUrl} class="buy-button" target="_blank" rel="noopener noreferrer">
+            Buy Now
+          </a>
         </div>
       )}
     </div>

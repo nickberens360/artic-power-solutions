@@ -12,14 +12,4 @@ const blog = defineCollection({
 	}),
 });
 
-// New collection for Parts
-const parts = defineCollection({
-	schema: ({ image }) => z.object({
-		title: z.string(),
-		partNumber: z.string(),
-		description: z.string(),
-		heroImage: image().optional(),
-	}),
-});
-
-export const collections = { blog, parts };
+export const collections = { blog };
