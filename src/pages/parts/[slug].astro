@@ -6,6 +6,7 @@ import ProductSchema from '../../components/ProductSchema.astro';
 const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 const storefrontToken = import.meta.env.SHOPIFY_STOREFRONT_API_TOKEN;
 
+
 // Check if the environment variables are set
 if (!storefrontDomain || !storefrontToken) {
     throw new Error(

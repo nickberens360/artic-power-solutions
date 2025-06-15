@@ -28,5 +28,5 @@ startup_costs_markdown.md
 competitor_analysis_markdown.md
 
 # content parts (now using Shopify)
-src/content/parts/
+#src/content/parts/
 *.BAK
