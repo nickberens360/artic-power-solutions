@@ -10,7 +10,7 @@ const { date } = Astro.props;
       color: #FC5252FF;
   }
 </style>
-<time class="date text-red" datetime={date.toISOString()}>
+<time class="date" datetime={date.toISOString()}>
 	{
 		date.toLocaleDateString('en-us', {
 			year: 'numeric',

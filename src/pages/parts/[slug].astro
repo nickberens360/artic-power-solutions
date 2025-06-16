@@ -1,113 +1,45 @@
 ---
 import PartPost from '../../layouts/PartPost.astro';
 import ProductSchema from '../../components/ProductSchema.astro';
-
-// Shopify API setup
-const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
-const storefrontToken = import.meta.env.SHOPIFY_STOREFRONT_API_TOKEN;
-
-
-// Check if the environment variables are set
-if (!storefrontDomain || !storefrontToken) {
-    throw new Error(
-        'Shopify environment variables are missing. Please check your .env file and restart the server.'
-    );
-}
-
-const storefrontUrl = `https://${storefrontDomain}/api/2023-10/graphql.json`;
+import { getAllProducts } from '../../lib/shopify.js';
 
 export async function getStaticPaths() {
-  // Get Shopify products
-  const query = `{
-    products(first: 50) {
-      edges {
-        node {
-          id
-          title
-          handle
-          descriptionHtml
-          priceRange {
-            minVariantPrice {
-              amount
-              currencyCode
-            }
-          }
-          variants(first: 10) {
-            edges {
-              node {
-                id
-                title
-                price {
-                  amount
-                  currencyCode
-                }
-                availableForSale
-              }
-            }
-          }
-          images(first: 5) {
-            edges {
-              node {
-                url
-                altText
-              }
-            }
-          }
-        }
-      }
-    }
-  }`;
+    const products = await getAllProducts();
 
-  let shopifyPaths = [];
-  try {
-    const response = await fetch(storefrontUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontToken,
-      },
-      body: JSON.stringify({ query }),
-    });
+    const shopifyPaths = products.map((product) => ({
+        params: { slug: product.handle },
+        props: { product },
+    }));
 
-    if (response.ok) {
-      const data = await response.json();
-      shopifyPaths = data.data.products.edges.map(({ node }) => ({
-        params: { slug: node.handle },
-        props: { product: node },
-      }));
-    }
-  } catch (error) {
-    console.error('Error fetching Shopify products:', error);
-  }
-
-  return shopifyPaths;
+    return shopifyPaths;
 }
 
 type Props = {
-  product: any;
+    product: any;
 };
 
 const { product } = Astro.props;
+const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 ---
 
-<PartPost 
-  title={product.title}
-  description={product.descriptionHtml}
-  partNumber={product.id.split('/').pop()}
-  heroImage={product.images.edges[0]?.node.url}
-  price={product.priceRange.minVariantPrice.amount}
-  currency={product.priceRange.minVariantPrice.currencyCode}
-  isShopify={true}
-  variantId={product.variants.edges[0]?.node.id}
-  shopDomain={storefrontDomain}
->
+<PartPost
+    title={product.title}
+    description={product.descriptionHtml}
+    partNumber={product.id.split('/').pop()}
+    heroImage={product.images.edges[0]?.node.url}
+    price={product.priceRange.minVariantPrice.amount}
+    currency={product.priceRange.minVariantPrice.currencyCode}
+    isShopify={true}
+    variantId={product.variants.edges[0]?.node.id}
+    shopDomain={storefrontDomain}
+    handle={product.handle} >
   <Fragment slot="head">
     <ProductSchema part={{ data: {
-      title: product.title,
-      description: product.descriptionHtml,
-      partNumber: product.id.split('/').pop(),
-      price: product.priceRange.minVariantPrice.amount
-    }}} />
+            title: product.title,
+            description: product.descriptionHtml,
+            partNumber: product.id.split('/').pop(),
+            price: product.priceRange.minVariantPrice.amount
+        }}} />
   </Fragment>
   <div set:html={product.descriptionHtml} />
 </PartPost>
