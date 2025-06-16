@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Get the env variable on the server (in the frontmatter)
+const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 ---
 
 <Layout title="Your Shopping Cart">
@@ -28,11 +31,6 @@ import Layout from '../layouts/Layout.astro';
           display: block;
           text-decoration: none;
           color: inherit;
-          transition: background-color 0.2s;
-      }
-
-      .cart-item-link:hover {
-          background-color: #1a2647;
       }
 
       .cart-item {
@@ -41,6 +39,10 @@ import Layout from '../layouts/Layout.astro';
           gap: 1.5rem;
           padding: 1.5rem;
           border-bottom: 1px solid #333;
+      }
+
+      .cart-item-link:hover .item-details {
+          text-decoration: underline;
       }
 
       .cart-item img {
@@ -89,33 +91,78 @@ import Layout from '../layouts/Layout.astro';
           padding: 3rem 0;
       }
 
-      .cart-actions {
+      .cart-summary {
           margin-top: 2rem;
-          text-align: center;
+          padding-top: 1.5rem;
+          border-top: 2px solid #555;
+          text-align: right;
       }
 
-      .clear-cart-button {
-          background-color: var(--accent-dark);
-          color: white;
+      .cart-total {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 1.5rem;
+      }
+
+      .cart-total .label {
+          color: #a0a0a0;
+          font-weight: normal;
+          margin-right: 1rem;
+      }
+
+      .checkout-button, .clear-cart-button {
           border: none;
           padding: 0.75rem 1.5rem;
           font-size: 1rem;
+          font-weight: bold;
           border-radius: 4px;
           cursor: pointer;
+          text-decoration: none;
+          display: inline-block;
+      }
+
+      .clear-cart-button {
+          background-color: #555;
+          color: white;
+      }
+
+      .checkout-button {
+          background-color: var(--accent);
+          color: white;
+          margin-left: 1rem;
       }
   </style>
 
   <main>
     <h1>Your Cart</h1>
     <div id="cart-container">
-      <!-- Cart items will be rendered here by the script -->
     </div>
-    <div class="cart-actions">
-      <button
-          id="clear-cart"
-          class="clear-cart-button"
-      >Clear Cart
-      </button>
+
+    <div
+        id="cart-summary-section"
+        class="cart-summary"
+        style="display: none;"
+    >
+      <div
+          id="cart-total"
+          class="cart-total"
+      >
+        <span class="label">Total:</span>
+        <span class="amount">$0.00</span>
+      </div>
+      <div class="cart-actions">
+        <button
+            id="clear-cart"
+            class="clear-cart-button"
+        >Clear Cart
+        </button>
+        <a
+            id="checkout-link"
+            href="#"
+            class="checkout-button"
+        >Proceed to Checkout
+        </a>
+      </div>
     </div>
   </main>
 
@@ -144,28 +191,38 @@ import Layout from '../layouts/Layout.astro';
     </li>
   </template>
 
-  <script type="module">
+  <script
+      type="module"
+      define:vars={{shopDomain}}
+  >
       import {cart, clearCart, updateItemQuantity} from '/src/lib/cart-store.js';
 
       const cartContainer = document.getElementById('cart-container');
       const itemTemplate = document.getElementById('cart-item-template');
+      const summarySection = document.getElementById('cart-summary-section');
+      const totalAmountEl = summarySection.querySelector('.amount');
       const clearCartButton = document.getElementById('clear-cart');
+      const checkoutLink = document.getElementById('checkout-link');
 
       function renderCart(items) {
           cartContainer.innerHTML = '';
+          let subtotal = 0;
+          let checkoutItems = [];
 
           if (items.length === 0) {
               cartContainer.innerHTML = '<p class="empty-cart-message">Your cart is empty.</p>';
+              summarySection.style.display = 'none';
               return;
           }
 
+          summarySection.style.display = 'block';
           const itemList = document.createElement('ul');
           itemList.className = 'cart-items';
 
           items.forEach(item => {
               const itemClone = itemTemplate.content.cloneNode(true);
-              const imgLink = itemClone.querySelector('.cart-item-link-img');
-              const titleLink = itemClone.querySelector('.cart-item-link-title');
+              const imgLink = itemClone.querySelector('a.cart-item-link-img');
+              const titleLink = itemClone.querySelector('a.cart-item-link-title');
               const img = itemClone.querySelector('img');
               const quantityInput = itemClone.querySelector('.quantity-input');
 
@@ -186,17 +243,27 @@ import Layout from '../layouts/Layout.astro';
               quantityInput.dataset.itemId = item.id;
 
               itemList.appendChild(itemClone);
+
+              subtotal += item.price * item.quantity;
+              const variantIdNumber = item.id.replace('gid://shopify/ProductVariant/', '');
+              checkoutItems.push(`${variantIdNumber}:${item.quantity}`);
           });
 
           cartContainer.appendChild(itemList);
+
+          totalAmountEl.textContent = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: items[0]?.currency || 'USD'
+          }).format(subtotal);
+
+          // 'shopDomain' is now available here from define:vars
+          checkoutLink.href = `https://${shopDomain}/cart/${checkoutItems.join(',')}`;
       }
 
-      // Event Delegation for quantity updates
       cartContainer.addEventListener('input', event => {
           if (event.target.classList.contains('quantity-input')) {
               const itemId = event.target.dataset.itemId;
               const newQuantity = parseInt(event.target.value, 10);
-
               if (!isNaN(newQuantity)) {
                   updateItemQuantity(itemId, newQuantity);
               }
