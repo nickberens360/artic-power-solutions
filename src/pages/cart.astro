@@ -129,6 +129,27 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
           color: white;
           margin-left: 1rem;
       }
+
+      .remove-item-button {
+          background-color: #e53e3e;
+          color: white;
+          border: none;
+          padding: 0.5rem;
+          font-size: 0.875rem;
+          border-radius: 9999px;
+          cursor: pointer;
+          margin-left: 0.5rem;
+          transition: background-color 0.2s;
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .remove-item-button:hover {
+          background-color: #c53030;
+      }
   </style>
 
   <main data-shop-domain={shopDomain}>
@@ -184,6 +205,13 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
             class="quantity-input"
             min="0"
         />
+        <button
+            type="button"
+            class="remove-item-button"
+            aria-label="Remove item"
+        >
+          x
+        </button>
       </div>
     </li>
   </template>
@@ -236,6 +264,11 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 
               quantityInput.value = item.quantity;
               quantityInput.dataset.itemId = item.id;
+
+              // Set the item ID for the remove button
+              const removeButton = itemClone.querySelector('.remove-item-button');
+              removeButton.dataset.itemId = item.id;
+
               itemList.appendChild(itemClone);
 
               subtotal += item.price * item.quantity;
@@ -259,6 +292,14 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
               if (!isNaN(newQuantity)) {
                   updateItemQuantity(itemId, newQuantity);
               }
+          }
+      });
+
+      // Event listener for remove buttons
+      cartContainer.addEventListener('click', event => {
+          if (event.target.classList.contains('remove-item-button')) {
+              const itemId = event.target.dataset.itemId;
+              updateItemQuantity(itemId, 0); // Remove item by setting quantity to 0
           }
       });
 
