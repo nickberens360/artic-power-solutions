@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// Get the env variable on the server (in the frontmatter)
 const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 ---
 
@@ -133,11 +131,10 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
       }
   </style>
 
-  <main>
+  <main data-shop-domain={shopDomain}>
     <h1>Your Cart</h1>
     <div id="cart-container">
     </div>
-
     <div
         id="cart-summary-section"
         class="cart-summary"
@@ -191,11 +188,11 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
     </li>
   </template>
 
-  <script
-      type="module"
-      define:vars={{shopDomain}}
-  >
-      import {cart, clearCart, updateItemQuantity} from '/src/lib/cart-store.js';
+  <script>
+      import {cart, clearCart, updateItemQuantity} from '../lib/cart-store.js';
+
+      const mainEl = document.querySelector('main');
+      const shopDomain = mainEl.dataset.shopDomain;
 
       const cartContainer = document.getElementById('cart-container');
       const itemTemplate = document.getElementById('cart-item-template');
@@ -225,12 +222,10 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
               const titleLink = itemClone.querySelector('a.cart-item-link-title');
               const img = itemClone.querySelector('img');
               const quantityInput = itemClone.querySelector('.quantity-input');
-
               const itemPageUrl = `/parts/${item.handle}`;
 
               imgLink.href = itemPageUrl;
               titleLink.href = itemPageUrl;
-
               img.src = item.image;
               img.alt = item.title;
               itemClone.querySelector('.item-title').textContent = item.title;
@@ -241,7 +236,6 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 
               quantityInput.value = item.quantity;
               quantityInput.dataset.itemId = item.id;
-
               itemList.appendChild(itemClone);
 
               subtotal += item.price * item.quantity;
@@ -250,13 +244,11 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
           });
 
           cartContainer.appendChild(itemList);
-
           totalAmountEl.textContent = new Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: items[0]?.currency || 'USD'
           }).format(subtotal);
 
-          // 'shopDomain' is now available here from define:vars
           checkoutLink.href = `https://${shopDomain}/cart/${checkoutItems.join(',')}`;
       }
 

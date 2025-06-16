@@ -195,7 +195,16 @@ if (isShopify && variantId && shopDomain) {
           </div>
           <slot/>
             {isShopify && checkoutUrlBase && (
-                <div class="shopify-buy-section">
+                <div
+                    class="shopify-buy-section"
+                    data-product-id={variantId}
+                    data-product-handle={handle}
+                    data-product-title={title}
+                    data-product-price={price}
+                    data-product-currency={currency}
+                    data-product-image={heroImage}
+                    data-checkout-url-base={checkoutUrlBase}
+                >
                   <div class="quantity-selector">
                     <label for="quantity-input">Qty:</label>
                     <input
@@ -227,38 +236,46 @@ if (isShopify && variantId && shopDomain) {
     </Fragment>
   </SectionBlock>
 
-  <script
-      type="module"
-      define:vars={{
-          checkoutUrlBase,
-          product: {id: variantId, title, price, image: heroImage, handle: handle, currency: currency}
-      }}
-  >
-      import {cart, addToCart} from '/src/lib/cart-store.js';
+  <script>
+      import {cart, addToCart} from '../lib/cart-store.js';
 
-      const quantityInput = document.getElementById('quantity-input');
-      const addToCartBtn = document.getElementById('add-to-cart-btn');
-      const buyNowLink = document.getElementById('buy-now-link');
+      const buySection = document.querySelector('.shopify-buy-section');
 
-      function setInitialState() {
-          const currentCart = cart.get();
-          const productInCart = currentCart.find(item => item.id === product.id);
-          const initialQuantity = productInCart ? productInCart.quantity : 1;
-          quantityInput.value = initialQuantity;
-          if (buyNowLink) {
-              buyNowLink.href = `${checkoutUrlBase}:${initialQuantity}`;
+      if (buySection) {
+          const quantityInput = buySection.querySelector('#quantity-input');
+          const addToCartBtn = buySection.querySelector('#add-to-cart-btn');
+          const buyNowLink = buySection.querySelector('#buy-now-link');
+
+          // Read product data from the data attributes
+          const product = {
+              id: buySection.dataset.productId,
+              handle: buySection.dataset.productHandle,
+              title: buySection.dataset.productTitle,
+              price: buySection.dataset.productPrice,
+              currency: buySection.dataset.productCurrency,
+              image: buySection.dataset.productImage
+          };
+          const checkoutUrlBase = buySection.dataset.checkoutUrlBase;
+
+          function setInitialState() {
+              const currentCart = cart.get();
+              const productInCart = currentCart.find(item => item.id === product.id);
+              const initialQuantity = productInCart ? productInCart.quantity : 1;
+              quantityInput.value = initialQuantity;
+              if (buyNowLink) {
+                  buyNowLink.href = `${checkoutUrlBase}:${initialQuantity}`;
+              }
           }
-      }
 
-      setInitialState();
+          setInitialState();
 
-      if (quantityInput && addToCartBtn && buyNowLink) {
           quantityInput.addEventListener('input', (event) => {
               const quantity = event.target.value;
               if (quantity && parseInt(quantity, 10) > 0) {
                   buyNowLink.href = `${checkoutUrlBase}:${quantity}`;
               }
           });
+
           addToCartBtn.addEventListener('click', () => {
               const quantity = parseInt(quantityInput.value, 10);
               addToCart(product, quantity);
