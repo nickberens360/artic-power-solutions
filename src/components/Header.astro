@@ -18,7 +18,7 @@ import {SITE_TITLE} from '../consts';
         <a href="/">{SITE_TITLE}</a>
       </h2>
     </div>
-    <div class="flex">
+    <div class="flex items-center">
       <div class="internal-links desktop-nav">
         <HeaderLink href="/">Home</HeaderLink>
         <HeaderLink href="/blog">Resources</HeaderLink>
@@ -39,7 +39,7 @@ import {SITE_TITLE} from '../consts';
         <span class="cart-badge">0</span>
       </a>
       <button
-          class="hamburger-menu"
+          class="hamburger-menu ml-2"
           aria-label="Menu"
       >
         <span class="hamburger-icon text-white"></span>
@@ -57,55 +57,162 @@ import {SITE_TITLE} from '../consts';
 </header>
 
 <style>
-  header { margin: 0; padding: 1rem 1em; background: #0e162a; box-shadow: 0 2px 8px rgba(var(--black), 5%); }
-  h2 { margin: 0; font-size: 1em; }
-  h2 a, h2 a.active { text-decoration: none; }
-  nav { display: flex; align-items: center; justify-content: space-between; }
-  nav a { padding: 1em 0.5em; color: white; border-bottom: 4px solid transparent; text-decoration: none; }
-  nav a.active { text-decoration: none; border-bottom-color: var(--accent); }
-  .social-links, .social-links a { display: flex; }
-  .cart-link { position: relative; display: flex; align-items: center; gap: 0.5rem; }
-  .cart-badge { position: absolute; top: 10px; left: 30px; background-color: var(--accent); color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; font-weight: bold; display: flex; justify-content: center; align-items: center; transform: scale(0); transition: transform 0.2s ease-in-out; }
-  .cart-link.mobile .cart-badge { position: static; transform: scale(1); }
-  .cart-badge.has-items { transform: scale(1); }
-  .hamburger-menu { display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 10; }
-  .hamburger-icon { display: block; width: 100%; height: 3px; background-color: white; border-radius: 3px; transition: all 0.3s ease-in-out; }
-  .mobile-nav { display: none; flex-direction: column; width: 100%; padding: 1rem 0; }
-  .mobile-nav a { color: white; padding: 0.75rem 1rem; display: block; text-align: center; }
-  @media (max-width: 720px) {
-    .social-links, .desktop-nav { display: none; }
-    .hamburger-menu, .mobile-nav.active { display: flex; }
-  }
-  .hamburger-menu.active .hamburger-icon:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-  .hamburger-menu.active .hamburger-icon:nth-child(2) { opacity: 0; }
-  .hamburger-menu.active .hamburger-icon:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    header {
+        margin: 0;
+        padding: 1rem 1em;
+        background: #0e162a;
+        box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    h2 a, h2 a.active {
+        text-decoration: none;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    nav a {
+        padding: 1em 0.5em;
+        color: white;
+        border-bottom: 4px solid transparent;
+        text-decoration: none;
+    }
+
+    nav a.active {
+        text-decoration: none;
+        border-bottom-color: var(--accent);
+    }
+
+    .social-links, .social-links a {
+        display: flex;
+    }
+
+    .cart-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .cart-badge {
+        position: absolute;
+        top: 10px;
+        left: 30px;
+        background-color: var(--accent);
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(0);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .cart-link.mobile .cart-badge {
+        position: static;
+        transform: scale(1);
+    }
+
+    .cart-badge.has-items {
+        transform: scale(1);
+    }
+
+    .hamburger-menu {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 10;
+    }
+
+    .hamburger-icon {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .mobile-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    .mobile-nav a {
+        color: white;
+        padding: 0.75rem 1rem;
+        display: block;
+        text-align: center;
+    }
+
+    @media (max-width: 720px) {
+        .social-links, .desktop-nav {
+            display: none;
+        }
+
+        .hamburger-menu, .mobile-nav.active {
+            display: flex;
+        }
+    }
+
+    .hamburger-menu.active .hamburger-icon:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger-menu.active .hamburger-icon:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.active .hamburger-icon:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
 </style>
 
 <script>
-  import {cart} from '../lib/cart-store.js';
+    import {cart} from '../lib/cart-store.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburgerButton = document.querySelector('.hamburger-menu');
-    const mobileNav = document.querySelector('.mobile-nav');
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburgerButton = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
 
-    hamburgerButton?.addEventListener('click', () => {
-      hamburgerButton.classList.toggle('active');
-      mobileNav?.classList.toggle('active');
-    });
+        hamburgerButton?.addEventListener('click', () => {
+            hamburgerButton.classList.toggle('active');
+            mobileNav?.classList.toggle('active');
+        });
 
-    const badges = document.querySelectorAll('.cart-badge');
-    const updateBadges = (items) => {
-      const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-      badges.forEach(badge => {
-        badge.textContent = String(totalItems);
-        if (totalItems > 0) {
-          badge.classList.add('has-items');
-        } else {
-          badge.classList.remove('has-items');
+        const badges = document.querySelectorAll('.cart-badge');
+        const updateBadges = (items) => {
+            const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+            badges.forEach(badge => {
+                badge.textContent = String(totalItems);
+                if (totalItems > 0) {
+                    badge.classList.add('has-items');
+                } else {
+                    badge.classList.remove('has-items');
+                }
+            });
         }
-      });
-    }
 
-    cart.subscribe(updateBadges);
-  });
+        cart.subscribe(updateBadges);
+    });
 </script>
