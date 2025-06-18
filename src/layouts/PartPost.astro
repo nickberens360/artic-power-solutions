@@ -4,6 +4,7 @@ import FeaturedImage from '../components/FeaturedImage.astro';
 import { Image } from 'astro:assets';
 import fallBackImage from '../assets/parts/placeholder.png';
 import SectionBlock from "../components/SectionBlock.astro";
+import { isFeatureEnabled } from '../utils/featureFlags';
 
 interface PartData {
   title: string;
@@ -174,7 +175,7 @@ if (isShopify && variantId && shopDomain) {
           <div class="title">
             <div class="part-number">Part #: {partNumber}</div>
             <h1>{title}</h1>
-            {isShopify && price && currency && (
+            {isFeatureEnabled('ENABLE_SHOP') && isShopify && price && currency && (
                 <div class="price">
                   {new Intl.NumberFormat('en-US', {
                     style: 'currency',
@@ -185,7 +186,7 @@ if (isShopify && variantId && shopDomain) {
             <hr class="my-8"/>
           </div>
           <slot/>
-          {isShopify && checkoutUrlBase && (
+          {isFeatureEnabled('ENABLE_SHOP') && isShopify && price && currency && (
               <div
                   class="shopify-buy-section"
                   data-product-id={variantId}
@@ -222,6 +223,17 @@ if (isShopify && variantId && shopDomain) {
                 </a>
               </div>
           )}
+          {!isFeatureEnabled('ENABLE_SHOP') && (
+          <a
+              class="buy-button"
+              href="mailto:sales@articpowersolutions.com?subject=Sales Inquiry"
+              target="_blank"
+              rel="noopener noreferrer"
+          >
+            Contact Sales
+          </a>
+          )}
+
         </div>
       </article>
     </Fragment>

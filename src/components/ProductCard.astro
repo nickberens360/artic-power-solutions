@@ -2,7 +2,7 @@
 // Import a fallback image from your assets directory.
 // Make sure you have an image file at this location.
 import fallBackImage from '../assets/parts/placeholder.png';
-
+import { isFeatureEnabled } from '../utils/featureFlags';
 const { product } = Astro.props;
 
 const price = new Intl.NumberFormat('en-US', {
@@ -25,7 +25,9 @@ const altText = productImage ? (productImage.altText || product.title) : product
   </div>
   <div class="card-content text-white">
     <h2>{product.title}</h2>
+    {isFeatureEnabled('ENABLE_SHOP') && (
     <p class="price">{price}</p>
+    )}
   </div>
 </a>
 
