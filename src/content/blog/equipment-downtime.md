@@ -31,8 +31,8 @@ The constant, precise movements required to load a press or maneuver a multi-ton
 
 Given these challenges, using standard, off-the-shelf replacement parts may not be enough. To truly maximize uptime, you need components designed for the job. Making the right choice between [OEM vs. Compatible RollMover Parts](/blog/oem-vs-compatible) is a key first step in this process.
 
-* **High-Durometer Polyurethane Wheels:** Invest in a [drive wheel made from a harder polyurethane](/parts/durable-polyurethane-drive-wheel-APS-WHL-01). This type of material is more durable and less likely to pick up and embed debris, ensuring better traction for longer.
-* **Heavy-Duty, High-Cycle Batteries:** When it's time to replace your battery, choose one that is [specifically designed for high-demand, high-cycle applications](/parts/high-performance-lithium-battery-APS-BAT-01). These batteries provide more consistent power and a longer service life in a 24/7 operational environment.
+* **High-Durometer Polyurethane Wheels:** Invest in a [drive wheel made from a harder polyurethane](/parts/durable-polyurethane-drive-wheels). This type of material is more durable and less likely to pick up and embed debris, ensuring better traction for longer.
+* **Heavy-Duty, High-Cycle Batteries:** When it's time to replace your battery, choose one that is [specifically designed for high-demand, high-cycle applications](/parts/high-performance-lithium-batteries). These batteries provide more consistent power and a longer service life in a 24/7 operational environment.
 
 ### A Partner Who Understands Your Industry
 

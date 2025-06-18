@@ -41,7 +41,7 @@ const posts = (await getCollection('blog')).sort(
                   ]}
               >
                 <a
-                    href={`/blog/${post.id}/`}
+                    href={`/blog/${post.id.replace(/\.md$/, '')}`}
                     class="block no-underline group transition-all duration-200 ease-in-out"
                 >
                   {post.data.heroImage && (

@@ -10,6 +10,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://example.com',
 
+  // Add this line to handle URLs without trailing slashes
+  trailingSlash: 'never',
+
   // The vite key can be removed if tailwindcss was the only plugin
   // and you have no other custom Vite configurations.
   // If you have other Vite configurations, keep the vite key

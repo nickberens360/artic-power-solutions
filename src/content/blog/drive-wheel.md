@@ -44,6 +44,6 @@ When it's time to replace your drive wheel, not all parts are created equal. Her
 
 The drive wheel is a small part that makes a big difference. By paying attention to its condition and investing in a high-quality replacement when the time comes, you can ensure your RollMover operates safely, efficiently, and reliably for years to come.
 
-If you're seeing any of the warning signs, don't wait for a breakdown. Order a new [durable polyurethane drive wheel](/parts/durable-polyurethane-drive-wheel-APS-WHL-01) from our store today.
+If you're seeing any of the warning signs, don't wait for a breakdown. Order a new [durable polyurethane drive wheel](/parts/durable-polyurethane-drive-wheels) from our store today.
 
 **Contact us today to order your replacement drive wheel or to schedule a professional installation!**
