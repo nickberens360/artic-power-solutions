@@ -1,40 +1,50 @@
 ---
 import BaseLayout from './Layout.astro';
 import FeaturedImage from '../components/FeaturedImage.astro';
-import {Image} from 'astro:assets';
+import { Image } from 'astro:assets';
+import fallBackImage from '../assets/parts/placeholder.png';
 import SectionBlock from "../components/SectionBlock.astro";
 
 interface PartData {
-    title: string;
-    description: string;
-    partNumber: string;
-    heroImage: any;
-    handle: string;
-    isShopify?: boolean;
-    price?: string;
-    currency?: string;
-    variantId?: string;
-    shopDomain?: string;
+  title: string;
+  description: string;
+  partNumber: string;
+  heroImage?: any; // Can be a string URL or an Astro asset object
+  handle: string;
+  isShopify?: boolean;
+  price?: string;
+  currency?: string;
+  variantId?: string;
+  shopDomain?: string;
 }
 type Props = PartData;
 
 const {
-    title,
-    description,
-    partNumber,
-    heroImage,
-    handle,
-    isShopify = false,
-    price,
-    currency,
-    variantId,
-    shopDomain
+  title,
+  description,
+  partNumber,
+  heroImage,
+  handle,
+  isShopify = false,
+  price,
+  currency,
+  variantId,
+  shopDomain
 } = Astro.props;
+
+// Determine the image source, which could be a URL string or an Astro asset object
+const resolvedImage = heroImage || fallBackImage;
+
+// **FIX**: Create a variable that guarantees a string path for the src attribute.
+// If resolvedImage is an object (Astro asset), use its `src` property.
+// If it's already a string (like a URL from Shopify), use it directly.
+const imageSrc = typeof resolvedImage === 'string' ? resolvedImage : resolvedImage.src;
+
 
 let checkoutUrlBase = '';
 if (isShopify && variantId && shopDomain) {
-    const variantIdNumber = variantId.replace('gid://shopify/ProductVariant/', '');
-    checkoutUrlBase = `https://${shopDomain}/cart/${variantIdNumber}`;
+  const variantIdNumber = variantId.replace('gid://shopify/ProductVariant/', '');
+  checkoutUrlBase = `https://${shopDomain}/cart/${variantIdNumber}`;
 }
 ---
 
@@ -43,247 +53,229 @@ if (isShopify && variantId && shopDomain) {
     description={description}
 >
   <style>
-      main {
-          width: calc(100% - 2em);
-          max-width: 100%;
-          margin: 0;
-      }
-
-      .hero-image {
-          width: 100%;
-          padding: 0 16px;
-      }
-
-      .hero-image img {
-          display: block;
-          margin: 0 auto;
-          border-radius: 12px;
-          box-shadow: var(--box-shadow);
-      }
-
-      .prose {
-          width: 720px;
-          max-width: calc(100% - 2em);
-          margin: auto;
-          padding: 1em;
-          color: white;
-      }
-
-      .title {
-          margin-bottom: 1em;
-          padding: 1em 0;
-          text-align: center;
-          line-height: 1;
-      }
-
-      .title h1 {
-          margin: 0 0 0.5em 0;
-      }
-
-      .part-number {
-          font-style: italic;
-          color: #a0a0a0;
-          margin-bottom: 0.5em;
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-          margin-top: 24px !important;
-      }
-
-      .part-number {
-          color: var(--accent);
-      }
-
-      .price {
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: var(--accent);
-          margin-bottom: 1rem;
-      }
-
-      .shopify-buy-section {
-          margin-top: 2rem;
-          text-align: center;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: center;
-          gap: 1rem;
-      }
-
-      .quantity-selector {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-      }
-
-      .quantity-selector label {
-          font-weight: bold;
-      }
-
-      .quantity-selector input {
-          width: 60px;
-          padding: 0.5rem;
-          text-align: center;
-          border-radius: 4px;
-          border: 1px solid #ccc;
-          color: white;
-      }
-
-      .buy-button, .add-to-cart-button {
-          background-color: var(--accent);
-          color: white !important;
-          border: none;
-          padding: 0.75rem 1.5rem;
-          font-size: 1rem;
-          font-weight: bold;
-          border-radius: 4px;
-          cursor: pointer;
-          transition: background-color 0.2s;
-          display: inline-block;
-          text-decoration: none;
-      }
-
-      .buy-button:hover, .add-to-cart-button:hover {
-          background-color: var(--accent-dark);
-      }
-
-      .add-to-cart-button {
-          background-color: #5a67d8;
-      }
-
-      .add-to-cart-button:hover {
-          background-color: #434190;
-      }
+    /* Styles remain unchanged */
+    main {
+      width: calc(100% - 2em);
+      max-width: 100%;
+      margin: 0;
+    }
+    .hero-image {
+      width: 100%;
+      padding: 0 16px;
+    }
+    .hero-image img {
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: var(--box-shadow);
+    }
+    .prose {
+      width: 720px;
+      max-width: calc(100% - 2em);
+      margin: auto;
+      padding: 1em;
+      color: white;
+    }
+    .title {
+      margin-bottom: 1em;
+      padding: 1em 0;
+      text-align: center;
+      line-height: 1;
+    }
+    .title h1 {
+      margin: 0 0 0.5em 0;
+    }
+    .part-number {
+      font-style: italic;
+      color: #a0a0a0;
+      margin-bottom: 0.5em;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px !important;
+    }
+    .part-number {
+      color: var(--accent);
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .shopify-buy-section {
+      margin-top: 2rem;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .quantity-selector label {
+      font-weight: bold;
+    }
+    .quantity-selector input {
+      width: 60px;
+      padding: 0.5rem;
+      text-align: center;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      color: white;
+    }
+    .buy-button, .add-to-cart-button {
+      background-color: var(--accent);
+      color: white !important;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .buy-button:hover, .add-to-cart-button:hover {
+      background-color: var(--accent-dark);
+    }
+    .add-to-cart-button {
+      background-color: #5a67d8;
+    }
+    .add-to-cart-button:hover {
+      background-color: #434190;
+    }
   </style>
   <SectionBlock>
     <Fragment>
       <article class="flex flex-col items-center md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-8">
         <FeaturedImage>
-            {heroImage && (
-                isShopify
-                    ?
-                    <img
-                        src={heroImage}
-                        alt={title}
-                        width="720"
-                        height="360"
-                        class="w-full h-auto rounded-xl"
-                    />
-                    :
-                    <Image
-                        width={720}
-                        height={360}
-                        src={heroImage}
-                        alt={title}
-                    />
-            )}
+          {isShopify ? (
+              <img
+                  src={imageSrc} alt={title}
+                  width="720"
+                  height="360"
+                  class="w-full h-auto rounded-xl"
+              />
+          ) : (
+              <Image
+                  width={720}
+                  height={360}
+                  src={resolvedImage} alt={title}
+              />
+          )}
         </FeaturedImage>
+
         <div class="prose">
           <div class="title">
             <div class="part-number">Part #: {partNumber}</div>
             <h1>{title}</h1>
-              {isShopify && price && currency && (
-                  <div class="price">
-                      {new Intl.NumberFormat('en-US', {
-                          style: 'currency',
-                          currency: currency
-                      }).format(parseFloat(price))}
-                  </div>
-              )}
+            {isShopify && price && currency && (
+                <div class="price">
+                  {new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currency
+                  }).format(parseFloat(price))}
+                </div>
+            )}
             <hr class="my-8"/>
           </div>
           <slot/>
-            {isShopify && checkoutUrlBase && (
-                <div
-                    class="shopify-buy-section"
-                    data-product-id={variantId}
-                    data-product-handle={handle}
-                    data-product-title={title}
-                    data-product-price={price}
-                    data-product-currency={currency}
-                    data-product-image={heroImage}
-                    data-checkout-url-base={checkoutUrlBase}
-                >
-                  <div class="quantity-selector">
-                    <label for="quantity-input">Qty:</label>
-                    <input
-                        type="number"
-                        id="quantity-input"
-                        min="1"
-                    />
-                  </div>
-                  <button
-                      type="button"
-                      id="add-to-cart-btn"
-                      class="add-to-cart-button"
-                  >
-                    Add to Cart
-                  </button>
-                  <a
-                      href={`${checkoutUrlBase}:1`}
-                      id="buy-now-link"
-                      class="buy-button"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                  >
-                    Buy Now
-                  </a>
+          {isShopify && checkoutUrlBase && (
+              <div
+                  class="shopify-buy-section"
+                  data-product-id={variantId}
+                  data-product-handle={handle}
+                  data-product-title={title}
+                  data-product-price={price}
+                  data-product-currency={currency}
+                  data-product-image={imageSrc} data-checkout-url-base={checkoutUrlBase}
+              >
+                <div class="quantity-selector">
+                  <label for="quantity-input">Qty:</label>
+                  <input
+                      type="number"
+                      id="quantity-input"
+                      min="1"
+                      value="1"
+                  />
                 </div>
-            )}
+                <button
+                    type="button"
+                    id="add-to-cart-btn"
+                    class="add-to-cart-button"
+                >
+                  Add to Cart
+                </button>
+                <a
+                    href={`${checkoutUrlBase}:1`}
+                    id="buy-now-link"
+                    class="buy-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                  Buy Now
+                </a>
+              </div>
+          )}
         </div>
       </article>
     </Fragment>
+    <p class="text-sm text-center text-gray-600 max-w-[600px] mx-auto mt-6">Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
   </SectionBlock>
 
   <script>
-      import {cart, addToCart} from '../lib/cart-store.js';
+    // Script remains unchanged
+    import { cart, addToCart } from '../lib/cart-store.js';
 
-      const buySection = document.querySelector('.shopify-buy-section');
+    const buySection = document.querySelector('.shopify-buy-section');
 
-      if (buySection) {
-          const quantityInput = buySection.querySelector('#quantity-input');
-          const addToCartBtn = buySection.querySelector('#add-to-cart-btn');
-          const buyNowLink = buySection.querySelector('#buy-now-link');
+    if (buySection) {
+      const quantityInput = buySection.querySelector('#quantity-input');
+      const addToCartBtn = buySection.querySelector('#add-to-cart-btn');
+      const buyNowLink = buySection.querySelector('#buy-now-link');
 
-          // Read product data from the data attributes
-          const product = {
-              id: buySection.dataset.productId,
-              handle: buySection.dataset.productHandle,
-              title: buySection.dataset.productTitle,
-              price: buySection.dataset.productPrice,
-              currency: buySection.dataset.productCurrency,
-              image: buySection.dataset.productImage
-          };
-          const checkoutUrlBase = buySection.dataset.checkoutUrlBase;
+      const product = {
+        id: buySection.dataset.productId,
+        handle: buySection.dataset.productHandle,
+        title: buySection.dataset.productTitle,
+        price: buySection.dataset.productPrice,
+        currency: buySection.dataset.productCurrency,
+        image: buySection.dataset.productImage
+      };
+      const checkoutUrlBase = buySection.dataset.checkoutUrlBase;
 
-          function setInitialState() {
-              const currentCart = cart.get();
-              const productInCart = currentCart.find(item => item.id === product.id);
-              const initialQuantity = productInCart ? productInCart.quantity : 1;
-              quantityInput.value = initialQuantity;
-              if (buyNowLink) {
-                  buyNowLink.href = `${checkoutUrlBase}:${initialQuantity}`;
-              }
-          }
-
-          setInitialState();
-
-          quantityInput.addEventListener('input', (event) => {
-              const quantity = event.target.value;
-              if (quantity && parseInt(quantity, 10) > 0) {
-                  buyNowLink.href = `${checkoutUrlBase}:${quantity}`;
-              }
-          });
-
-          addToCartBtn.addEventListener('click', () => {
-              const quantity = parseInt(quantityInput.value, 10);
-              addToCart(product, quantity);
-              addToCartBtn.textContent = 'Added!';
-              setTimeout(() => {
-                  addToCartBtn.textContent = 'Add to Cart';
-              }, 2000);
-          });
+      function setInitialState() {
+        const currentCart = cart.get();
+        const productInCart = currentCart.find(item => item.id === product.id);
+        const initialQuantity = productInCart ? productInCart.quantity : 1;
+        quantityInput.value = initialQuantity;
+        if (buyNowLink) {
+          buyNowLink.href = `${checkoutUrlBase}:${initialQuantity}`;
+        }
       }
+
+      setInitialState();
+
+      quantityInput.addEventListener('input', (event) => {
+        const quantity = event.target.value;
+        if (quantity && parseInt(quantity, 10) > 0) {
+          buyNowLink.href = `${checkoutUrlBase}:${quantity}`;
+        }
+      });
+
+      addToCartBtn.addEventListener('click', () => {
+        const quantity = parseInt(quantityInput.value, 10) || 1;
+        addToCart(product, quantity);
+        addToCartBtn.textContent = 'Added!';
+        setTimeout(() => {
+          addToCartBtn.textContent = 'Add to Cart';
+        }, 2000);
+      });
+    }
   </script>
 </BaseLayout>

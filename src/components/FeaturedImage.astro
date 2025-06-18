@@ -1,9 +1,16 @@
 ---
-// FeaturedImage component that accepts a slot for the image
+import {Image} from 'astro:assets';
+import fallBackImage from '../assets/aps-icon-white.png';
 ---
 
 <div class="hero-image pt-7 mt-8 flex justify-center rounded-xl">
   <div class="bg-gray-800 p-6 inline-block rounded-xl overflow-hidden">
-  <slot />
+  <slot>
+    <Image
+        src={fallBackImage}
+        alt="Artic Power Solutions Logo"
+        class="rounded-full shadow-xl w-48 h-48 mx-auto"
+    />
+  </slot>
   </div>
 </div>
