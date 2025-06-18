@@ -4,6 +4,7 @@ import {Image} from 'astro:assets';
 import articLogoIcon from '../assets/aps-icon-white.png';
 import cartIcon from '../assets/cart-icon.png';
 import {SITE_TITLE} from '../consts';
+import { isFeatureEnabled } from '../utils/featureFlags';
 ---
 
 <header>
@@ -25,19 +26,21 @@ import {SITE_TITLE} from '../consts';
         <HeaderLink href="/parts">Parts</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
       </div>
-      <a
-          href="/cart"
-          class="cart-link"
-          aria-label="Cart"
-      >
-        <Image
-            src={cartIcon}
-            alt="Shopping Cart"
-            width="24"
-            height="24"
-        />
-        <span class="cart-badge">0</span>
-      </a>
+      {isFeatureEnabled('ENABLE_SHOP') && (
+          <a
+              href="/cart"
+              class="cart-link"
+              aria-label="Cart"
+          >
+            <Image
+                src={cartIcon}
+                alt="Shopping Cart"
+                width="24"
+                height="24"
+            />
+            <span class="cart-badge">0</span>
+          </a>
+      )}
       <button
           class="hamburger-menu ml-2"
           aria-label="Menu"

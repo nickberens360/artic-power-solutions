@@ -3,3 +3,11 @@
 
 export const SITE_TITLE = 'Artic Power Solutions';
 export const SITE_DESCRIPTION = 'RollMover Compatible Parts & Repair!';
+// Feature Flags
+export const FEATURE_FLAGS = {
+    SHOW_BLOG: true,           // Controls visibility of blog section
+    ENABLE_SHOP: true,         // Controls e-commerce functionality
+    SHOW_ABOUT_SECTION: true,  // Controls visibility of about section
+    ENABLE_CONTACT_FORM: true, // Controls contact form functionality
+    SHOW_SERVICES: true,       // Controls visibility of services section
+};
