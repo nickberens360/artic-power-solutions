@@ -309,7 +309,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
         let checkoutItems = [];
 
       if (items.length === 0) {
-        cartContainer.innerHTML = '<p class="empty-cart-message">Your cart is empty.</p>';
+        cartContainer.innerHTML = '<p class="empty-cart-message text-white">Your cart is empty.</p>';
         summarySection.style.display = 'none';
         return;
       }
