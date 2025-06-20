@@ -1,27 +1,53 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import CartLayout from '../layouts/CartLayout.astro';
+import CartSummary from '../components/cart/CartSummary.astro';
+import CartActions from '../components/cart/CartActions.astro';
+import '../styles/cart.css';
+
 const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 ---
 
-<Layout
-    title="Your Shopping Cart"
-    description="Items in your shopping cart."
+<CartLayout
+  title="Your Shopping Cart"
+  description="Items in your shopping cart."
 >
-  <main data-shop-domain={shopDomain}>
-    <h1>Your Cart</h1>
-    <div id="cart-container">
-      <p>Loading cart...</p>
+  <h1>Your Cart</h1>
+  <div id="cart-container" data-shop-domain={shopDomain}>
+    <noscript>
+      <p class="error-message">JavaScript is required to view your cart.</p>
+    </noscript>
+    <p id="loading-message" class="loading-message">Loading cart...</p>
+    <div id="cart-error" class="error-message" style="display: none;">
+      Unable to load cart. Please refresh the page.
     </div>
-  </main>
+  </div>
+  <div id="cart-summary-container" style="display: none;">
+    <!-- Server-rendered fallback -->
+    <CartSummary>
+      <CartActions />
+    </CartSummary>
+  </div>
 
   <script>
-    // Redirect to home page and open cart drawer if JavaScript is enabled
+    // Improved script with loading states and error handling
     document.addEventListener('DOMContentLoaded', () => {
-      if (typeof window.openCartDrawer === 'function') {
-        window.openCartDrawer();
-        // Optional: redirect to home page after opening the drawer
-        // window.location.href = '/';
+      try {
+        const loadingMessage = document.getElementById('loading-message');
+        const errorMessage = document.getElementById('cart-error');
+        const summaryContainer = document.getElementById('cart-summary-container');
+
+        if (typeof window.openCartDrawer === 'function') {
+          window.openCartDrawer();
+          loadingMessage.style.display = 'none';
+        } else {
+          throw new Error('Cart functionality not available');
+        }
+      } catch (error) {
+        console.error('Error loading cart:', error);
+        if (loadingMessage) loadingMessage.style.display = 'none';
+        if (errorMessage) errorMessage.style.display = 'block';
+        if (summaryContainer) summaryContainer.style.display = 'block';
       }
     });
   </script>
-</Layout>
+</CartLayout>

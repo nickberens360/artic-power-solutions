@@ -1,0 +1,31 @@
+---
+import Layout from './Layout.astro';
+
+const { title = "Your Shopping Cart", description = "Items in your shopping cart." } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <main class="cart-page-container">
+    <slot />
+  </main>
+</Layout>
+
+<style>
+  .cart-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .cart-page-container {
+      padding: 1.5rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cart-page-container {
+      padding: 1rem;
+    }
+  }
+</style>

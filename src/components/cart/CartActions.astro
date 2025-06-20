@@ -1,0 +1,9 @@
+---
+// CartActions.astro - Clear cart and checkout buttons
+const { checkoutUrl = '#' } = Astro.props;
+---
+
+<div class="cart-actions">
+  <button id="clear-cart" class="clear-cart-button">Clear Cart</button>
+  <a id="checkout-link" href={checkoutUrl} class="checkout-button">Proceed to Checkout</a>
+</div>

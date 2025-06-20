@@ -1,6 +1,6 @@
 ---
 // Import the cart store
-import { cart, clearCart, updateItemQuantity } from '../lib/cart-store.js';
+import { cart, clearCart, updateItemQuantity } from '../lib/cart-store';
 const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 ---
 
@@ -260,32 +260,41 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 <div id="cart-overlay" class="cart-overlay"></div>
 
 <script>
-  import { cart, clearCart, updateItemQuantity } from '../lib/cart-store.js';
+  import { cart, clearCart, updateItemQuantity } from '../lib/cart-store';
 
   document.addEventListener('DOMContentLoaded', () => {
-    const cartDrawer = document.getElementById('cart-drawer');
-    const cartOverlay = document.getElementById('cart-overlay');
-    const closeCartButton = document.getElementById('close-cart');
-    const cartContainer = document.getElementById('cart-container');
-    const itemTemplate = document.getElementById('cart-item-template');
-    const summarySection = document.getElementById('cart-summary-section');
-    const totalAmountEl = summarySection.querySelector('.amount');
-    const clearCartButton = document.getElementById('clear-cart');
-    const checkoutLink = document.getElementById('checkout-link');
-    const shopDomain = cartDrawer.dataset.shopDomain;
+    try {
+      const cartDrawer = document.getElementById('cart-drawer');
+      const cartOverlay = document.getElementById('cart-overlay');
+      const closeCartButton = document.getElementById('close-cart');
+      const cartContainer = document.getElementById('cart-container');
+      const itemTemplate = document.getElementById('cart-item-template');
+      const summarySection = document.getElementById('cart-summary-section');
+      const totalAmountEl = summarySection.querySelector('.amount');
+      const clearCartButton = document.getElementById('clear-cart');
+      const checkoutLink = document.getElementById('checkout-link');
+      const shopDomain = cartDrawer.dataset.shopDomain;
 
     // Function to open the cart drawer
     window.openCartDrawer = function() {
-      cartDrawer.classList.add('open');
-      cartOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
+      try {
+        cartDrawer.classList.add('open');
+        cartOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      } catch (error) {
+        console.error('Error opening cart drawer:', error);
+      }
     };
 
     // Function to close the cart drawer
     function closeCartDrawer() {
-      cartDrawer.classList.remove('open');
-      cartOverlay.classList.remove('open');
-      document.body.style.overflow = ''; // Restore scrolling
+      try {
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('open');
+        document.body.style.overflow = ''; // Restore scrolling
+      } catch (error) {
+        console.error('Error closing cart drawer:', error);
+      }
     }
 
     // Event listeners for opening/closing the cart
@@ -294,9 +303,10 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 
     // Render cart contents
     function renderCart(items) {
-      cartContainer.innerHTML = '';
-      let subtotal = 0;
-      let checkoutItems = [];
+      try {
+        cartContainer.innerHTML = '';
+        let subtotal = 0;
+        let checkoutItems = [];
 
       if (items.length === 0) {
         cartContainer.innerHTML = '<p class="empty-cart-message">Your cart is empty.</p>';
@@ -349,33 +359,53 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
       if (shopDomain) {
         checkoutLink.href = `https://${shopDomain}/cart/${checkoutItems.join(',')}`;
       }
+      } catch (error) {
+        console.error('Error rendering cart:', error);
+        cartContainer.innerHTML = '<p class="error-message">Error loading cart. Please try again.</p>';
+      }
     }
 
     // Event listener for quantity changes
     cartContainer.addEventListener('input', event => {
-      if (event.target.classList.contains('quantity-input')) {
-        const itemId = event.target.dataset.itemId;
-        const newQuantity = parseInt(event.target.value, 10);
-        if (!isNaN(newQuantity)) {
-          updateItemQuantity(itemId, newQuantity);
+      try {
+        if (event.target.classList.contains('quantity-input')) {
+          const itemId = event.target.dataset.itemId;
+          const newQuantity = parseInt(event.target.value, 10);
+          if (!isNaN(newQuantity)) {
+            updateItemQuantity(itemId, newQuantity);
+          }
         }
+      } catch (error) {
+        console.error('Error updating item quantity:', error);
       }
     });
 
     // Event listener for remove buttons
     cartContainer.addEventListener('click', event => {
-      if (event.target.classList.contains('remove-item-button')) {
-        const itemId = event.target.dataset.itemId;
-        updateItemQuantity(itemId, 0); // Remove item by setting quantity to 0
+      try {
+        if (event.target.classList.contains('remove-item-button')) {
+          const itemId = event.target.dataset.itemId;
+          updateItemQuantity(itemId, 0); // Remove item by setting quantity to 0
+        }
+      } catch (error) {
+        console.error('Error removing item from cart:', error);
       }
     });
 
     // Event listener for clear cart button
     clearCartButton.addEventListener('click', () => {
-      clearCart();
+      try {
+        clearCart();
+      } catch (error) {
+        console.error('Error clearing cart:', error);
+      }
     });
 
     // Subscribe to cart changes
     cart.subscribe(renderCart);
+    } catch (error) {
+      console.error('Error initializing cart drawer:', error);
+      // Could add user notification here
+    }
   });
 </script>

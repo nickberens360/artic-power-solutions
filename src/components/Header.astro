@@ -196,38 +196,59 @@ import { isFeatureEnabled } from '../utils/featureFlags';
 </style>
 
 <script>
-    import {cart} from '../lib/cart-store.js';
+    import {cart} from '../lib/cart-store';
 
     document.addEventListener('DOMContentLoaded', () => {
-        const hamburgerButton = document.querySelector('.hamburger-menu');
-        const mobileNav = document.querySelector('.mobile-nav');
-        const cartButton = document.getElementById('cart-icon-button');
+        try {
+            const hamburgerButton = document.querySelector('.hamburger-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const cartButton = document.getElementById('cart-icon-button');
 
         hamburgerButton?.addEventListener('click', () => {
-            hamburgerButton.classList.toggle('active');
-            mobileNav?.classList.toggle('active');
+            try {
+                hamburgerButton.classList.toggle('active');
+                mobileNav?.classList.toggle('active');
+            } catch (error) {
+                console.error('Error toggling mobile navigation:', error);
+            }
         });
 
         // Add event listener to open cart drawer when cart icon is clicked
         cartButton?.addEventListener('click', () => {
-            if (typeof window.openCartDrawer === 'function') {
-                window.openCartDrawer();
+            try {
+                if (typeof window.openCartDrawer === 'function') {
+                    window.openCartDrawer();
+                }
+            } catch (error) {
+                console.error('Error opening cart drawer:', error);
             }
         });
 
         const badges = document.querySelectorAll('.cart-badge');
         const updateBadges = (items) => {
-            const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-            badges.forEach(badge => {
-                badge.textContent = String(totalItems);
-                if (totalItems > 0) {
-                    badge.classList.add('has-items');
-                } else {
+            try {
+                const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+                badges.forEach(badge => {
+                    badge.textContent = String(totalItems);
+                    if (totalItems > 0) {
+                        badge.classList.add('has-items');
+                    } else {
+                        badge.classList.remove('has-items');
+                    }
+                });
+            } catch (error) {
+                console.error('Error updating cart badges:', error);
+                // Set default state in case of error
+                badges.forEach(badge => {
+                    badge.textContent = '0';
                     badge.classList.remove('has-items');
-                }
-            });
+                });
+            }
         }
 
         cart.subscribe(updateBadges);
+        } catch (error) {
+            console.error('Error initializing header:', error);
+        }
     });
 </script>

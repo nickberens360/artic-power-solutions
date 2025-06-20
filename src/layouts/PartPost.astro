@@ -241,15 +241,16 @@ if (isShopify && variantId && shopDomain) {
   </SectionBlock>
 
   <script>
-    // Script remains unchanged
-    import { cart, addToCart } from '../lib/cart-store.js';
+    // Script with error handling
+    import { cart, addToCart } from '../lib/cart-store';
 
-    const buySection = document.querySelector('.shopify-buy-section');
+    try {
+      const buySection = document.querySelector('.shopify-buy-section');
 
-    if (buySection) {
-      const quantityInput = buySection.querySelector('#quantity-input');
-      const addToCartBtn = buySection.querySelector('#add-to-cart-btn');
-      const buyNowLink = buySection.querySelector('#buy-now-link');
+      if (buySection) {
+        const quantityInput = buySection.querySelector('#quantity-input');
+        const addToCartBtn = buySection.querySelector('#add-to-cart-btn');
+        const buyNowLink = buySection.querySelector('#buy-now-link');
 
       const product = {
         id: buySection.dataset.productId,
@@ -262,38 +263,83 @@ if (isShopify && variantId && shopDomain) {
       const checkoutUrlBase = buySection.dataset.checkoutUrlBase;
 
       function setInitialState() {
-        const currentCart = cart.get();
-        const productInCart = currentCart.find(item => item.id === product.id);
-        const initialQuantity = productInCart ? productInCart.quantity : 1;
-        quantityInput.value = initialQuantity;
-        if (buyNowLink) {
-          buyNowLink.href = `${checkoutUrlBase}:${initialQuantity}`;
+        try {
+          const currentCart = cart.get();
+          const productInCart = currentCart.find(item => item.id === product.id);
+          const initialQuantity = productInCart ? productInCart.quantity : 1;
+          quantityInput.value = initialQuantity;
+          if (buyNowLink) {
+            buyNowLink.href = `${checkoutUrlBase}:${initialQuantity}`;
+          }
+        } catch (error) {
+          console.error('Error setting initial state:', error);
+          // Set default values in case of error
+          quantityInput.value = 1;
+          if (buyNowLink) {
+            buyNowLink.href = `${checkoutUrlBase}:1`;
+          }
         }
       }
 
       setInitialState();
 
+      // Subscribe to cart changes to update the quantity input
+      cart.subscribe(currentCart => {
+        try {
+          const productInCart = currentCart.find(item => item.id === product.id);
+          if (productInCart) {
+            quantityInput.value = productInCart.quantity;
+            if (buyNowLink) {
+              buyNowLink.href = `${checkoutUrlBase}:${productInCart.quantity}`;
+            }
+          } else {
+            // If product is not in cart, reset to 1
+            quantityInput.value = 1;
+            if (buyNowLink) {
+              buyNowLink.href = `${checkoutUrlBase}:1`;
+            }
+          }
+        } catch (error) {
+          console.error('Error updating from cart changes:', error);
+        }
+      });
+
       quantityInput.addEventListener('input', (event) => {
-        const quantity = event.target.value;
-        if (quantity && parseInt(quantity, 10) > 0) {
-          buyNowLink.href = `${checkoutUrlBase}:${quantity}`;
+        try {
+          const quantity = event.target.value;
+          if (quantity && parseInt(quantity, 10) > 0) {
+            buyNowLink.href = `${checkoutUrlBase}:${quantity}`;
+          }
+        } catch (error) {
+          console.error('Error updating quantity:', error);
         }
       });
 
       addToCartBtn.addEventListener('click', () => {
-        const quantity = parseInt(quantityInput.value, 10) || 1;
-        addToCart(product, quantity);
-        addToCartBtn.textContent = 'Added!';
+        try {
+          const quantity = parseInt(quantityInput.value, 10) || 1;
+          addToCart(product, quantity);
+          addToCartBtn.textContent = 'Added!';
 
-        // Open the cart drawer after adding to cart
-        if (typeof window.openCartDrawer === 'function') {
-          window.openCartDrawer();
+          // Open the cart drawer after adding to cart
+          if (typeof window.openCartDrawer === 'function') {
+            window.openCartDrawer();
+          }
+
+          setTimeout(() => {
+            addToCartBtn.textContent = 'Add to Cart';
+          }, 2000);
+        } catch (error) {
+          console.error('Error adding item to cart:', error);
+          addToCartBtn.textContent = 'Error!';
+          setTimeout(() => {
+            addToCartBtn.textContent = 'Add to Cart';
+          }, 2000);
         }
-
-        setTimeout(() => {
-          addToCartBtn.textContent = 'Add to Cart';
-        }, 2000);
       });
+    }
+    } catch (error) {
+      console.error('Error initializing product buy section:', error);
     }
   </script>
 </BaseLayout>

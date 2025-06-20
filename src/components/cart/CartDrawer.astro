@@ -1,0 +1,219 @@
+---
+// Import the cart store
+import { cart, clearCart, updateItemQuantity } from '../../lib/cart-store';
+import CartItem from './CartItem.astro';
+import CartSummary from './CartSummary.astro';
+import CartActions from './CartActions.astro';
+
+// Import styles
+import '../../styles/cart.css';
+
+const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
+---
+
+<div id="cart-drawer" class="cart-drawer" data-shop-domain={shopDomain}>
+  <div class="cart-drawer-content">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button id="close-cart" class="close-cart-button" aria-label="Close cart">×</button>
+    </div>
+
+    <div id="cart-container"></div>
+
+    <div id="cart-summary-section" class="cart-summary" style="display: none;">
+      <!-- Will be populated by JavaScript -->
+    </div>
+  </div>
+</div>
+
+<template id="cart-item-template">
+  <li class="cart-item">
+    <a class="cart-item-link-img">
+      <img src="" alt="" />
+    </a>
+    <div class="item-details">
+      <a class="cart-item-link-title">
+        <p class="item-title"></p>
+      </a>
+      <p class="item-price"></p>
+    </div>
+    <div class="item-quantity">
+      <label>Qty:</label>
+      <input type="number" class="quantity-input" min="0" />
+      <button type="button" class="remove-item-button" aria-label="Remove item">x</button>
+    </div>
+  </li>
+</template>
+
+<div id="cart-overlay" class="cart-overlay"></div>
+
+<script>
+  import { cart, clearCart, updateItemQuantity } from '../../lib/cart-store';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const closeCartButton = document.getElementById('close-cart');
+    const cartContainer = document.getElementById('cart-container');
+    const itemTemplate = document.getElementById('cart-item-template');
+    const summarySection = document.getElementById('cart-summary-section');
+    let totalAmountEl;
+    let clearCartButton;
+    let checkoutLink;
+    const shopDomain = cartDrawer.dataset.shopDomain;
+
+    // Function to open the cart drawer
+    window.openCartDrawer = function() {
+      cartDrawer.classList.add('open');
+      cartOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    };
+
+    // Function to close the cart drawer
+    function closeCartDrawer() {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Event listeners for opening/closing the cart
+    closeCartButton.addEventListener('click', closeCartDrawer);
+    cartOverlay.addEventListener('click', closeCartDrawer);
+
+    // Render cart contents
+    function renderCart(items) {
+      cartContainer.innerHTML = '';
+      let subtotal = 0;
+      let checkoutItems = [];
+
+      if (items.length === 0) {
+        cartContainer.innerHTML = '<p class="empty-cart-message">Your cart is empty.</p>';
+        summarySection.style.display = 'none';
+        return;
+      }
+
+      // Create cart items list
+      const itemList = document.createElement('ul');
+      itemList.className = 'cart-items';
+
+      items.forEach(item => {
+        const itemClone = itemTemplate.content.cloneNode(true);
+        const imgLink = itemClone.querySelector('a.cart-item-link-img');
+        const titleLink = itemClone.querySelector('a.cart-item-link-title');
+        const img = itemClone.querySelector('img');
+        const quantityInput = itemClone.querySelector('.quantity-input');
+        const itemPageUrl = `/parts/${item.handle}`;
+
+        imgLink.href = itemPageUrl;
+        titleLink.href = itemPageUrl;
+        img.src = item.image;
+        img.alt = item.title;
+        itemClone.querySelector('.item-title').textContent = item.title;
+        itemClone.querySelector('.item-price').textContent = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: item.currency || 'USD'
+        }).format(item.price);
+
+        quantityInput.value = item.quantity;
+        quantityInput.dataset.itemId = item.id;
+
+        // Set the item ID for the remove button
+        const removeButton = itemClone.querySelector('.remove-item-button');
+        removeButton.dataset.itemId = item.id;
+
+        itemList.appendChild(itemClone);
+
+        subtotal += item.price * item.quantity;
+        const variantIdNumber = item.id.replace('gid://shopify/ProductVariant/', '');
+        checkoutItems.push(`${variantIdNumber}:${item.quantity}`);
+      });
+
+      cartContainer.appendChild(itemList);
+
+      // Create cart summary section
+      summarySection.innerHTML = '';
+      summarySection.style.display = 'block';
+
+      // Create total display
+      const totalDiv = document.createElement('div');
+      totalDiv.id = 'cart-total';
+      totalDiv.className = 'cart-total';
+
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'label';
+      labelSpan.textContent = 'Total:';
+
+      const amountSpan = document.createElement('span');
+      amountSpan.className = 'amount';
+      amountSpan.textContent = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: items[0]?.currency || 'USD'
+      }).format(subtotal);
+
+      totalDiv.appendChild(labelSpan);
+      totalDiv.appendChild(amountSpan);
+      summarySection.appendChild(totalDiv);
+
+      // Create cart actions
+      const actionsDiv = document.createElement('div');
+      actionsDiv.className = 'cart-actions';
+
+      const clearButton = document.createElement('button');
+      clearButton.id = 'clear-cart';
+      clearButton.className = 'clear-cart-button';
+      clearButton.textContent = 'Clear Cart';
+
+      const checkoutLinkEl = document.createElement('a');
+      checkoutLinkEl.id = 'checkout-link';
+      checkoutLinkEl.className = 'checkout-button';
+      checkoutLinkEl.textContent = 'Proceed to Checkout';
+
+      if (shopDomain) {
+        checkoutLinkEl.href = `https://${shopDomain}/cart/${checkoutItems.join(',')}`;
+      } else {
+        checkoutLinkEl.href = '#';
+      }
+
+      actionsDiv.appendChild(clearButton);
+      actionsDiv.appendChild(checkoutLinkEl);
+      summarySection.appendChild(actionsDiv);
+
+      // Update references
+      totalAmountEl = amountSpan;
+      checkoutLink = checkoutLinkEl;
+      clearCartButton = clearButton;
+
+      // Add event listener for clear cart button
+      clearCartButton.addEventListener('click', () => {
+        clearCart();
+      });
+    }
+
+    // Event listener for quantity changes
+    cartContainer.addEventListener('input', event => {
+      if (event.target.classList.contains('quantity-input')) {
+        const itemId = event.target.dataset.itemId;
+        const newQuantity = parseInt(event.target.value, 10);
+        if (!isNaN(newQuantity)) {
+          updateItemQuantity(itemId, newQuantity);
+        }
+      }
+    });
+
+    // Event listener for remove buttons
+    cartContainer.addEventListener('click', event => {
+      if (event.target.classList.contains('remove-item-button')) {
+        const itemId = event.target.dataset.itemId;
+        updateItemQuantity(itemId, 0); // Remove item by setting quantity to 0
+      }
+    });
+
+    // Event listener for clear cart button
+    clearCartButton.addEventListener('click', () => {
+      clearCart();
+    });
+
+    // Subscribe to cart changes
+    cart.subscribe(renderCart);
+  });
+</script>
