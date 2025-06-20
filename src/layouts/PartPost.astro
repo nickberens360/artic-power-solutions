@@ -284,6 +284,12 @@ if (isShopify && variantId && shopDomain) {
         const quantity = parseInt(quantityInput.value, 10) || 1;
         addToCart(product, quantity);
         addToCartBtn.textContent = 'Added!';
+
+        // Open the cart drawer after adding to cart
+        if (typeof window.openCartDrawer === 'function') {
+          window.openCartDrawer();
+        }
+
         setTimeout(() => {
           addToCartBtn.textContent = 'Add to Cart';
         }, 2000);
