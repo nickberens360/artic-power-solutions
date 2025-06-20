@@ -2,12 +2,12 @@
 // Import a fallback image from your assets directory.
 // Make sure you have an image file at this location.
 import fallBackImage from '../assets/parts/placeholder.png';
-import { isFeatureEnabled } from '../utils/featureFlags';
-const { product } = Astro.props;
+import {isFeatureEnabled} from '../utils/featureFlags';
+const {product} = Astro.props;
 
 const price = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: product.priceRange.minVariantPrice.currencyCode,
+    style: 'currency',
+    currency: product.priceRange.minVariantPrice.currencyCode,
 }).format(product.priceRange.minVariantPrice.amount);
 
 // Get the primary product image, if it exists
@@ -19,47 +19,89 @@ const imageSrc = productImage ? productImage.url : fallBackImage.src;
 // Use the product image's alt text or the product title.
 const altText = productImage ? (productImage.altText || product.title) : product.title;
 ---
-<a href={`/parts/${product.handle}`} class="card">
+{isFeatureEnabled('ENABLE_SHOP') && (
+<a
+    href={`/parts/${product.handle}`}
+    class="card"
+>
   <div class="bg-gray-800 p-4">
-  <img src={imageSrc} alt={altText} width="300" height="300" loading="lazy" />
+    <img
+        src={imageSrc}
+        alt={altText}
+        width="300"
+        height="300"
+        loading="lazy"
+    />
   </div>
   <div class="card-content text-white">
     <h2>{product.title}</h2>
-    {isFeatureEnabled('ENABLE_SHOP') && (
     <p class="price">{price}</p>
-    )}
+
   </div>
 </a>
+    )}
+{!isFeatureEnabled('ENABLE_SHOP') && (
+<div
+    class="card"
+>
+  <div class="bg-gray-800 p-4">
+    <img
+        src={imageSrc}
+        alt={altText}
+        width="300"
+        height="300"
+        loading="lazy"
+    />
+  </div>
+  <div class="card-content text-white">
+    <h2>{product.title}</h2>
+    <p class="price">
+      <a
+          href="mailto:sales@articpowersolutions.com"
+          target="_blank"
+      >Contact for Pricing
+      </a>
+    </p>
+
+  </div>
+</div>
+    )}
 
 <style>
-  .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: box-shadow 0.2s;
-  }
-  .card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  .card img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    /* Background color provides a placeholder while the image loads or if it fails */
-    /* background-color: #f5f5f5; */
-  }
-  .card-content {
-    padding: 1rem;
-  }
-  .card-content h2 {
-    font-size: 1.2rem;
-    margin: 0 0 0.5rem;
-  }
-  .price {
-    font-weight: bold;
-  }
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        /* Background color provides a placeholder while the image loads or if it fails */
+        /* background-color: #f5f5f5; */
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    .card-content h2 {
+        font-size: 1.2rem;
+        margin: 0 0 0.5rem;
+    }
+
+    .price {
+        font-weight: bold;
+        color: var(--accent);
+    }
 </style>

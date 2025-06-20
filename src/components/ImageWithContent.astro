@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import matrix from '../assets/matrix.svg'
+import rollMoverIllustration from '../assets/rollMoverIllustration.png';
+---
+
+<div
+    id="challenge"
+    class=" flex flex-col md:flex-row relative"
+>
+  <div class="px-12 md:w-1/3">
+    <Image
+        src={matrix}
+        alt="Decorative image"
+        style="max-width: 300px; width: 100%;"
+        class="matrix"
+    />
+    <Image
+        src={rollMoverIllustration}
+        alt="RollMover Technician"
+        style="max-width: 300px; width: 100%;"
+        class="mx-auto z-10 relative"
+    />
+  </div>
+  <div class="mt-12 sm:mt-0 md:w-2/3">
+    <h2 class="text-md md:text-md font-bold text-white mb-6">Is Your Material Handling Equipment Performing at
+      Its Best?</h2>
+    <p class="text-lg text-white mb-8">
+      Heavy roll moving equipment is vital to your operations, but when it breaks down, it brings productivity
+      to a
+      halt.
+    </p>
+    <p class="text-lg text-white">
+      Finding fast, reliable, and cost-effective repair service can be a challenge, especially when faced with
+      warranty denials or providers who lack specialized knowledge.
+    </p>
+  </div>
+</div>
+
+<style>
+  .matrix {
+      position: absolute;
+      z-index: 0;
+      //top: -25%;
+      left: 0;
+      opacity: .5;
+  }
+</style>

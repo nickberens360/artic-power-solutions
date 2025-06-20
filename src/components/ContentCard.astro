@@ -9,8 +9,15 @@ const { title, description, image } = Astro.props;
 ---
 
 <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-  <div class="flex items-center mb-4">
-    <h3 class="text-md font-semibold text-white">{title}</h3>
+  <div class="flex items-center bg-sky-100 mb-4 px-4 py-2 rounded-full">
+    <h3 class="font-semibold">{title}</h3>
   </div>
   <p class="text-white">{description}</p>
 </div>
+
+<style>
+  h3 {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+</style>
