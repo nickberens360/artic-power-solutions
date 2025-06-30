@@ -28,8 +28,8 @@ const latestPosts = (await getCollection('blog')).sort(
     description={SITE_DESCRIPTION}
 >
   <Hero
-      title="Expert Repair for Your RollMover™ Compatible Equipment"
-      tagline="Fast, Reliable Repair & Quality Parts for equipment compatible with RollMover™ RX, HD, XD, and LR series. Maximize uptime and save costs!"
+      title="NIC-CAD 24V Battery Replacements for Appleton Roll Movers™"
+      tagline="Keep your RollMover™ running — even after Appleton’s discontinuation of NIC-CAD 24V batteries. Artic Power Solutions provides reliable, high-quality replacements to minimize downtime and keep your operations moving!"
       buttonText="Get a Free Quote"
       buttonUrl="#contact"
       disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
@@ -55,21 +55,22 @@ const latestPosts = (await getCollection('blog')).sort(
 
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ContentCard
-                title="Specialized Expertise"
-                description="We don't just fix equipment; we know roll moving systems inside and out. This is our focus, not a sideline."
+                title="Direct-Fit Replacements"
+                description="Our NIC-CAD 24V batteries are engineered to match original Appleton specifications, ensuring seamless installation with no modifications required."
             />
             <ContentCard
-                title="Faster Turnaround"
-                description="Our specialized focus means quicker diagnostics and repairs, minimizing your critical downtime."
+                title="Rapid Delivery"
+                description="Minimize downtime with fast shipping options to get your RollMover back in operation as quickly as possible."
             />
             <ContentCard
-                title="Cost Savings"
-                description="Repair your equipment for a fraction of the cost of replacement, with transparent and fair pricing."
+                title="Affordable Solutions"
+                description="Restore your equipment’s performance for less than the cost of a new system, with competitive pricing on high-quality batteries."
             />
             <ContentCard
-                title="Nationwide Service"
-                description="We serve clients nationwide, with a commitment to excellence and customer satisfaction."
+                title="Nationwide Support"
+                description="We proudly supply RollMover owners across the country, backed by responsive customer service and expert technical assistance."
             />
+
 
 
           </div>
@@ -77,7 +78,7 @@ const latestPosts = (await getCollection('blog')).sort(
       </Fragment>
     </SectionBlock>
 
-    <SectionBlock>
+    <!--<SectionBlock>
       <Fragment>
         <div>
           <div class="text-center mb-16">
@@ -121,56 +122,56 @@ const latestPosts = (await getCollection('blog')).sort(
           </div>
         </div>
       </Fragment>
-    </SectionBlock>
+    </SectionBlock>-->
 
-    <SectionBlock
-        innerRounded
-    >
-      <Fragment>
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">From Our Blog</h2>
-          <p class="text-lg text-gray-300">Tips, guides, and insights to help you get the most out of your
-            equipment.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {
-                latestPosts.map(post => (
-                    <a
-                        href={`/blog/${post.id}/`}
-                        class="group block bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
-                    >
-                        {post.data.heroImage && (
-                            <Image
-                                src={post.data.heroImage}
-                                alt={`Hero image for ${post.data.title}`}
-                                width={720}
-                                height={360}
-                                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                        )}
-                      <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">{post.data.title}</h3>
-                        <p class="text-gray-400 text-sm mb-4">
-                          <FormattedDate date={post.data.pubDate}/>
-                        </p>
-                        <p class="text-gray-300 text-base">{post.data.description}</p>
-                      </div>
-                    </a>
-                ))
-            }
-        </div>
-        <div class="text-center mt-12">
-          <a
-              href="/blog"
-              class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
-          >
-            View All Articles
-          </a>
-        </div>
-      </Fragment>
-    </SectionBlock>
+    <!--<SectionBlock-->
+    <!--    innerRounded-->
+    <!--&gt;-->
+    <!--  <Fragment>-->
+    <!--    <div class="text-center mb-16">-->
+    <!--      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">From Our Blog</h2>-->
+    <!--      <p class="text-lg text-gray-300">Tips, guides, and insights to help you get the most out of your-->
+    <!--        equipment.</p>-->
+    <!--    </div>-->
+    <!--    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">-->
+    <!--        {-->
+    <!--            latestPosts.map(post => (-->
+    <!--                <a-->
+    <!--                    href={`/blog/${post.id}/`}-->
+    <!--                    class="group block bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"-->
+    <!--                >-->
+    <!--                    {post.data.heroImage && (-->
+    <!--                        <Image-->
+    <!--                            src={post.data.heroImage}-->
+    <!--                            alt={`Hero image for ${post.data.title}`}-->
+    <!--                            width={720}-->
+    <!--                            height={360}-->
+    <!--                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"-->
+    <!--                        />-->
+    <!--                    )}-->
+    <!--                  <div class="p-6">-->
+    <!--                    <h3 class="text-xl font-bold text-white mb-2 leading-tight">{post.data.title}</h3>-->
+    <!--                    <p class="text-gray-400 text-sm mb-4">-->
+    <!--                      <FormattedDate date={post.data.pubDate}/>-->
+    <!--                    </p>-->
+    <!--                    <p class="text-gray-300 text-base">{post.data.description}</p>-->
+    <!--                  </div>-->
+    <!--                </a>-->
+    <!--            ))-->
+    <!--        }-->
+    <!--    </div>-->
+    <!--    <div class="text-center mt-12">-->
+    <!--      <a-->
+    <!--          href="/blog"-->
+    <!--          class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300"-->
+    <!--      >-->
+    <!--        View All Articles-->
+    <!--      </a>-->
+    <!--    </div>-->
+    <!--  </Fragment>-->
+    <!--</SectionBlock>-->
 
-    <SectionBlock>
+    <SectionBlock innerRounded>
       <Fragment>
         <div class="flex flex-wrap items-center -mx-4">
           <div class="w-full md:w-1/3 px-8 mb-8 md:mb-0 text-center ">
