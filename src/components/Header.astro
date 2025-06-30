@@ -8,7 +8,7 @@ import { isFeatureEnabled } from '../utils/featureFlags';
 ---
 
 <header>
-  <nav>
+  <nav class="flex items-center justify-center">
     <div class="flex items-center">
       <Image
           class="w-10 h-10 max-w-full h-auto"
@@ -19,44 +19,8 @@ import { isFeatureEnabled } from '../utils/featureFlags';
         <a href="/">{SITE_TITLE}</a>
       </h2>
     </div>
-    <div class="flex items-center">
-      <div class="internal-links desktop-nav">
-        <HeaderLink href="/">Home</HeaderLink>
-        <HeaderLink href="/blog">Resources</HeaderLink>
-        <HeaderLink href="/parts">Parts</HeaderLink>
-        <HeaderLink href="/about">About</HeaderLink>
-      </div>
-      {isFeatureEnabled('ENABLE_SHOP') && (
-          <button
-              class="cart-link"
-              aria-label="Cart"
-              id="cart-icon-button"
-          >
-            <Image
-                src={cartIcon}
-                alt="Shopping Cart"
-                width="24"
-                height="24"
-            />
-            <span class="cart-badge">0</span>
-          </button>
-      )}
-      <button
-          class="hamburger-menu ml-6"
-          aria-label="Menu"
-      >
-        <span class="hamburger-icon text-white"></span>
-        <span class="hamburger-icon text-white"></span>
-        <span class="hamburger-icon text-white"></span>
-      </button>
-    </div>
   </nav>
-  <div class="mobile-nav bg-gray-800 rounded-xl mt-8">
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/blog">Resources</HeaderLink>
-    <HeaderLink href="/parts">Parts</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-  </div>
+
 </header>
 
 <style>
@@ -79,7 +43,7 @@ import { isFeatureEnabled } from '../utils/featureFlags';
     nav {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     nav a {
