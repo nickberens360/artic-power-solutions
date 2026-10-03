@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://articpowersolutions.com',
 
   // Add this line to handle URLs without trailing slashes
   trailingSlash: 'never',
