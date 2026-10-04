@@ -38,7 +38,9 @@ async function shopifyFetch({ query }) {
 
 // 3. A specific function to get all products for getStaticPaths
 export async function getAllProducts() {
-  const data = await shopifyFetch({
+  let data;
+  try {
+    data = await shopifyFetch({
     query: `{
       products(first: 50) {
         edges {
@@ -78,7 +80,12 @@ export async function getAllProducts() {
         }
       }
     }`
-  });
+    });
+  } catch (error) {
+    // Don't fail the whole site build if Shopify is unavailable (e.g. store paused / 402).
+    console.warn('Shopify unavailable, building without product pages:', error.message);
+    return [];
+  }
 
-  return data.products.edges.map(edge => edge.node);
+  return data?.products?.edges?.map(edge => edge.node) ?? [];
 }
