@@ -2,7 +2,9 @@
 import HeaderLink from './HeaderLink.astro';
 import {Image} from 'astro:assets';
 import articLogoIcon from '../assets/aps-icon-white.png';
+import cartIcon from '../assets/cart-icon.png';
 import {SITE_TITLE} from '../consts';
+import { isFeatureEnabled } from '../utils/featureFlags';
 ---
 
 <header>
@@ -24,6 +26,21 @@ import {SITE_TITLE} from '../consts';
         <HeaderLink href="/parts">Parts</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
       </div>
+      {isFeatureEnabled('ENABLE_SHOP') && (
+          <button
+              class="cart-link"
+              aria-label="Cart"
+              id="cart-icon-button"
+          >
+            <Image
+                src={cartIcon}
+                alt="Shopping Cart"
+                width="24"
+                height="24"
+            />
+            <span class="cart-badge">0</span>
+          </button>
+      )}
       <button
           class="hamburger-menu ml-6"
           aria-label="Menu"
@@ -79,6 +96,44 @@ import {SITE_TITLE} from '../consts';
 
     .social-links, .social-links a {
         display: flex;
+    }
+
+    .cart-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        /*background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;*/
+    }
+
+    .cart-badge {
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        background-color: var(--accent);
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(0);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .cart-link.mobile .cart-badge {
+        position: static;
+        transform: scale(1);
+    }
+
+    .cart-badge.has-items {
+        transform: scale(1);
     }
 
     .hamburger-menu {
@@ -141,10 +196,13 @@ import {SITE_TITLE} from '../consts';
 </style>
 
 <script>
+    import {cart} from '../lib/cart-store';
+
     document.addEventListener('DOMContentLoaded', () => {
         try {
             const hamburgerButton = document.querySelector('.hamburger-menu');
             const mobileNav = document.querySelector('.mobile-nav');
+            const cartButton = document.getElementById('cart-icon-button');
 
         hamburgerButton?.addEventListener('click', () => {
             try {
@@ -154,6 +212,41 @@ import {SITE_TITLE} from '../consts';
                 console.error('Error toggling mobile navigation:', error);
             }
         });
+
+        // Add event listener to open cart drawer when cart icon is clicked
+        cartButton?.addEventListener('click', () => {
+            try {
+                if (typeof window.openCartDrawer === 'function') {
+                    window.openCartDrawer();
+                }
+            } catch (error) {
+                console.error('Error opening cart drawer:', error);
+            }
+        });
+
+        const badges = document.querySelectorAll('.cart-badge');
+        const updateBadges = (items) => {
+            try {
+                const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+                badges.forEach(badge => {
+                    badge.textContent = String(totalItems);
+                    if (totalItems > 0) {
+                        badge.classList.add('has-items');
+                    } else {
+                        badge.classList.remove('has-items');
+                    }
+                });
+            } catch (error) {
+                console.error('Error updating cart badges:', error);
+                // Set default state in case of error
+                badges.forEach(badge => {
+                    badge.textContent = '0';
+                    badge.classList.remove('has-items');
+                });
+            }
+        }
+
+        cart.subscribe(updateBadges);
         } catch (error) {
             console.error('Error initializing header:', error);
         }

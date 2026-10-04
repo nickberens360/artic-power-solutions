@@ -1,0 +1,17 @@
+---
+// CartSummary.astro - Cart total and checkout section
+const { subtotal = 0, currency = 'USD', checkoutUrl = '#' } = Astro.props;
+---
+
+<div id="cart-summary-section" class="cart-summary">
+  <div id="cart-total" class="cart-total">
+    <span class="label">Total:</span>
+    <span class="amount">
+      {new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: currency
+      }).format(subtotal)}
+    </span>
+  </div>
+  <slot />
+</div>

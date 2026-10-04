@@ -1,0 +1,39 @@
+---
+// CartItem.astro - Individual cart item component
+const { item, itemPageUrl } = Astro.props;
+---
+
+<li class="cart-item">
+  <a href={itemPageUrl} class="cart-item-link-img">
+    <img src={item.image} alt={item.title} />
+  </a>
+  <div class="item-details">
+    <a href={itemPageUrl} class="cart-item-link-title">
+      <p class="item-title">{item.title}</p>
+    </a>
+    <p class="item-price">
+      {new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: item.currency || 'USD'
+      }).format(item.price)}
+    </p>
+  </div>
+  <div class="item-quantity">
+    <label>Qty:</label>
+    <input
+      type="number"
+      class="quantity-input"
+      min="0"
+      value={item.quantity}
+      data-item-id={item.id}
+    />
+    <button
+      type="button"
+      class="remove-item-button"
+      aria-label="Remove item"
+      data-item-id={item.id}
+    >
+      x
+    </button>
+  </div>
+</li>
