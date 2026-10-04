@@ -17,6 +17,7 @@ interface PartData {
   currency?: string;
   variantId?: string;
   shopDomain?: string;
+  buyUrl?: string; // external store link (MoverBattery)
 }
 type Props = PartData;
 
@@ -30,7 +31,8 @@ const {
   price,
   currency,
   variantId,
-  shopDomain
+  shopDomain,
+  buyUrl
 } = Astro.props;
 
 // Determine the image source, which could be a URL string or an Astro asset object
@@ -155,7 +157,7 @@ if (isShopify && variantId && shopDomain) {
     <Fragment>
       <article class="flex flex-col items-center md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-8">
         <FeaturedImage>
-          {isShopify ? (
+          {typeof resolvedImage === 'string' ? (
               <img
                   src={imageSrc} alt={title}
                   width="720"
@@ -173,9 +175,9 @@ if (isShopify && variantId && shopDomain) {
 
         <div class="prose">
           <div class="title">
-            <div class="part-number">Part #: {partNumber}</div>
+            <div class="part-number">{buyUrl ? 'Replaces Appleton #' : 'Part #: '}{partNumber}</div>
             <h1>{title}</h1>
-            {isFeatureEnabled('ENABLE_SHOP') && isShopify && price && currency && (
+            {((isFeatureEnabled('ENABLE_SHOP') && isShopify) || buyUrl) && price && currency && (
                 <div class="price">
                   {new Intl.NumberFormat('en-US', {
                     style: 'currency',
@@ -222,6 +224,16 @@ if (isShopify && variantId && shopDomain) {
                   Buy Now
                 </a>
               </div>
+          )}
+          {buyUrl && (
+          <a
+              class="buy-button"
+              href={buyUrl}
+              target="_blank"
+              rel="noopener"
+          >
+            Buy on MoverBattery
+          </a>
           )}
           {!isFeatureEnabled('ENABLE_SHOP') && (
           <a

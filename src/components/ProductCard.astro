@@ -19,7 +19,7 @@ const imageSrc = productImage ? productImage.url : fallBackImage.src;
 // Use the product image's alt text or the product title.
 const altText = productImage ? (productImage.altText || product.title) : product.title;
 ---
-{isFeatureEnabled('ENABLE_SHOP') && (
+{(isFeatureEnabled('ENABLE_SHOP') || product.buyUrl) && (
 <a
     href={`/parts/${product.handle}`}
     class="card"
@@ -40,7 +40,7 @@ const altText = productImage ? (productImage.altText || product.title) : product
   </div>
 </a>
     )}
-{!isFeatureEnabled('ENABLE_SHOP') && (
+{!isFeatureEnabled('ENABLE_SHOP') && !product.buyUrl && (
 <div
     class="card"
 >

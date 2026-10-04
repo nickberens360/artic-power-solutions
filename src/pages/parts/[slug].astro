@@ -1,7 +1,7 @@
 ---
 import PartPost from '../../layouts/PartPost.astro';
 import ProductSchema from '../../components/ProductSchema.astro';
-import { getAllProducts } from '../../lib/shopify.js';
+import { getAllProducts } from '../../lib/products.js';
 
 export async function getStaticPaths() {
     const products = await getAllProducts();
@@ -24,20 +24,21 @@ const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 
 <PartPost
     title={product.title}
-    description={product.descriptionHtml}
-    partNumber={product.id.split('/').pop()}
+    description={product.description ?? product.descriptionHtml}
+    partNumber={product.partNumber ?? product.id.split('/').pop()}
     heroImage={product.images.edges[0]?.node.url}
     price={product.priceRange.minVariantPrice.amount}
     currency={product.priceRange.minVariantPrice.currencyCode}
-    isShopify={true}
+    isShopify={!product.buyUrl}
+    buyUrl={product.buyUrl}
     variantId={product.variants.edges[0]?.node.id}
     shopDomain={storefrontDomain}
     handle={product.handle} >
   <Fragment slot="head">
     <ProductSchema part={{ data: {
             title: product.title,
-            description: product.descriptionHtml,
-            partNumber: product.id.split('/').pop(),
+            description: product.description ?? product.descriptionHtml,
+            partNumber: product.partNumber ?? product.id.split('/').pop(),
             price: product.priceRange.minVariantPrice.amount
         }}} />
   </Fragment>
