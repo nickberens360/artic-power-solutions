@@ -7,6 +7,7 @@ import {getCollection} from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import {Image} from 'astro:assets';
 import SectionBlock from "../../components/SectionBlock.astro";
+import OrganizationSchema from '../../components/OrganizationSchema.astro';
 
 const posts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -17,9 +18,11 @@ const posts = (await getCollection('blog')).sort(
 <html lang="en">
 <head>
   <BaseHead
-      title={SITE_TITLE}
-      description={SITE_DESCRIPTION}
-  />
+      title={`RollMover™ Repair & Maintenance Guides | ${SITE_TITLE}`}
+      description="Troubleshooting guides, maintenance checklists and parts advice for RollMover™ compatible equipment from Artic Power Solutions."
+  >
+    <OrganizationSchema slot="head" />
+  </BaseHead>
 </head>
 <body>
 <Header/>
@@ -27,6 +30,7 @@ const posts = (await getCollection('blog')).sort(
   <SectionBlock>
     <Fragment>
       <!-- Replace the ul/li structure with more semantic section/article elements -->
+      <h1 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">RollMover™ Repair &amp; Maintenance Guides</h1>
       <section class="flex flex-wrap m-0 p-0 gap-y-8 md:gap-x-8">
         {
           posts.map((post, index) => (
@@ -49,7 +53,7 @@ const posts = (await getCollection('blog')).sort(
                           width={720}
                           height={360}
                           src={post.data.heroImage}
-                          alt={`Hero image for ${post.data.title}`}
+                          alt={post.data.title}
                           class="w-full mb-2 rounded-xl group-hover:shadow-xl"
                       />
                   )}

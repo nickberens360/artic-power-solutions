@@ -19,7 +19,10 @@ export default defineConfig({
   // and just remove tailwindcss() from its plugins array.
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      // Keep utility and duplicate pages out of the sitemap
+      filter: (page) => !/\/(cart|success|shop-parts)\/?$/.test(page),
+    }),
     vue(),
   ],
 

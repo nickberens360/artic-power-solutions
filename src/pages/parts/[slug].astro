@@ -2,6 +2,7 @@
 import PartPost from '../../layouts/PartPost.astro';
 import ProductSchema from '../../components/ProductSchema.astro';
 import { getAllProducts } from '../../lib/products.js';
+import { SITE_TITLE } from '../../consts';
 
 export async function getStaticPaths() {
     const products = await getAllProducts();
@@ -20,9 +21,22 @@ type Props = {
 
 const { product } = Astro.props;
 const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
+
+const seoTitle = product.partNumber
+    ? `Appleton #${product.partNumber} Compatible ${product.title} | ${SITE_TITLE}`
+    : `${product.title} | ${SITE_TITLE}`;
+const summary = product.intro ?? (product.description ?? '').split(/(?<=\.)\s/)[0];
+const rawSeoDescription = product.partNumber
+    ? `${product.title}, a compatible replacement for Appleton RollMover™ part #${product.partNumber}. ${summary}`
+    : summary;
+const seoDescription = rawSeoDescription.length > 160
+    ? rawSeoDescription.slice(0, 157).replace(/\s+\S*$/, '') + '…'
+    : rawSeoDescription;
 ---
 
 <PartPost
+    seoTitle={seoTitle}
+    seoDescription={seoDescription}
     title={product.title}
     description={product.description ?? product.descriptionHtml}
     partNumber={product.partNumber ?? product.id.split('/').pop()}
@@ -40,8 +54,43 @@ const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
             title: product.title,
             description: product.description ?? product.descriptionHtml,
             partNumber: product.partNumber ?? product.id.split('/').pop(),
-            price: product.priceRange.minVariantPrice.amount
+            heroImage: product.images.edges[0]?.node.url,
+            price: product.priceRange.minVariantPrice.amount,
+            currency: product.priceRange.minVariantPrice.currencyCode,
+            inStock: typeof product.stock === 'number' ? product.stock > 0 : undefined
         }}} />
   </Fragment>
-  <div set:html={product.descriptionHtml} />
+  {product.specs ? (
+    <Fragment>
+      <p>{product.intro}</p>
+      <h2>Specifications</h2>
+      <table class="spec-table">
+        <tbody>
+          {product.specs.map((s) => (
+            <tr><th scope="row">{s.label}</th><td>{s.value}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      {product.features?.length > 0 && (
+        <Fragment>
+          <h2>Features</h2>
+          <ul>{product.features.map((f) => <li>{f}</li>)}</ul>
+        </Fragment>
+      )}
+      <h2>Will this battery fit my unit?</h2>
+      <p>
+        Check the part number on the label of your current battery pack. If it reads
+        <strong>{product.partNumber}</strong>, this pack is a direct replacement. Not sure, or the label is
+        worn off? <a href="#contact" class="underline">Send us your equipment model</a> and we'll confirm the right battery before you order.
+      </p>
+    </Fragment>
+  ) : (
+    <div set:html={product.descriptionHtml} />
+  )}
+  <style>
+    .spec-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+    .spec-table th, .spec-table td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.15); vertical-align: top; }
+    .spec-table th { width: 40%; font-weight: 600; color: #cbd5e1; }
+    .prose ul { list-style: disc; padding-left: 1.5em; }
+  </style>
 </PartPost>

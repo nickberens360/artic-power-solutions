@@ -7,6 +7,8 @@ interface PartData {
     description: string;
     heroImage?: { src: string } | string;
     price?: string;
+    currency?: string;
+    inStock?: boolean;
 }
 
 interface Props {
@@ -14,7 +16,7 @@ interface Props {
 }
 
 const { part } = Astro.props;
-const { title, partNumber, description, heroImage } = part.data;
+const { title, partNumber, description, heroImage, price, currency = 'USD', inStock } = part.data;
 
 // Default image if heroImage is not set
 // Handle both object with src property and direct string URL
@@ -35,15 +37,18 @@ const jsonLD = {
     "@type": "Brand",
     "name": SITE_TITLE
     },
-    // IMPORTANT: Add offer details if you have pricing information.
-  // "offers": {
-  //   "@type": "Offer",
-  //   "url": new URL(Astro.url.pathname, Astro.site).href,
-  //   "priceCurrency": "USD",
-  //   "price": "0.00", // Replace with actual price
-  //   "itemCondition": "https://schema.org/NewCondition",
-  //   "availability": "https://schema.org/InStock"
-  // }
+    "url": new URL(Astro.url.pathname, Astro.site).href,
+    ...(price ? {
+      "offers": {
+        "@type": "Offer",
+        "url": new URL(Astro.url.pathname, Astro.site).href,
+        "priceCurrency": currency,
+        "price": Number(price).toFixed(2),
+        "itemCondition": "https://schema.org/NewCondition",
+        ...(inStock === undefined ? {} : { "availability": inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock" }),
+        "seller": { "@type": "Organization", "name": SITE_TITLE }
+      }
+    } : {}),
 };
 ---
 <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLD)} />

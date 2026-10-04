@@ -2,7 +2,9 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'Artic Power Solutions';
-export const SITE_DESCRIPTION = 'RollMover Compatible Parts & Repair!';
+export const SITE_DESCRIPTION = 'Independent repair and compatible parts for RollMover™ RX, HD, XD and LR roll movers. Fast turnaround and nationwide service, even after a denied warranty claim.';
+export const SITE_URL = 'https://articpowersolutions.com';
+export const CONTACT_EMAIL = 'sales@articpowersolutions.com';
 // Feature Flags
 export const FEATURE_FLAGS = {
     SHOW_BLOG: true,           // Controls visibility of blog section

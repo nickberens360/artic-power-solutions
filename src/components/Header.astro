@@ -15,9 +15,9 @@ import { isFeatureEnabled } from '../utils/featureFlags';
           src={articLogoIcon}
           alt="Artic Power Solutions Logo"
       />
-      <h2>
+      <div class="site-title">
         <a href="/">{SITE_TITLE}</a>
-      </h2>
+      </div>
     </div>
     <div class="flex items-center">
       <div class="internal-links desktop-nav">
@@ -67,12 +67,14 @@ import { isFeatureEnabled } from '../utils/featureFlags';
         box-shadow: 0 2px 8px rgba(var(--black), 5%);
     }
 
-    h2 {
+    .site-title {
         margin: 0;
         font-size: 1em;
+        font-weight: 700;
+        line-height: 1.2;
     }
 
-    h2 a, h2 a.active {
+    .site-title a, .site-title a.active {
         text-decoration: none;
     }
 

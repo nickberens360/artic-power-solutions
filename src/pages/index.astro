@@ -24,8 +24,9 @@ const latestPosts = (await getCollection('blog')).sort(
 ---
 
 <Layout
-    title={SITE_TITLE}
-    description={SITE_DESCRIPTION}
+    title={`RollMover™ Compatible Batteries, Parts & Repair | ${SITE_TITLE}`}
+    description="Independent repair and compatible replacement batteries and parts for RollMover™ RX, HD, XD and LR equipment. Fast turnaround, nationwide service."
+    image={rollMoverTech}
 >
   <Hero
       title="Expert Repair for Your RollMover™ Compatible Equipment"
@@ -87,7 +88,7 @@ const latestPosts = (await getCollection('blog')).sort(
             <div class="w-full md:w-1/2 px-4">
               <ServiceCard
                   image={rollMoverTech}
-                  imageAlt="RollMover Technician"
+                  imageAlt="Technician repairing a roll mover"
                   title="Expert Repair Services"
                   description="We diagnose and resolve common and complex issues to get your equipment back to work quickly. Our process includes diagnostics, component-level repair, and full performance testing."
                   listHeading="Common Problems We Solve:"
@@ -105,7 +106,7 @@ const latestPosts = (await getCollection('blog')).sort(
             <div class="w-full md:w-1/2 px-4">
               <ServiceCard
                   image={compatibleBatteries}
-                  imageAlt="RollMover Technician"
+                  imageAlt="Compatible replacement battery packs for roll movers"
                   title="Premium Replacement Parts"
                   description="Keep your equipment running with our extensive inventory of high-quality components compatible with many roll mover systems, including the RollMover™ series."
                   listItems={[
@@ -136,13 +137,13 @@ const latestPosts = (await getCollection('blog')).sort(
             {
                 latestPosts.map(post => (
                     <a
-                        href={`/blog/${post.id}/`}
+                        href={`/blog/${post.id.replace(/\.md$/, '')}`}
                         class="group block bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
                     >
                         {post.data.heroImage && (
                             <Image
                                 src={post.data.heroImage}
-                                alt={`Hero image for ${post.data.title}`}
+                                alt={post.data.title}
                                 width={720}
                                 height={360}
                                 class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"

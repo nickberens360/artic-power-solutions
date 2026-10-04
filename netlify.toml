@@ -4,3 +4,10 @@
   # optional, deploy the lighthouse report to a path under your site
   [plugins.inputs.audits]
     output_path = "reports/lighthouse.html"
+
+# /shop-parts duplicates /parts
+[[redirects]]
+  from = "/shop-parts"
+  to = "/parts"
+  status = 301
+  force = true

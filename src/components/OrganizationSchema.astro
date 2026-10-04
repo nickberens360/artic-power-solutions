@@ -1,0 +1,22 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL, CONTACT_EMAIL } from '../consts';
+import logo from '../assets/artic-logo.png';
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": SITE_TITLE,
+  "url": SITE_URL,
+  "logo": new URL(logo.src, SITE_URL).href,
+  "description": SITE_DESCRIPTION,
+  "email": CONTACT_EMAIL,
+  "areaServed": "US",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": CONTACT_EMAIL,
+    "areaServed": "US"
+  }
+};
+---
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLD)} />

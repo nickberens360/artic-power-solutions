@@ -3,25 +3,33 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CartDrawer from '../components/CartDrawer.astro';
+import OrganizationSchema from '../components/OrganizationSchema.astro';
+import { isFeatureEnabled } from '../utils/featureFlags';
+import type { ImageMetadata } from 'astro';
 import '../styles/global.css';
 
 export interface Props {
     title: string;
     description: string;
+    noindex?: boolean;
+    image?: ImageMetadata | string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex = false, image } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 <head>
-  <BaseHead title={title} description={description} />
+  <BaseHead title={title} description={description} noindex={noindex} image={image}>
+    <OrganizationSchema slot="head" />
+    <slot name="head" slot="head" />
+  </BaseHead>
 </head>
 <body>
 <Header />
   <slot />
 <Footer />
-<CartDrawer />
+{isFeatureEnabled('ENABLE_SHOP') && <CartDrawer />}
 </body>
 </html>

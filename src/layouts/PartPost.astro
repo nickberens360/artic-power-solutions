@@ -19,6 +19,8 @@ interface PartData {
   shopDomain?: string;
   buyUrl?: string; // external store link (MoverBattery)
   equipment?: string; // prefills the contact form's Equipment/Model field
+  seoTitle?: string; // <title> override (defaults to title)
+  seoDescription?: string; // meta description override (defaults to description)
 }
 type Props = PartData;
 
@@ -34,7 +36,9 @@ const {
   variantId,
   shopDomain,
   buyUrl,
-  equipment
+  equipment,
+  seoTitle,
+  seoDescription
 } = Astro.props;
 
 // Determine the image source, which could be a URL string or an Astro asset object
@@ -54,9 +58,11 @@ if (isShopify && variantId && shopDomain) {
 ---
 
 <BaseLayout
-    title={title}
-    description={description}
+    title={seoTitle ?? title}
+    description={seoDescription ?? description}
+    image={imageSrc}
 >
+  <slot name="head" slot="head" />
   <style>
     /* Styles remain unchanged */
     main {
