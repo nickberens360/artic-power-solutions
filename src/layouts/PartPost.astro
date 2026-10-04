@@ -1,345 +1,120 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import BaseLayout from './Layout.astro';
 import FeaturedImage from '../components/FeaturedImage.astro';
-import { Image } from 'astro:assets';
+import SectionBlock from '../components/SectionBlock.astro';
+import ProductSchema from '../components/ProductSchema.astro';
 import fallBackImage from '../assets/parts/placeholder.png';
-import SectionBlock from "../components/SectionBlock.astro";
-import { isFeatureEnabled } from '../utils/featureFlags';
 
-interface PartData {
+interface Props {
   title: string;
   description: string;
-  partNumber: string;
-  heroImage?: any; // Can be a string URL or an Astro asset object
-  handle: string;
-  isShopify?: boolean;
-  price?: string;
-  currency?: string;
-  variantId?: string;
-  shopDomain?: string;
+  category: string;
+  heroImage?: ImageMetadata;
+  partNumbers?: string[];
+  compatibleWith?: string[];
 }
-type Props = PartData;
 
-const {
-  title,
-  description,
-  partNumber,
-  heroImage,
-  handle,
-  isShopify = false,
-  price,
-  currency,
-  variantId,
-  shopDomain
-} = Astro.props;
-
-// Determine the image source, which could be a URL string or an Astro asset object
-const resolvedImage = heroImage || fallBackImage;
-
-// **FIX**: Create a variable that guarantees a string path for the src attribute.
-// If resolvedImage is an object (Astro asset), use its `src` property.
-// If it's already a string (like a URL from Shopify), use it directly.
-const imageSrc = typeof resolvedImage === 'string' ? resolvedImage : resolvedImage.src;
-
-
-let checkoutUrlBase = '';
-if (isShopify && variantId && shopDomain) {
-  const variantIdNumber = variantId.replace('gid://shopify/ProductVariant/', '');
-  checkoutUrlBase = `https://${shopDomain}/cart/${variantIdNumber}`;
-}
+const { title, description, category, heroImage, partNumbers = [], compatibleWith = [] } = Astro.props;
+const image = heroImage ?? fallBackImage;
 ---
 
-<BaseLayout
-    title={title}
-    description={description}
->
-  <style>
-    /* Styles remain unchanged */
-    main {
-      width: calc(100% - 2em);
-      max-width: 100%;
-      margin: 0;
-    }
-    .hero-image {
-      width: 100%;
-      padding: 0 16px;
-    }
-    .hero-image img {
-      display: block;
-      margin: 0 auto;
-      border-radius: 12px;
-      box-shadow: var(--box-shadow);
-    }
-    .prose {
-      width: 720px;
-      max-width: calc(100% - 2em);
-      margin: auto;
-      padding: 1em;
-      color: white;
-    }
-    .title {
-      margin-bottom: 1em;
-      padding: 1em 0;
-      text-align: center;
-      line-height: 1;
-    }
-    .title h1 {
-      margin: 0 0 0.5em 0;
-    }
-    .part-number {
-      font-style: italic;
-      color: #a0a0a0;
-      margin-bottom: 0.5em;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px !important;
-    }
-    .part-number {
-      color: var(--accent);
-    }
-    .price {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .shopify-buy-section {
-      margin-top: 2rem;
-      text-align: center;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-    }
-    .quantity-selector {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .quantity-selector label {
-      font-weight: bold;
-    }
-    .quantity-selector input {
-      width: 60px;
-      padding: 0.5rem;
-      text-align: center;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      color: white;
-    }
-    .buy-button, .add-to-cart-button {
-      background-color: var(--accent);
-      color: white !important;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      display: inline-block;
-      text-decoration: none;
-    }
-    .buy-button:hover, .add-to-cart-button:hover {
-      background-color: var(--accent-dark);
-    }
-    .add-to-cart-button {
-      background-color: #5a67d8;
-    }
-    .add-to-cart-button:hover {
-      background-color: #434190;
-    }
-  </style>
+<BaseLayout title={title} description={description}>
+  <ProductSchema title={title} description={description} imageSrc={heroImage?.src} partNumbers={partNumbers} />
   <SectionBlock>
-    <Fragment>
-      <article class="flex flex-col items-center md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-8">
-        <FeaturedImage>
-          {isShopify ? (
-              <img
-                  src={imageSrc} alt={title}
-                  width="720"
-                  height="360"
-                  class="w-full h-auto rounded-xl"
-              />
-          ) : (
-              <Image
-                  width={720}
-                  height={360}
-                  src={resolvedImage} alt={title}
-              />
-          )}
-        </FeaturedImage>
+    <article class="flex flex-col items-center md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-8">
+      <FeaturedImage>
+        <Image width={720} height={360} src={image} alt={title} />
+      </FeaturedImage>
 
-        <div class="prose">
-          <div class="title">
-            <div class="part-number">Part #: {partNumber}</div>
-            <h1>{title}</h1>
-            {isFeatureEnabled('ENABLE_SHOP') && isShopify && price && currency && (
-                <div class="price">
-                  {new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: currency
-                  }).format(parseFloat(price))}
-                </div>
-            )}
-            <hr class="my-8"/>
-          </div>
-          <slot/>
-          {isFeatureEnabled('ENABLE_SHOP') && isShopify && price && currency && (
-              <div
-                  class="shopify-buy-section"
-                  data-product-id={variantId}
-                  data-product-handle={handle}
-                  data-product-title={title}
-                  data-product-price={price}
-                  data-product-currency={currency}
-                  data-product-image={imageSrc} data-checkout-url-base={checkoutUrlBase}
-              >
-                <div class="quantity-selector">
-                  <label for="quantity-input">Qty:</label>
-                  <input
-                      type="number"
-                      id="quantity-input"
-                      min="1"
-                      value="1"
-                  />
-                </div>
-                <button
-                    type="button"
-                    id="add-to-cart-btn"
-                    class="add-to-cart-button"
-                >
-                  Add to Cart
-                </button>
-                <a
-                    href={`${checkoutUrlBase}:1`}
-                    id="buy-now-link"
-                    class="buy-button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                  Buy Now
-                </a>
-              </div>
+      <div class="prose">
+        <div class="title">
+          <div class="category">{category}</div>
+          <h1>{title}</h1>
+          {partNumbers.length > 0 && (
+            <div class="part-number">Replaces part #: {partNumbers.join(', ')}</div>
           )}
-          {!isFeatureEnabled('ENABLE_SHOP') && (
-          <a
-              class="buy-button"
-              href="mailto:sales@articpowersolutions.com?subject=Sales Inquiry"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Contact Sales
-          </a>
-          )}
-
+          <hr class="my-8" />
         </div>
-      </article>
-    </Fragment>
-    <p class="text-sm text-center text-gray-600 max-w-[600px] mx-auto mt-6">Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
+
+        <slot />
+
+        {compatibleWith.length > 0 && (
+          <>
+            <h2>Compatible with</h2>
+            <ul>
+              {compatibleWith.map((model) => <li>{model}</li>)}
+            </ul>
+          </>
+        )}
+
+        <div class="cta">
+          <a class="quote-button" href="#contact">Request a Quote</a>
+          <a class="email-link" href={`mailto:sales@articpowersolutions.com?subject=${encodeURIComponent(`Quote request: ${title}`)}`}>
+            or email sales@articpowersolutions.com
+          </a>
+        </div>
+      </div>
+    </article>
+    <p class="text-sm text-center text-gray-600 max-w-[600px] mx-auto mt-6">
+      Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg.
+      Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.
+    </p>
   </SectionBlock>
-
-  <script>
-    // Script with error handling
-    import { cart, addToCart } from '../lib/cart-store';
-
-    try {
-      const buySection = document.querySelector('.shopify-buy-section');
-
-      if (buySection) {
-        const quantityInput = buySection.querySelector('#quantity-input');
-        const addToCartBtn = buySection.querySelector('#add-to-cart-btn');
-        const buyNowLink = buySection.querySelector('#buy-now-link');
-
-      const product = {
-        id: buySection.dataset.productId,
-        handle: buySection.dataset.productHandle,
-        title: buySection.dataset.productTitle,
-        price: buySection.dataset.productPrice,
-        currency: buySection.dataset.productCurrency,
-        image: buySection.dataset.productImage
-      };
-      const checkoutUrlBase = buySection.dataset.checkoutUrlBase;
-
-      function setInitialState() {
-        try {
-          const currentCart = cart.get();
-          const productInCart = currentCart.find(item => item.id === product.id);
-          const initialQuantity = productInCart ? productInCart.quantity : 1;
-          quantityInput.value = initialQuantity;
-          if (buyNowLink) {
-            buyNowLink.href = `${checkoutUrlBase}:${initialQuantity}`;
-          }
-        } catch (error) {
-          console.error('Error setting initial state:', error);
-          // Set default values in case of error
-          quantityInput.value = 1;
-          if (buyNowLink) {
-            buyNowLink.href = `${checkoutUrlBase}:1`;
-          }
-        }
-      }
-
-      setInitialState();
-
-      // Subscribe to cart changes to update the quantity input
-      cart.subscribe(currentCart => {
-        try {
-          const productInCart = currentCart.find(item => item.id === product.id);
-          if (productInCart) {
-            quantityInput.value = productInCart.quantity;
-            if (buyNowLink) {
-              buyNowLink.href = `${checkoutUrlBase}:${productInCart.quantity}`;
-            }
-          } else {
-            // If product is not in cart, reset to 1
-            quantityInput.value = 1;
-            if (buyNowLink) {
-              buyNowLink.href = `${checkoutUrlBase}:1`;
-            }
-          }
-        } catch (error) {
-          console.error('Error updating from cart changes:', error);
-        }
-      });
-
-      quantityInput.addEventListener('input', (event) => {
-        try {
-          const quantity = event.target.value;
-          if (quantity && parseInt(quantity, 10) > 0) {
-            buyNowLink.href = `${checkoutUrlBase}:${quantity}`;
-          }
-        } catch (error) {
-          console.error('Error updating quantity:', error);
-        }
-      });
-
-      addToCartBtn.addEventListener('click', () => {
-        try {
-          const quantity = parseInt(quantityInput.value, 10) || 1;
-          addToCart(product, quantity);
-          addToCartBtn.textContent = 'Added!';
-
-          // Open the cart drawer after adding to cart
-          if (typeof window.openCartDrawer === 'function') {
-            window.openCartDrawer();
-          }
-
-          setTimeout(() => {
-            addToCartBtn.textContent = 'Add to Cart';
-          }, 2000);
-        } catch (error) {
-          console.error('Error adding item to cart:', error);
-          addToCartBtn.textContent = 'Error!';
-          setTimeout(() => {
-            addToCartBtn.textContent = 'Add to Cart';
-          }, 2000);
-        }
-      });
-    }
-    } catch (error) {
-      console.error('Error initializing product buy section:', error);
-    }
-  </script>
 </BaseLayout>
+
+<style>
+  .prose {
+    width: 720px;
+    max-width: calc(100% - 2em);
+    margin: auto;
+    padding: 1em;
+    color: white;
+  }
+  .title {
+    margin-bottom: 1em;
+    padding: 1em 0;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .title h1 {
+    margin: 0 0 0.5em 0;
+  }
+  .category {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-bottom: 0.5em;
+  }
+  .part-number {
+    color: var(--accent);
+    font-style: italic;
+  }
+  h2 {
+    margin-top: 24px !important;
+  }
+  .cta {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .quote-button {
+    background-color: var(--accent);
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  .quote-button:hover {
+    background-color: var(--accent-dark);
+  }
+  .email-link {
+    color: #d1d5db;
+  }
+</style>

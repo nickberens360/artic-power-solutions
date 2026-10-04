@@ -1,45 +1,20 @@
 ---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 import PartPost from '../../layouts/PartPost.astro';
-import ProductSchema from '../../components/ProductSchema.astro';
-import { getAllProducts } from '../../lib/shopify.js';
 
 export async function getStaticPaths() {
-    const products = await getAllProducts();
-
-    const shopifyPaths = products.map((product) => ({
-        params: { slug: product.handle },
-        props: { product },
-    }));
-
-    return shopifyPaths;
+  const parts = await getCollection('parts');
+  return parts.map((part) => ({
+    params: { slug: part.id.replace(/\.md$/, '') },
+    props: part,
+  }));
 }
 
-type Props = {
-    product: any;
-};
+type Props = CollectionEntry<'parts'>;
 
-const { product } = Astro.props;
-const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
+const part = Astro.props;
+const { Content } = await render(part);
 ---
-
-<PartPost
-    title={product.title}
-    description={product.descriptionHtml}
-    partNumber={product.id.split('/').pop()}
-    heroImage={product.images.edges[0]?.node.url}
-    price={product.priceRange.minVariantPrice.amount}
-    currency={product.priceRange.minVariantPrice.currencyCode}
-    isShopify={true}
-    variantId={product.variants.edges[0]?.node.id}
-    shopDomain={storefrontDomain}
-    handle={product.handle} >
-  <Fragment slot="head">
-    <ProductSchema part={{ data: {
-            title: product.title,
-            description: product.descriptionHtml,
-            partNumber: product.id.split('/').pop(),
-            price: product.priceRange.minVariantPrice.amount
-        }}} />
-  </Fragment>
-  <div set:html={product.descriptionHtml} />
+<PartPost {...part.data}>
+  <Content />
 </PartPost>
