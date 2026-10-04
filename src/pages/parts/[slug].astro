@@ -31,6 +31,7 @@ const storefrontDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
     currency={product.priceRange.minVariantPrice.currencyCode}
     isShopify={!product.buyUrl}
     buyUrl={product.buyUrl}
+    equipment={product.categories?.[0] ? `Appleton ${product.categories[0]}` : undefined}
     variantId={product.variants.edges[0]?.node.id}
     shopDomain={storefrontDomain}
     handle={product.handle} >
