@@ -30,7 +30,7 @@ function buildSpecs(p) {
   const range = text.match(/(-?\d+°C)\s*to\s*(-?\d+°C)/);
   const coldOnly = text.match(/down to (-\d+°C)/);
   const specs = [
-    ['Replaces Appleton part #', p.appletonPartNumber],
+    ['Appleton part', p.appletonPartNumber ? `#${p.appletonPartNumber}` : undefined],
     ['Fits', equipmentKey ? `Appleton ${EQUIPMENT[equipmentKey]} units that use battery #${p.appletonPartNumber}` : undefined],
     ['Voltage', p.voltage],
     ['Capacity', p.name.match(/\d+\s*mAh/i)?.[0]],
