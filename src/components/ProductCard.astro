@@ -24,7 +24,7 @@ const altText = productImage ? (productImage.altText || product.title) : product
     href={`/parts/${product.handle}`}
     class="card"
 >
-  <div class="bg-gray-800 p-4">
+  <div class="card-media">
     <img
         src={imageSrc}
         alt={altText}
@@ -33,7 +33,7 @@ const altText = productImage ? (productImage.altText || product.title) : product
         loading="lazy"
     />
   </div>
-  <div class="card-content text-white">
+  <div class="card-content">
     <h2>{product.title}</h2>
     <p class="price">{price}</p>
 
@@ -44,7 +44,7 @@ const altText = productImage ? (productImage.altText || product.title) : product
 <div
     class="card"
 >
-  <div class="bg-gray-800 p-4">
+  <div class="card-media">
     <img
         src={imageSrc}
         alt={altText}
@@ -53,7 +53,7 @@ const altText = productImage ? (productImage.altText || product.title) : product
         loading="lazy"
     />
   </div>
-  <div class="card-content text-white">
+  <div class="card-content">
     <h2>{product.title}</h2>
     <p class="price">
       <a
@@ -69,39 +69,55 @@ const altText = productImage ? (productImage.altText || product.title) : product
 
 <style>
     .card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
+        background: hsl(var(--card));
+        border: 1px solid hsl(var(--card-border));
+        border-radius: 12px;
         overflow: hidden;
         text-decoration: none;
-        color: inherit;
-        display: block;
-        transition: box-shadow 0.2s;
+        color: hsl(var(--card-foreground));
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow 0.2s, transform .2s;
     }
 
-    .card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    a.card:hover {
+        box-shadow: 0px 10px 15px -3px hsl(220 13% 13% / .08), 0px 4px 6px -4px hsl(220 13% 13% / .06);
+    }
+
+    .card-media {
+        background: hsl(var(--background));
+        padding: 1rem;
+        border-bottom: 1px solid hsl(var(--card-border));
     }
 
     .card img {
         width: 100%;
         height: auto;
         aspect-ratio: 1 / 1;
-        object-fit: cover;
-        /* Background color provides a placeholder while the image loads or if it fails */
-        /* background-color: #f5f5f5; */
+        object-fit: contain;
+        border-radius: 0;
     }
 
     .card-content {
-        padding: 1rem;
+        padding: 1rem 1.25rem 1.25rem;
     }
 
     .card-content h2 {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
         margin: 0 0 0.5rem;
+        color: hsl(var(--foreground));
+    }
+
+    a.card:hover .card-content h2 {
+        color: hsl(var(--primary));
     }
 
     .price {
-        font-weight: bold;
-        color: var(--accent);
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: hsl(var(--primary));
+        margin: 0;
     }
 </style>

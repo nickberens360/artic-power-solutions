@@ -28,17 +28,17 @@ const {
 ---
 
 <div class:list={[className]}>
-  <div class="bg-gray-700 rounded-xl shadow-2xl overflow-hidden h-full flex flex-col">
+  <div class="bg-card border border-card-border rounded-xl shadow-sm overflow-hidden h-full flex flex-col">
     <Image
         src={image}
         alt={imageAlt}
-        class="rounded-full shadow-xl mx-auto"
+        class="w-full h-64 object-cover rounded-none"
     />
     <div class="p-8 flex-grow">
-      <h3 class="text-2xl font-bold text-white mb-4">{title}</h3>
-      <p class="text-white mb-4">{description}</p>
-      {listHeading && <h4 class="font-semibold text-white mb-2">{listHeading}</h4>}
-      <ul class="list-disc list-inside text-white mb-6 space-y-1 pl-4">
+      <h3 class="text-2xl font-bold text-foreground mb-4">{title}</h3>
+      <p class="text-muted-foreground mb-4">{description}</p>
+      {listHeading && <h4 class="font-semibold text-foreground mb-2">{listHeading}</h4>}
+      <ul class="list-disc list-inside text-muted-foreground mb-6 space-y-1 pl-4 marker:text-primary">
           {listItems.map(item => (
               <li>{item}</li>
           ))}
@@ -47,7 +47,7 @@ const {
     <div class="p-8 pt-0">
       <a
           href={buttonUrl}
-          class="service-quote-button mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 text-sm md:py-3 md:px-6 md:text-base rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+          class="btn btn-primary"
       >
           {buttonText}
       </a>

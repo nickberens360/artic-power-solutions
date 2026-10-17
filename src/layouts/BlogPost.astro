@@ -20,7 +20,22 @@ const { title, description, pubDate, updatedDate, heroImage, heading, author } =
 			max-width: calc(100% - 2em);
 			margin: auto;
 			padding: 1em;
-			color: white;
+			color: hsl(var(--foreground));
+		}
+		.prose p, .prose li {
+			color: hsl(var(--foreground) / .85);
+		}
+		.title {
+			padding-top: 2rem;
+		}
+		.title h1 {
+			font-size: 2.75rem;
+			letter-spacing: -0.025em;
+			margin-top: .5rem;
+		}
+		.date, .byline {
+			color: hsl(var(--muted-foreground));
+			font-size: .95rem;
 		}
 
 		/* Global list reset to override Tailwind's reset */

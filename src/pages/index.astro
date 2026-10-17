@@ -5,7 +5,7 @@ import Hero from '../components/Hero.astro';
 import ContentCard from '../components/ContentCard.astro';
 import CalloutBox from '../components/CalloutBox.astro';
 import {Image} from 'astro:assets';
-import articLogoIcon from '../assets/aps-icon-white.png';
+import articLogoIcon from '../assets/artic-logo-icon.png';
 import rollMoverIllustration from '../assets/rollMoverIllustration.png';
 import rollMoverTech from '../assets/rollmover-technician.png';
 import compatibleBatteries from '../assets/compatible-batteries.png';
@@ -16,6 +16,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import SectionBlock from "../components/SectionBlock.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import ImageWithContent from "../components/ImageWithContent.astro";
+import TrustStrip from "../components/TrustStrip.astro";
 
 // Fetch and sort the latest 3 blog posts
 const latestPosts = (await getCollection('blog')).sort(
@@ -33,23 +34,24 @@ const latestPosts = (await getCollection('blog')).sort(
       tagline="Fast, Reliable Repair & Quality Parts for equipment compatible with RollMover™ RX, HD, XD, and LR series. Maximize uptime and save costs!"
       buttonText="Get a Free Quote"
       buttonUrl="#contact"
+      secondaryButtonText="Shop Parts"
+      secondaryButtonUrl="/parts"
       disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
       imageUrl="https://images.unsplash.com/photo-1727517786578-ff2bb896b852?q=80&w=2842&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   />
+  <TrustStrip />
   <main>
-    <SectionBlock
-        innerRounded
-    >
+    <SectionBlock>
       <Fragment>
         <ImageWithContent />
       </Fragment>
     </SectionBlock>
 
-    <SectionBlock>
+    <SectionBlock tone="card">
       <Fragment>
         <div>
           <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Artic Power Solutions Advantage</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">The Artic Power Solutions Advantage</h2>
           </div>
 
           <CalloutBox/>
@@ -82,7 +84,7 @@ const latestPosts = (await getCollection('blog')).sort(
       <Fragment>
         <div>
           <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Core Services</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Core Services</h2>
           </div>
           <div class="flex flex-wrap -mx-4">
             <div class="w-full md:w-1/2 px-4">
@@ -124,13 +126,11 @@ const latestPosts = (await getCollection('blog')).sort(
       </Fragment>
     </SectionBlock>
 
-    <SectionBlock
-        innerRounded
-    >
+    <SectionBlock tone="card">
       <Fragment>
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">From Our Blog</h2>
-          <p class="text-lg text-gray-300">Tips, guides, and insights to help you get the most out of your
+          <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">From Our Blog</h2>
+          <p class="text-lg text-muted-foreground">Tips, guides, and insights to help you get the most out of your
             equipment.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -138,7 +138,7 @@ const latestPosts = (await getCollection('blog')).sort(
                 latestPosts.map(post => (
                     <a
                         href={`/blog/${post.id.replace(/\.md$/, '')}`}
-                        class="group block bg-gray-700 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
+                        class="group block bg-background border border-card-border rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden no-underline"
                     >
                         {post.data.heroImage && (
                             <Image
@@ -146,15 +146,15 @@ const latestPosts = (await getCollection('blog')).sort(
                                 alt={post.data.title}
                                 width={720}
                                 height={360}
-                                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                                class="w-full h-48 object-cover rounded-none transition-transform duration-300 group-hover:scale-105"
                             />
                         )}
                       <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">{post.data.title}</h3>
-                        <p class="text-gray-400 text-sm mb-4">
+                        <h3 class="text-xl font-semibold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{post.data.title}</h3>
+                        <p class="text-muted-foreground text-sm mb-4">
                           <FormattedDate date={post.data.pubDate}/>
                         </p>
-                        <p class="text-gray-300 text-base">{post.data.description}</p>
+                        <p class="text-muted-foreground text-base">{post.data.description}</p>
                       </div>
                     </a>
                 ))
@@ -163,7 +163,7 @@ const latestPosts = (await getCollection('blog')).sort(
         <div class="text-center mt-12">
           <a
               href="/blog"
-              class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
+              class="btn btn-outline"
           >
             View All Articles
           </a>
@@ -178,24 +178,24 @@ const latestPosts = (await getCollection('blog')).sort(
             <Image
                 src={articLogoIcon}
                 alt="Artic Power Solutions Logo"
-                class="rounded-full shadow-xl w-48 h-48 mx-auto"
+                class="w-48 h-48 mx-auto rounded-none object-contain"
             />
           </div>
           <div class="w-full md:w-2/3 px-4">
             <div class="mb-12">
-              <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Artic Power Solutions</h2>
+              <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">About Artic Power Solutions</h2>
             </div>
-            <p class="text-lg text-white">
-              <strong>Artic Power Solutions is your trusted independent partner for material handling equipment
+            <p class="text-lg text-muted-foreground">
+              <strong class="text-foreground">Artic Power Solutions is your trusted independent partner for material handling equipment
                 repair.</strong> We were founded on the principle that businesses need a reliable, expert alternative to
               slow and costly OEM service.
             </p>
-            <p class="text-lg text-white mb-4">
+            <p class="text-lg text-muted-foreground mb-4">
               Our team has deep, hands-on experience with the specific machinery used in the paper, converting, and
               nonwovens industries. We understand the critical nature of your equipment and are committed to providing
               solutions that are not only effective but also make financial sense.
             </p>
-            <p class="text-lg text-white">
+            <p class="text-lg text-muted-foreground">
               We proudly serve clients nationwide, offering specialized repair services and a comprehensive catalog of
               compatible parts to keep your operations moving.
             </p>

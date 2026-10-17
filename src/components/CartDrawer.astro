@@ -53,7 +53,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
     width: 100%;
     max-width: 500px;
     height: 100vh;
-    background-color: #0e162a;
+    background-color: hsl(var(--background));
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transition: right 0.3s ease-in-out;
@@ -91,7 +91,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 
   .cart-header h2 {
     margin: 0;
-    color: white;
+    color: hsl(var(--foreground));
     font-size: 18px;
   }
 
@@ -99,7 +99,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: white;
+    color: hsl(var(--foreground));
     cursor: pointer;
   }
 
@@ -121,7 +121,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
     gap: 1.5rem;
     padding: 1.5rem 0;
     border-bottom: 1px solid #333;
-    color: white;
+    color: hsl(var(--foreground));
   }
 
   .cart-item-link-img {
@@ -156,15 +156,15 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
     text-align: center;
     border-radius: 4px;
     border: 1px solid #ccc;
-    color: white;
-    background-color: #1a2234;
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--card));
   }
 
   .empty-cart-message {
     text-align: center;
     font-size: 1.2rem;
     padding: 3rem 0;
-    color: white;
+    color: hsl(var(--foreground));
   }
 
   .cart-summary {
@@ -177,12 +177,12 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
-    color: white;
+    color: hsl(var(--foreground));
     text-align: right;
   }
 
   .cart-total .label {
-    color: #a0a0a0;
+    color: hsl(var(--muted-foreground));
     font-weight: normal;
     margin-right: 1rem;
   }
@@ -205,7 +205,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
 
   .clear-cart-button {
     background-color: #555;
-    color: white;
+    color: hsl(var(--foreground));
   }
 
   .checkout-button {
@@ -214,7 +214,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
   }
 
   .remove-item-button {
-    background-color: #e53e3e;
+    background-color: hsl(var(--primary));
     color: white;
     border: none;
     font-size: 0.875rem;
@@ -309,7 +309,7 @@ const shopDomain = import.meta.env.PUBLIC_SHOPIFY_STORE_DOMAIN;
         let checkoutItems = [];
 
       if (items.length === 0) {
-        cartContainer.innerHTML = '<p class="empty-cart-message text-white">Your cart is empty.</p>';
+        cartContainer.innerHTML = '<p class="empty-cart-message text-muted-foreground">Your cart is empty.</p>';
         summarySection.style.display = 'none';
         return;
       }

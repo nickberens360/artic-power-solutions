@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 500px;
   height: 100vh;
-  background-color: #0e162a;
+  background-color: hsl(var(--background));
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transition: right 0.3s ease-in-out;
@@ -33,7 +33,7 @@
 
 .cart-header h2 {
   margin: 0;
-  color: white;
+  color: hsl(var(--foreground));
   font-size: 18px;
 }
 
@@ -41,7 +41,7 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: white;
+  color: hsl(var(--foreground));
   cursor: pointer;
 }
 
@@ -64,7 +64,7 @@
   gap: 1.5rem;
   padding: 1.5rem 0;
   border-bottom: 1px solid #333;
-  color: white;
+  color: hsl(var(--foreground));
 }
 
 .cart-item-link-img {
@@ -110,12 +110,12 @@
   text-align: center;
   border-radius: 4px;
   border: 1px solid #ccc;
-  color: white;
-  background-color: #1a2234;
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--card));
 }
 
 .remove-item-button {
-  background-color: #e53e3e;
+  background-color: hsl(var(--primary));
   color: white;
   border: none;
   font-size: 0.875rem;
@@ -146,12 +146,12 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: white;
+  color: hsl(var(--foreground));
   text-align: right;
 }
 
 .cart-total .label {
-  color: #a0a0a0;
+  color: hsl(var(--muted-foreground));
   font-weight: normal;
   margin-right: 1rem;
 }
@@ -174,7 +174,7 @@
 
 .clear-cart-button {
   background-color: #555;
-  color: white;
+  color: hsl(var(--foreground));
 }
 
 .checkout-button {
@@ -187,7 +187,7 @@
   text-align: center;
   font-size: 1.2rem;
   padding: 3rem 0;
-  color: white;
+  color: hsl(var(--foreground));
 }
 
 /* Cart Overlay */
@@ -210,11 +210,11 @@
 .loading-message, .error-message {
   text-align: center;
   padding: 2rem 0;
-  color: white;
+  color: hsl(var(--foreground));
 }
 
 .error-message {
-  color: #e53e3e;
+  color: hsl(var(--primary));
 }
 
 /* Enhanced Responsive Design */

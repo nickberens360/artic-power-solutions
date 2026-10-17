@@ -1,49 +1,50 @@
 ---
-const today = new Date();
+import { Image } from 'astro:assets';
+import articLogoIcon from '../assets/artic-logo-icon.png';
 import CallToAction from "./CallToAction.astro";
+const today = new Date();
 ---
 <div>
   <CallToAction/>
-  <footer class="bg-gray-800 text-gray-300 py-12">
-    <div class="container mx-auto px-6 text-center">
-      <p class="mb-2">&copy; {today.getFullYear()}</span> Artic Power Solutions. All Rights Reserved.</p>
-      <p class="text-sm mb-2">Artic Power Solutions is an independent service provider. RollMover™ is a trademark of
-        Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
-      <p class="text-sm">
-        <a
-            href="/privacy-policy"
-            class="hover:text-indigo-400"
-        >Privacy Policy
+  <footer class="border-t border-border bg-background">
+    <div class="max-w-[1200px] mx-auto px-4 py-12 grid gap-10 md:grid-cols-4">
+      <div class="md:col-span-2">
+        <a href="/" class="flex items-center gap-2 no-underline text-foreground">
+          <Image src={articLogoIcon} alt="" width={32} height={32} class="w-8 h-8 rounded-none" />
+          <span class="text-lg font-bold tracking-tight"><span class="text-primary">Artic</span> Power Solutions</span>
         </a>
-        |
-        <a
-            href="/terms-of-service"
-            class="hover:text-indigo-400"
-        >Terms of Service
-        </a>
-      </p>
+        <p class="mt-4 text-sm text-muted-foreground max-w-md">
+          Independent repair, compatible batteries and replacement parts for roll mover equipment. Serving clients nationwide.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-foreground mb-3">Company</h3>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li><a href="/about" class="hover:text-primary">About</a></li>
+          <li><a href="/blog" class="hover:text-primary">Resources</a></li>
+          <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-foreground mb-3">Parts</h3>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li><a href="/parts" class="hover:text-primary">Compatible Parts</a></li>
+          <li><a href="https://moverbattery.com" class="hover:text-primary" target="_blank" rel="noopener">MoverBattery.com</a></li>
+          <li><a href="mailto:sales@articpowersolutions.com" class="hover:text-primary">sales@articpowersolutions.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-border">
+      <div class="max-w-[1200px] mx-auto px-4 py-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-xs text-muted-foreground">
+        <p class="m-0">&copy; {today.getFullYear()} Artic Power Solutions. All Rights Reserved.</p>
+        <p class="m-0 md:max-w-xl md:text-right">Artic Power Solutions is an independent service provider. RollMover™ is a trademark of
+          Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
+        <p class="m-0 whitespace-nowrap">
+          <a href="/privacy-policy" class="hover:text-primary">Privacy Policy</a>
+          <span class="mx-1">·</span>
+          <a href="/terms-of-service" class="hover:text-primary">Terms of Service</a>
+        </p>
+      </div>
     </div>
   </footer>
 </div>
-
-<!--<style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(&#45;&#45;gray-gradient)) no-repeat;
-		color: rgb(var(&#45;&#45;gray));
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(&#45;&#45;gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(&#45;&#45;gray-dark));
-	}
-</style>-->

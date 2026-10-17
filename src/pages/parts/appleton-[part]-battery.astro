@@ -130,7 +130,7 @@ const faqSchema = {
         {page.faq.map((f: any) => (<Fragment><dt>{f.q}</dt><dd>{f.a}</dd></Fragment>))}
       </dl>
     </article>
-    <p class="text-sm text-center text-gray-600 max-w-[600px] mx-auto mt-10">Artic Power Solutions is an independent service provider. RollMover™ and CartMover™ are trademarks of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
+    <p class="text-sm text-center text-muted-foreground max-w-[600px] mx-auto mt-10">Artic Power Solutions is an independent service provider. RollMover™ and CartMover™ are trademarks of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
   </SectionBlock>
 </Layout>
 
@@ -153,7 +153,7 @@ const faqSchema = {
 </script>
 
 <style>
-  .part-landing { max-width: 820px; margin: 0 auto; color: white; }
+  .part-landing { max-width: 820px; margin: 0 auto; color: hsl(var(--foreground)); }
   .title { text-align: center; margin-bottom: 1.5rem; }
   .title h1 { margin: 0 0 0.75rem; line-height: 1.15; }
   .part-number {
@@ -168,15 +168,15 @@ const faqSchema = {
   .table-wrap { overflow-x: auto; }
   .spec-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1.5rem; }
   .spec-table th, .spec-table td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.15); vertical-align: top; }
-  .spec-table tbody th { width: 28%; font-weight: 600; color: #cbd5e1; }
-  .spec-table thead th { color: white; font-size: 1.05rem; }
+  .spec-table tbody th { width: 28%; font-weight: 600; color: hsl(var(--muted-foreground)); }
+  .spec-table thead th { color: hsl(var(--foreground)); font-size: 1.05rem; }
   .buy-button {
     display: inline-block; background-color: var(--accent); color: white !important; padding: 0.7rem 1.25rem;
     font-weight: bold; border-radius: 4px; text-decoration: none; transition: background-color 0.2s;
   }
   .buy-button:hover { background-color: var(--accent-dark); }
   .buy-button.secondary { background-color: transparent; border: 1px solid var(--accent); }
-  .details-link { display: block; margin-top: 0.5rem; font-size: 0.9rem; color: #cbd5e1; text-decoration: underline; }
+  .details-link { display: block; margin-top: 0.5rem; font-size: 0.9rem; color: hsl(var(--muted-foreground)); text-decoration: underline; }
   .faq dt { font-weight: 700; margin-top: 1rem; }
-  .faq dd { margin: 0.25rem 0 0; color: #e2e8f0; }
+  .faq dd { margin: 0.25rem 0 0; color: hsl(var(--muted-foreground)); }
 </style>

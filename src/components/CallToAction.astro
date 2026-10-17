@@ -2,15 +2,15 @@
 ---
 <section
     id="contact"
-    class="py-16 md:py-24 bg-[radial-gradient(ellipse_at_center,theme(colors.gray.700)_0%,theme(colors.gray.900)_100%)]"
+    class="py-16 md:py-24 bg-card border-t border-border scroll-mt-16"
 >
   <div class="container mx-auto px-6">
     <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Let's Get Your Equipment Back to Work!</h2>
-      <p class="text-lg text-white max-w-2xl mx-auto">Ready to discuss your repair needs or order parts? Contact
+      <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Let's Get Your Equipment Back to Work!</h2>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Ready to discuss your repair needs or order parts? Contact
         our team today! We serve clients nationwide.</p>
     </div>
-    <div class="max-w-3xl mx-auto bg-gray-900 p-8 md:p-12 rounded-xl shadow-2xl">
+    <div class="max-w-3xl mx-auto bg-background border border-border p-8 md:p-12 rounded-xl shadow-sm">
       {/* --- NETLIFY FORM CHANGES START --- */}
       <form
           name="contact"
@@ -26,27 +26,27 @@
           <div>
             <label
                 for="name"
-                class="block text-sm font-medium text-white mb-1"
+                class="block text-sm font-medium text-foreground mb-1"
             >Full Name</label>
             <input
                 type="text"
                 name="name"
                 id="name"
                 required
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm bg-transparent text-white"
+                class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
                 placeholder="John Doe"
             >
           </div>
           <div>
             <label
                 for="company"
-                class="block text-sm font-medium text-white mb-1"
+                class="block text-sm font-medium text-foreground mb-1"
             >Company (Optional)</label>
             <input
                 type="text"
                 name="company"
                 id="company"
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm bg-transparent text-white"
+                class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
                 placeholder="Your Company Inc."
             >
           </div>
@@ -55,27 +55,27 @@
           <div>
             <label
                 for="email"
-                class="block text-sm font-medium text-white mb-1"
+                class="block text-sm font-medium text-foreground mb-1"
             >Email Address</label>
             <input
                 type="email"
                 name="email"
                 id="email"
                 required
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm bg-transparent text-white"
+                class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
                 placeholder="you@example.com"
             >
           </div>
           <div>
             <label
                 for="phone"
-                class="block text-sm font-medium text-white mb-1"
+                class="block text-sm font-medium text-foreground mb-1"
             >Phone (Optional)</label>
             <input
                 type="tel"
                 name="phone"
                 id="phone"
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm bg-transparent text-white"
+                class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
                 placeholder="(555) 123-4567"
             >
           </div>
@@ -84,64 +84,64 @@
           <div>
             <label
                 for="rollmover_model"
-                class="block text-sm font-medium text-white mb-1"
+                class="block text-sm font-medium text-foreground mb-1"
             >Equipment/Model (Optional)</label>
             <input
                 type="text"
                 name="rollmover_model"
                 id="rollmover_model"
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm bg-transparent text-white"
+                class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
                 placeholder="e.g., Compatible with RollMover RX"
             >
           </div>
           <div>
             <label
                 for="inquiry_type"
-                class="block text-sm font-medium text-white mb-1"
+                class="block text-sm font-medium text-foreground mb-1"
             >Inquiry Type</label>
             <select
                 id="inquiry_type"
                 name="inquiry_type"
                 required
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 bg-transparent text-white rounded-lg shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
             >
-              <option value="" class="text-gray-700">Select Inquiry Type</option>
-              <option value="Repair" class="text-black">Repair</option>
-              <option value="Parts" class="text-black">Parts</option>
-              <option value="General Question" class="text-black">General Question</option>
+              <option value="">Select Inquiry Type</option>
+              <option value="Repair">Repair</option>
+              <option value="Parts">Parts</option>
+              <option value="General Question">General Question</option>
             </select>
           </div>
         </div>
         <div class="mb-6">
           <label
               for="message"
-              class="block text-sm font-medium text-white mb-1"
+              class="block text-sm font-medium text-foreground mb-1"
           >Message</label>
           <textarea
               id="message"
               name="message"
               rows="4"
               required
-              class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm bg-transparent text-white"
+              class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
               placeholder="Tell us about your needs..."
           ></textarea>
         </div>
         <div>
           <button
               type="submit"
-              class="cta-button w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition duration-300"
+              class="btn btn-primary w-full"
           >
             Send Inquiry
           </button>
         </div>
       </form>
 
-      <div class="mt-12 text-center border-t border-gray-200 pt-8">
-        <h3 class="text-xl font-semibold text-white mb-4">Or Contact Us Directly:</h3>
-        <p class="text-white mb-2"><strong>Email:</strong>
+      <div class="mt-12 text-center border-t border-border pt-8">
+        <h3 class="text-xl font-semibold text-foreground mb-4">Or Contact Us Directly:</h3>
+        <p class="text-muted-foreground mb-2"><strong class="text-foreground">Email:</strong>
           <a
               href="mailto:sales@articpowersolutions.com"
-              class="text-sky-300 hover:underline"
+              class="text-primary font-medium hover:underline"
           >sales@articpowersolutions.com
           </a>
         </p>
@@ -151,41 +151,8 @@
 </section>
 
 <style>
-  .cta-container {
-    border-radius: 8px;
-    padding: 2.5em;
-    text-align: center;
-  }
-
-  .cta-container h2 {
-    font-size: 1.953em; /* h3 size from global.css */
-    line-height: 1.2;
-    margin-bottom: 0.5em;
-  }
-
-  .cta-container p {
-    margin-bottom: 1.5em;
-    max-width: 60ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-button {
-    display: inline-block;
-    background-color: var(--accent);
-    color: white;
-    padding: 0.75em 1.5em;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
-  }
-
-  .cta-button:hover {
-    background-color: var(--accent-dark);
-  }
   form input::placeholder,
   form textarea::placeholder {
-    color: #6f88a2;
+    color: hsl(var(--muted-foreground) / .7);
   }
 </style>

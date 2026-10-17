@@ -85,7 +85,7 @@ if (isShopify && variantId && shopDomain) {
       max-width: calc(100% - 2em);
       margin: auto;
       padding: 1em;
-      color: white;
+      color: hsl(var(--foreground));
     }
     .title {
       margin-bottom: 1em;
@@ -140,17 +140,17 @@ if (isShopify && variantId && shopDomain) {
       padding: 0.5rem;
       text-align: center;
       border-radius: 4px;
-      border: 1px solid #ccc;
-      color: white;
+      border: 1px solid hsl(var(--input));
+      color: hsl(var(--foreground));
     }
     .buy-button, .add-to-cart-button {
       background-color: var(--accent);
       color: white !important;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 2rem;
       font-size: 1rem;
-      font-weight: bold;
-      border-radius: 4px;
+      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.2s;
       display: inline-block;
@@ -160,10 +160,10 @@ if (isShopify && variantId && shopDomain) {
       background-color: var(--accent-dark);
     }
     .add-to-cart-button {
-      background-color: #5a67d8;
+      background-color: hsl(var(--foreground));
     }
     .add-to-cart-button:hover {
-      background-color: #434190;
+      background-color: hsl(220 13% 25%);
     }
   </style>
   <SectionBlock>
@@ -254,7 +254,7 @@ if (isShopify && variantId && shopDomain) {
         </div>
       </article>
     </Fragment>
-    <p class="text-sm text-center text-gray-600 max-w-[600px] mx-auto mt-6">Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
+    <p class="text-sm text-center text-muted-foreground max-w-[600px] mx-auto mt-6">Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
   </SectionBlock>
 
   <script>

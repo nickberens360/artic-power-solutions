@@ -6,6 +6,8 @@ export interface Props {
     tagline: string;
     buttonText?: string;
     buttonUrl?: string;
+    secondaryButtonText?: string;
+    secondaryButtonUrl?: string;
     disclaimerText?: string;
     imageUrl?: string;
 }
@@ -15,52 +17,56 @@ const {
     tagline = "Reliable, efficient, and sustainable power solutions tailored for the toughest environments. We keep you running, no matter what.",
     buttonText = "Explore Our Services",
     buttonUrl = "/services",
+    secondaryButtonText,
+    secondaryButtonUrl,
     disclaimerText = "Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg.",
     imageUrl = "https://source.unsplash.com/random/1920x1080?technology,power,energy"
 } = Astro.props;
 ---
 
-<section class="relative bg-slate-900 overflow-hidden">
+<section class="hero relative overflow-hidden bg-hero">
+  <div class="hero-glow absolute inset-0 z-0" aria-hidden="true"></div>
   <Image
       src={matrix}
-      alt="An abstract background image representing technology and power."
-      class="matrix-img absolute inset-0 z-0"
+      alt=""
+      class="matrix-img absolute z-0"
       loading="eager"
-      onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/1a202c/718096?text=Image+Not+Found';"
   />
 
-  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 from-30% via-slate-900 via-60% to-transparent z-10"></div>
-
-  <div class="relative z-20 container mx-auto px-6 py-24 sm:py-32 text-center">
-    <h1
-        class="text-4xl font-bold tracking-tight text-white sm:text-6xl drop-shadow-lg"
-        style="max-width: 1200px; margin: auto"
-    >
+  <div class="relative z-20 max-w-[1200px] mx-auto px-6 py-24 sm:py-32 text-center">
+    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto">
         {title}
     </h1>
 
-    <p class="mt-6 text-xl leading-8 text-slate-300 max-w-2xl mx-auto drop-shadow-md">
+    <p class="mt-6 text-xl md:text-2xl leading-relaxed text-white/75 max-w-2xl mx-auto">
         {tagline}
     </p>
 
       {buttonText && buttonUrl && (
-          <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a
-                href={buttonUrl}
-                class="rounded-md bg-red-500 hover:bg-red-600 px-4 py-3 text-lg font-semibold text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 transition-all duration-300 ease-in-out transform hover:scale-105"
-            >
-                {buttonText}
-            </a>
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href={buttonUrl} class="btn btn-primary">{buttonText}</a>
+            {secondaryButtonText && secondaryButtonUrl && (
+                <a href={secondaryButtonUrl} class="btn btn-outline-light">{secondaryButtonText}</a>
+            )}
           </div>
       )}
   </div>
 </section>
 
 <style>
+  .hero-glow {
+    background:
+      radial-gradient(ellipse 60% 55% at 80% 85%, hsl(0 84% 48% / .28), transparent 70%),
+      radial-gradient(ellipse 50% 45% at 15% 10%, hsl(0 84% 48% / .12), transparent 70%);
+  }
   .matrix-img {
     right: 0;
-    left: unset;
     top: 40px;
     max-width: 400px;
+    opacity: .35;
+    border-radius: 0;
+  }
+  .hero h1 {
+    margin: 0 auto;
   }
 </style>

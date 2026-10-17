@@ -14,7 +14,7 @@ const partPages = Object.entries(APPLETON_BATTERY_PAGES).filter(([part]) => prod
     description="Compatible NiMH and NiCd replacement battery packs for RollMover™ equipment, cross-referenced to Appleton part numbers. Request a quote today."
 >
   <main class="container">
-    <div class="title-section text-white">
+    <div class="title-section">
       <h1>Our Compatible Parts</h1>
       <p>
         High-quality, reliable replacement parts to keep your equipment running
@@ -37,7 +37,7 @@ const partPages = Object.entries(APPLETON_BATTERY_PAGES).filter(([part]) => prod
           ))}
         </div>
     ) : (
-        <p class="text-white text-center">
+        <p class="text-muted-foreground text-center">
           Need a part for your RollMover&trade; compatible equipment? Batteries, drive wheels, motors, controls and more.
           <a href="#contact" class="underline">Contact us for a quote</a> and we'll get back to you quickly.
         </p>
@@ -49,15 +49,20 @@ const partPages = Object.entries(APPLETON_BATTERY_PAGES).filter(([part]) => prod
   .container {
     max-width: 1200px;
     margin: auto;
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
   }
   .title-section {
     text-align: center;
     margin-bottom: 3rem;
   }
   .title-section h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 0.5rem;
+    color: hsl(var(--foreground));
+  }
+  .title-section > p {
+    color: hsl(var(--muted-foreground));
+    font-size: 1.125rem;
   }
   .part-links {
     margin-top: 1.25rem;
@@ -71,7 +76,7 @@ const partPages = Object.entries(APPLETON_BATTERY_PAGES).filter(([part]) => prod
     text-decoration: underline;
   }
   .part-links span {
-    color: #cbd5e1;
+    color: hsl(var(--muted-foreground));
   }
   .product-grid {
     display: grid;

@@ -1,0 +1,35 @@
+---
+// Icon + text strip under the hero (mirrors moverbattery.com)
+const items = [
+  {
+    title: 'Fast Turnaround',
+    text: 'Quick diagnostics and repairs to cut downtime',
+    icon: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+  },
+  {
+    title: 'Nationwide Service',
+    text: 'Repairs and parts shipped across the US',
+    icon: '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
+  },
+  {
+    title: 'OEM-Equivalent Parts',
+    text: 'Compatible parts built to OEM specs',
+    icon: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  },
+];
+---
+<section class="border-b border-border bg-background">
+  <div class="max-w-[1200px] mx-auto px-4 py-8 grid gap-6 md:grid-cols-3">
+    {items.map((item) => (
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-11 h-11 rounded-md bg-primary/10 text-primary flex items-center justify-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={item.icon} />
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-foreground m-0">{item.title}</h3>
+          <p class="text-sm text-muted-foreground m-0">{item.text}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,10 +1,10 @@
 ---
 import {Image} from 'astro:assets';
-import fallBackImage from '../assets/aps-icon-white.png';
+import fallBackImage from '../assets/artic-logo-icon.png';
 ---
 
 <div class="hero-image pt-7 mt-8 flex justify-center rounded-xl">
-  <div class="bg-gray-800 p-6 inline-block rounded-xl overflow-hidden">
+  <div class="bg-card border border-card-border p-6 inline-block rounded-xl overflow-hidden">
   <slot>
     <Image
         src={fallBackImage}
