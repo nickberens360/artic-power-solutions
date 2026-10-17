@@ -3,6 +3,7 @@ import PartPost from '../../layouts/PartPost.astro';
 import ProductSchema from '../../components/ProductSchema.astro';
 import { getAllProducts } from '../../lib/products.js';
 import { SITE_TITLE } from '../../consts';
+import { APPLETON_BATTERY_PAGES, appletonBatteryPagePath } from '../../data/appleton-battery-pages.js';
 
 export async function getStaticPaths() {
     const products = await getAllProducts();
@@ -83,6 +84,11 @@ const seoDescription = rawSeoDescription.length > 160
         <strong>{product.partNumber}</strong>, this pack is a direct replacement. Not sure, or the label is
         worn off? <a href="#contact" class="underline">Send us your equipment model</a> and we'll confirm the right battery before you order.
       </p>
+      {APPLETON_BATTERY_PAGES[product.partNumber] && (
+        <p>
+          <a href={appletonBatteryPagePath(product.partNumber)} class="underline">Compare all replacement batteries for Appleton #{product.partNumber}</a>
+        </p>
+      )}
     </Fragment>
   ) : (
     <div set:html={product.descriptionHtml} />
