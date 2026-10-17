@@ -37,11 +37,11 @@ const jsonLD = {
     "@type": "Brand",
     "name": SITE_TITLE
     },
-    "url": new URL(Astro.url.pathname, Astro.site).href,
+    "url": new URL(canonicalPath(Astro.url.pathname), Astro.site).href,
     ...(price ? {
       "offers": {
         "@type": "Offer",
-        "url": new URL(Astro.url.pathname, Astro.site).href,
+        "url": new URL(canonicalPath(Astro.url.pathname), Astro.site).href,
         "priceCurrency": currency,
         "price": Number(price).toFixed(2),
         "itemCondition": "https://schema.org/NewCondition",
@@ -50,5 +50,6 @@ const jsonLD = {
       }
     } : {}),
 };
+import { canonicalPath } from '../utils/canonicalPath';
 ---
 <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLD)} />

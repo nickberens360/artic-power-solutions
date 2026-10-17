@@ -10,8 +10,13 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://articpowersolutions.com',
 
-  // Add this line to handle URLs without trailing slashes
+  // Canonical URLs have no trailing slash (/blog, not /blog/).
   trailingSlash: 'never',
+  // Emit blog.html instead of blog/index.html so Netlify serves /blog
+  // directly (no 301 to /blog/), matching links, canonicals and the sitemap.
+  build: {
+    format: 'file',
+  },
 
   // The vite key can be removed if tailwindcss was the only plugin
   // and you have no other custom Vite configurations.
