@@ -5,6 +5,14 @@ export const SITE_TITLE = 'Artic Power Solutions';
 export const SITE_DESCRIPTION = 'Independent repair and compatible parts for RollMover™ RX, HD, XD and LR roll movers. Fast turnaround and nationwide service, even after a denied warranty claim.';
 export const SITE_URL = 'https://articpowersolutions.com';
 export const CONTACT_EMAIL = 'sales@articpowersolutions.com';
+// Shipping terms used in Product structured data (matches MoverBattery checkout: UPS Ground, $30 per pack).
+// Return policy is intentionally not published in structured data until one is defined.
+export const SHIPPING = {
+    carrier: 'UPS Ground',
+    ratePerItem: '30.00',
+    currency: 'USD',
+    country: 'US',
+};
 // Feature Flags
 export const FEATURE_FLAGS = {
     SHOW_BLOG: true,           // Controls visibility of blog section

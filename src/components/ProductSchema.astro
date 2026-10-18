@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SHIPPING } from '../consts';
 
 interface PartData {
     title: string;
@@ -46,6 +46,12 @@ const jsonLD = {
         "price": Number(price).toFixed(2),
         "itemCondition": "https://schema.org/NewCondition",
         ...(inStock === undefined ? {} : { "availability": inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock" }),
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingLabel": SHIPPING.carrier,
+          "shippingRate": { "@type": "MonetaryAmount", "value": SHIPPING.ratePerItem, "currency": SHIPPING.currency },
+          "shippingDestination": { "@type": "DefinedRegion", "addressCountry": SHIPPING.country }
+        },
         "seller": { "@type": "Organization", "name": SITE_TITLE }
       }
     } : {}),
