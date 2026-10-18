@@ -36,7 +36,7 @@ const rows = [
   { label: 'Availability', value: (o: any) => spec(o, 'Availability') },
 ].filter((r) => sorted.some((o) => r.value(o)));
 
-const seoTitle = `Appleton ${part} Replacement Battery, ${page.titleSuffix} | ${SITE_TITLE}`;
+const seoTitle = `Appleton Mfg. ${part} Replacement Battery for ${page.titleSuffix} | ${SITE_TITLE}`;
 const seoDescription = page.metaDescription(fromPrice);
 const heroImage = sorted[0].images.edges[0]?.node.url;
 const quoteMessage = `I'd like a quote for replacement batteries for Appleton #${part}.\n\nQuantity: `;
@@ -75,7 +75,7 @@ const faqSchema = {
     <article class="part-landing">
       <header class="title">
         <h1>{page.heading}</h1>
-        <div class="part-number">Replaces Appleton Part <strong>#{part}</strong></div>
+        <div class="part-number">Replaces Appleton Mfg. Part <strong>#{part}</strong></div>
         <p class="intro">{page.intro}</p>
       </header>
 
@@ -117,7 +117,7 @@ const faqSchema = {
 
       <h2>Will this battery fit my unit?</h2>
       <p>
-        Check the label on your current battery for <strong>#{part}</strong>. Or send us a photo of the label and
+        Check the label on your current battery for <strong>#{part}</strong>, the Appleton Manufacturing part number. Or send us a photo of the label and
         we'll confirm the match before you order.
         <a href="#contact" class="underline contact-sales-link" data-equipment={page.equipment} data-message={quoteMessage}>Contact us</a>
       </p>

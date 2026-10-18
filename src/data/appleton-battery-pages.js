@@ -6,10 +6,10 @@
 export const APPLETON_BATTERY_PAGES = {
   '139082': {
     equipment: 'Appleton Roll Mover',
-    titleSuffix: '36V Roll Mover',
-    heading: 'Replacement Battery for Appleton #139082 (36V Roll Mover)',
+    titleSuffix: '36V RollMover™',
+    heading: 'Replacement Battery for Appleton Mfg. #139082 (36V RollMover™ Roll Pusher)',
     metaDescription: (from) =>
-      `Replacement for Appleton part #139082, the 36V roll mover battery pack. NiCd from ${from} or upgrade to NiMH for 67% more capacity. Ships UPS Ground.`,
+      `Replacement for Appleton Mfg. part #139082, the 36V RollMover™ roll pusher battery. NiCd from ${from} or upgrade to NiMH for 67% more capacity. Ships UPS Ground.`,
     intro:
       'Is your roll mover dying mid-shift? If the pack in your unit is labeled Appleton 139082, these 36V packs are built to replace it.',
     bestFor: {
@@ -38,10 +38,10 @@ export const APPLETON_BATTERY_PAGES = {
 
   '137819': {
     equipment: 'Appleton Cart Mover',
-    titleSuffix: '24V Cart Mover',
-    heading: 'Replacement Battery for Appleton #137819 (24V Cart Mover)',
+    titleSuffix: '24V CartMover™',
+    heading: 'Replacement Battery for Appleton Mfg. #137819 (24V CartMover™ Cart Tugger)',
     metaDescription: (from) =>
-      `24V NiCd replacement for Appleton part #137819 cart mover battery packs. ${from}, ships UPS Ground. Purchase orders and multi-pack quotes available.`,
+      `24V NiCd replacement for Appleton Mfg. part #137819 CartMover™ cart tugger batteries. ${from}, ships UPS Ground. Purchase orders and multi-pack quotes available.`,
     intro: "If your cart mover's pack is labeled Appleton 137819, this 24V NiCd pack is built to replace it.",
     why: {
       title: 'Why NiCd for cart movers',
@@ -64,10 +64,10 @@ export const APPLETON_BATTERY_PAGES = {
 
   '143242': {
     equipment: 'Appleton Cart Mover',
-    titleSuffix: '24V NiMH Cart Mover',
-    heading: 'Replacement Battery for Appleton #143242 (24V Cart Mover)',
+    titleSuffix: '24V NiMH CartMover™',
+    heading: 'Replacement Battery for Appleton Mfg. #143242 (24V CartMover™ Cart Tugger)',
     metaDescription: (from) =>
-      `High-capacity 24V 9000mAh NiMH replacement for Appleton part #143242 cart mover packs. ${from}, ships UPS Ground. Purchase orders accepted.`,
+      `High-capacity 24V 9000mAh NiMH replacement for Appleton Mfg. part #143242 CartMover™ cart tugger packs. ${from}, ships UPS Ground. Purchase orders accepted.`,
     intro:
       "If your cart mover runs a pack labeled Appleton 143242, this 24V 9000mAh NiMH pack is built to replace it. It's made for long shifts and heavy carts.",
     why: {

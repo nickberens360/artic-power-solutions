@@ -17,6 +17,7 @@ import SectionBlock from "../components/SectionBlock.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import ImageWithContent from "../components/ImageWithContent.astro";
 import TrustStrip from "../components/TrustStrip.astro";
+import { APPLETON_BATTERY_PAGES, appletonBatteryPagePath } from '../data/appleton-battery-pages.js';
 
 // Fetch and sort the latest 3 blog posts
 const latestPosts = (await getCollection('blog')).sort(
@@ -120,6 +121,23 @@ const latestPosts = (await getCollection('blog')).sort(
                   buttonText="Find Your Parts"
                   buttonUrl="/parts"
               />
+            </div>
+          </div>
+
+          <div class="mt-16 text-center">
+            <h3 class="text-2xl md:text-3xl font-bold text-foreground mb-3">Find Your Battery by Appleton Part Number</h3>
+            <p class="text-muted-foreground mb-8">Check the label on your current pack, then pick the matching number.</p>
+            <div class="grid gap-4 md:grid-cols-3 max-w-[960px] mx-auto">
+              {Object.entries(APPLETON_BATTERY_PAGES).map(([part, page]) => (
+                <a
+                    href={appletonBatteryPagePath(part)}
+                    class="block rounded-xl border border-card-border bg-card px-6 py-5 text-left transition hover:border-primary hover:shadow-md"
+                >
+                  <span class="block text-sm text-muted-foreground">Replaces Appleton Mfg.</span>
+                  <span class="block text-2xl font-bold text-foreground">#{part}</span>
+                  <span class="block text-primary font-medium mt-1">{page.titleSuffix} battery &rarr;</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>

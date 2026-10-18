@@ -21,7 +21,7 @@ A dead or underperforming battery is one of the most frequent and frustrating is
 
 -   **Check the Connections:** Ensure the charger is firmly plugged into both the wall outlet and the RollMover. Check the battery terminals for any corrosion or looseness. A good, clean connection is essential for proper charging.
 -   **Inspect the Charger:** Look for any signs of damage to the charging cable or the [charger](#contact) itself. If the charger has indicator lights, see if they signal a fault.
--   **Evaluate Battery Age:** Like all rechargeable batteries, your RollMover's battery has a finite lifespan. If it's several years old and its performance has been steadily declining, it may be time for a [replacement](/parts).
+-   **Evaluate Battery Age:** Like all rechargeable batteries, your RollMover's battery has a finite lifespan. If it's several years old and its performance has been steadily declining, it may be time for a [replacement](/parts). Find the right pack by the part number on its label: [Appleton #139082 (36V RollMover™)](/parts/appleton-139082-battery), [#137819 (24V CartMover™)](/parts/appleton-137819-battery) or [#143242 (24V CartMover™, NiMH)](/parts/appleton-143242-battery).
 
 ### 2. RollMover Won't Move
 
