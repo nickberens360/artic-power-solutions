@@ -4,10 +4,11 @@ import BaseLayout from './Layout.astro'; // Import BaseLayout
 import FormattedDate from '../components/FormattedDate.astro';
 import FeaturedImage from '../components/FeaturedImage.astro';
 import { Image } from 'astro:assets';
+import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
 
-type Props = CollectionEntry<'blog'>['data'] & { heading?: string };
+type Props = CollectionEntry<'blog'>['data'] & { heading?: string; breadcrumbs?: Crumb[] };
 
-const { title, description, pubDate, updatedDate, heroImage, heading, author } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heading, author, breadcrumbs } = Astro.props;
 ---
 
 <BaseLayout title={title.includes('Artic Power Solutions') ? title : `${title} | Artic Power Solutions`} description={description} image={heroImage}>
@@ -109,8 +110,16 @@ const { title, description, pubDate, updatedDate, heroImage, heading, author } =
 		}
 
 		/* Rest of your existing styles */
+
+		.post-breadcrumbs {
+			width: 720px;
+			max-width: calc(100% - 2em);
+			margin: 2rem auto 0;
+			padding: 0 1em;
+		}
 	</style>
 	<article>
+		{breadcrumbs && <div class="post-breadcrumbs"><Breadcrumbs items={breadcrumbs} /></div>}
 		{heroImage && (
 			<FeaturedImage>
 				<Image width={720} height={360} src={heroImage} alt={title} />

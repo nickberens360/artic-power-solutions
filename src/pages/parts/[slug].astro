@@ -49,7 +49,11 @@ const seoDescription = rawSeoDescription.length > 160
     equipment={product.categories?.[0] ? `Appleton ${product.categories[0]}` : undefined}
     variantId={product.variants.edges[0]?.node.id}
     shopDomain={storefrontDomain}
-    handle={product.handle} >
+    handle={product.handle}
+    breadcrumbs={[
+        { name: 'Parts', path: '/parts' },
+        { name: product.title, path: `/parts/${product.handle}` },
+    ]} >
   <Fragment slot="head">
     <ProductSchema part={{ data: {
             title: product.title,

@@ -4,6 +4,7 @@ import FeaturedImage from '../components/FeaturedImage.astro';
 import { Image } from 'astro:assets';
 import fallBackImage from '../assets/parts/placeholder.png';
 import SectionBlock from "../components/SectionBlock.astro";
+import Breadcrumbs, { type Crumb } from "../components/Breadcrumbs.astro";
 import { isFeatureEnabled } from '../utils/featureFlags';
 
 interface PartData {
@@ -21,6 +22,7 @@ interface PartData {
   equipment?: string; // prefills the contact form's Equipment/Model field
   seoTitle?: string; // <title> override (defaults to title)
   seoDescription?: string; // meta description override (defaults to description)
+  breadcrumbs?: Crumb[];
 }
 type Props = PartData;
 
@@ -38,7 +40,8 @@ const {
   buyUrl,
   equipment,
   seoTitle,
-  seoDescription
+  seoDescription,
+  breadcrumbs
 } = Astro.props;
 
 // Determine the image source, which could be a URL string or an Astro asset object
@@ -168,6 +171,7 @@ if (isShopify && variantId && shopDomain) {
   </style>
   <SectionBlock>
     <Fragment>
+      {breadcrumbs && <Breadcrumbs items={breadcrumbs} class="mb-8" />}
       <article class="flex flex-col items-center md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-8">
         <FeaturedImage>
           {typeof resolvedImage === 'string' ? (

@@ -4,8 +4,9 @@
 import Layout from '../../layouts/Layout.astro';
 import SectionBlock from '../../components/SectionBlock.astro';
 import ProductSchema from '../../components/ProductSchema.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { getAllProducts } from '../../lib/products.js';
-import { APPLETON_BATTERY_PAGES } from '../../data/appleton-battery-pages.js';
+import { APPLETON_BATTERY_PAGES, appletonBatteryPagePath } from '../../data/appleton-battery-pages.js';
 import { SITE_TITLE } from '../../consts';
 
 export async function getStaticPaths() {
@@ -64,6 +65,13 @@ const faqSchema = {
   </Fragment>
 
   <SectionBlock>
+    <Breadcrumbs
+      class="mb-8"
+      items={[
+        { name: 'Parts', path: '/parts' },
+        { name: `Appleton #${part} Replacement Battery`, path: appletonBatteryPagePath(part) },
+      ]}
+    />
     <article class="part-landing">
       <header class="title">
         <h1>{page.heading}</h1>

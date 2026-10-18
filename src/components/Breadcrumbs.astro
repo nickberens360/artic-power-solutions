@@ -1,0 +1,87 @@
+---
+// Visible breadcrumb trail plus matching BreadcrumbList JSON-LD, so Google can show
+// "Artic Power Solutions › Parts › …" in results instead of a raw URL.
+// Pass the trail below Home; Home is added automatically. Names should match the site nav.
+import { canonicalPath } from '../utils/canonicalPath';
+
+export interface Crumb {
+  name: string;
+  path: string;
+}
+
+interface Props {
+  items: Crumb[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+const trail: Crumb[] = [{ name: 'Home', path: '/' }, ...items];
+
+const jsonLD = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: trail.map((crumb, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: crumb.name,
+    item: new URL(canonicalPath(crumb.path), Astro.site).href,
+  })),
+};
+---
+<nav aria-label="Breadcrumb" class:list={['breadcrumbs', className]}>
+  <ol>
+    {trail.map((crumb, i) => (
+      <li>
+        {i < trail.length - 1
+          ? <a href={canonicalPath(crumb.path)}>{crumb.name}</a>
+          : <span aria-current="page">{crumb.name}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+
+<style>
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none !important;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: hsl(var(--muted-foreground));
+  }
+  .breadcrumbs li {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 !important;
+    min-width: 0;
+  }
+  .breadcrumbs li + li::before {
+    content: '›';
+    color: hsl(var(--muted-foreground));
+  }
+  /* Links: darker text with an underline, so they read as clickable */
+  .breadcrumbs a {
+    color: hsl(var(--foreground));
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--muted-foreground) / 0.5);
+    text-underline-offset: 3px;
+  }
+  .breadcrumbs a:hover {
+    color: hsl(var(--primary));
+    text-decoration-color: currentColor;
+  }
+  /* Current page: muted, no underline, not a link */
+  .breadcrumbs [aria-current='page'] {
+    color: hsl(var(--muted-foreground));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 40ch;
+  }
+</style>
