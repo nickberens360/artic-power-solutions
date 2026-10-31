@@ -123,7 +123,7 @@ const latestPosts = (await getCollection('blog')).sort(
                         {post.data.heroImage && (
                             <Image
                                 src={post.data.heroImage}
-                                alt={post.data.title}
+                                alt={post.data.heroAlt ?? post.data.title}
                                 width={720}
                                 height={360}
                                 class="w-full h-48 object-cover rounded-none transition-transform duration-300 group-hover:scale-105"

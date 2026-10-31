@@ -53,7 +53,7 @@ const posts = (await getCollection('blog')).sort(
                           width={720}
                           height={360}
                           src={post.data.heroImage}
-                          alt={post.data.title}
+                          alt={post.data.heroAlt ?? post.data.title}
                           class="w-full mb-2 rounded-xl group-hover:shadow-xl"
                       />
                   )}

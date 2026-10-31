@@ -118,6 +118,28 @@ const { title, description, pubDate, updatedDate, heroImage, heading, author, br
 
 		/* Rest of your existing styles */
 
+		/* Tables in markdown posts */
+		.prose :global(table) {
+			display: block;
+			overflow-x: auto;
+			width: 100%;
+			border-collapse: collapse;
+			margin: 1.5rem 0 2rem;
+			font-size: .95rem;
+		}
+		.prose :global(th),
+		.prose :global(td) {
+			border: 1px solid hsl(var(--border));
+			padding: .6rem .8rem;
+			text-align: left;
+			vertical-align: top;
+		}
+		.prose :global(thead th) {
+			background: hsl(var(--muted, 220 14% 96%));
+			font-weight: 600;
+			color: hsl(var(--foreground));
+		}
+
 		.post-breadcrumbs {
 			width: 720px;
 			max-width: calc(100% - 2em);
