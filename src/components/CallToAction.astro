@@ -6,9 +6,9 @@
 >
   <div class="container mx-auto px-6">
     <div class="text-center mb-12">
-      <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Let's Get Your Equipment Back to Work!</h2>
-      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Ready to discuss your repair needs or order parts? Contact
-        our team today! We serve clients nationwide.</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Need Help Finding the Right Battery?</h2>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Tell us your equipment model or the part number on your
+        current pack, and we'll confirm the right replacement. We ship nationwide.</p>
     </div>
     <div class="max-w-3xl mx-auto bg-background border border-border p-8 md:p-12 rounded-xl shadow-sm">
       {/* --- NETLIFY FORM CHANGES START --- */}
@@ -91,7 +91,7 @@
                 name="rollmover_model"
                 id="rollmover_model"
                 class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
-                placeholder="e.g., Compatible with RollMover RX"
+                placeholder="e.g., RollMover™ RX or CartMover™"
             >
           </div>
           <div>
@@ -106,8 +106,9 @@
                 class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
             >
               <option value="">Select Inquiry Type</option>
-              <option value="Repair">Repair</option>
-              <option value="Parts">Parts</option>
+              <option value="Battery order">Ordering a battery</option>
+              <option value="Help matching battery">Not sure which pack I need</option>
+              <option value="Multi-pack quote">Multi-pack or fleet quote</option>
               <option value="General Question">General Question</option>
             </select>
           </div>
@@ -123,7 +124,7 @@
               rows="4"
               required
               class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
-              placeholder="Tell us about your needs..."
+              placeholder="Part number on your current battery, quantity, or any questions..."
           ></textarea>
         </div>
         <div>

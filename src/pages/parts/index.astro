@@ -10,15 +10,15 @@ const partPages = Object.entries(APPLETON_BATTERY_PAGES).filter(([part]) => prod
 ---
 
 <Layout
-    title="RollMover™ Compatible Battery Packs | Artic Power Solutions"
-    description="Compatible NiMH and NiCd replacement battery packs for RollMover™ equipment, cross-referenced to Appleton part numbers. Request a quote today."
+    title="RollMover™ & CartMover™ Battery Packs | Artic Power Solutions"
+    description="Compatible NiCd and NiMH replacement battery packs for Appleton RollMover™ and CartMover™ equipment, cross-referenced to Appleton part numbers."
 >
   <main class="container">
     <div class="title-section">
-      <h1>Our Compatible Parts</h1>
+      <h1>Replacement Battery Packs</h1>
       <p>
-        High-quality, reliable replacement parts to keep your equipment running
-        at its best.
+        Compatible NiCd and NiMH packs for Appleton RollMover™ and CartMover™
+        equipment, matched by part number.
       </p>
       {partPages.length > 0 && (
         <p class="part-links">
@@ -38,8 +38,8 @@ const partPages = Object.entries(APPLETON_BATTERY_PAGES).filter(([part]) => prod
         </div>
     ) : (
         <p class="text-muted-foreground text-center">
-          Need a part for your RollMover&trade; compatible equipment? Batteries, drive wheels, motors, controls and more.
-          <a href="#contact" class="underline">Contact us for a quote</a> and we'll get back to you quickly.
+          Need a replacement battery for your RollMover&trade; or CartMover&trade;?
+          <a href="#contact" class="underline">Contact us</a> with the part number on your current pack and we'll get back to you quickly.
         </p>
     )}
   </main>

@@ -18,8 +18,8 @@ const posts = (await getCollection('blog')).sort(
 <html lang="en">
 <head>
   <BaseHead
-      title={`RollMover™ Repair & Maintenance Guides | ${SITE_TITLE}`}
-      description="Troubleshooting guides, maintenance checklists and parts advice for RollMover™ compatible equipment from Artic Power Solutions."
+      title={`RollMover™ Maintenance & Battery Guides | ${SITE_TITLE}`}
+      description="Troubleshooting guides, maintenance checklists and battery advice for Appleton RollMover™ and CartMover™ equipment from Artic Power Solutions."
   >
     <OrganizationSchema slot="head" />
   </BaseHead>
@@ -30,7 +30,7 @@ const posts = (await getCollection('blog')).sort(
   <SectionBlock>
     <Fragment>
       <!-- Replace the ul/li structure with more semantic section/article elements -->
-      <h1 class="text-4xl md:text-5xl font-bold text-foreground text-center mb-12">RollMover™ Repair &amp; Maintenance Guides</h1>
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground text-center mb-12">RollMover™ Maintenance &amp; Battery Guides</h1>
       <section class="flex flex-wrap m-0 p-0 gap-y-8 md:gap-x-8">
         {
           posts.map((post, index) => (

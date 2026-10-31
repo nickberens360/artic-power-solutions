@@ -7,14 +7,12 @@ import CalloutBox from '../components/CalloutBox.astro';
 import {Image} from 'astro:assets';
 import articLogoIcon from '../assets/artic-logo-icon.png';
 import rollMoverIllustration from '../assets/rollMoverIllustration.png';
-import rollMoverTech from '../assets/rollmover-technician.png';
 import compatibleBatteries from '../assets/compatible-batteries.png';
 import vintageWarehouse from '../assets/vintage-warehouse.jpg';
 import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
 import {getCollection} from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import SectionBlock from "../components/SectionBlock.astro";
-import ServiceCard from "../components/ServiceCard.astro";
 import ImageWithContent from "../components/ImageWithContent.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import { APPLETON_BATTERY_PAGES, appletonBatteryPagePath } from '../data/appleton-battery-pages.js';
@@ -26,18 +24,18 @@ const latestPosts = (await getCollection('blog')).sort(
 ---
 
 <Layout
-    title={`RollMover™ Compatible Batteries, Parts & Repair | ${SITE_TITLE}`}
-    description="Independent repair and compatible replacement batteries and parts for RollMover™ RX, HD, XD and LR equipment. Fast turnaround, nationwide service."
-    image={rollMoverTech}
+    title={`RollMover™ & CartMover™ Replacement Batteries | ${SITE_TITLE}`}
+    description="Compatible replacement batteries for Appleton RollMover™ and CartMover™ equipment, matched by part number. NiCd and NiMH packs, shipped UPS Ground nationwide."
+    image={compatibleBatteries}
 >
   <Hero
-      title="Expert Repair for Your RollMover™ Compatible Equipment"
-      tagline="Fast, Reliable Repair & Quality Parts for equipment compatible with RollMover™ RX, HD, XD, and LR series. Maximize uptime and save costs!"
-      buttonText="Get a Free Quote"
-      buttonUrl="#contact"
-      secondaryButtonText="Shop Parts"
-      secondaryButtonUrl="/parts"
-      disclaimerText="Artic Power Solutions is an independent service provider. RollMover™ is a trademark of Appleton Mfg. We are not affiliated with Appleton Mfg."
+      title="Replacement Batteries for RollMover™ & CartMover™ Equipment"
+      tagline="Compatible NiCd and NiMH packs matched to the Appleton part number on your current battery. Shipped UPS Ground anywhere in the US."
+      buttonText="Find Your Battery"
+      buttonUrl="/parts"
+      secondaryButtonText="Ask About Fit"
+      secondaryButtonUrl="#contact"
+      disclaimerText="Artic Power Solutions is an independent supplier. RollMover™ and CartMover™ are trademarks of Appleton Mfg. We are not affiliated with Appleton Mfg."
       imageUrl="https://images.unsplash.com/photo-1727517786578-ff2bb896b852?q=80&w=2842&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   />
   <TrustStrip />
@@ -59,20 +57,20 @@ const latestPosts = (await getCollection('blog')).sort(
 
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ContentCard
-                title="Specialized Expertise"
-                description="We don't just fix equipment; we know roll moving systems inside and out. This is our focus, not a sideline."
+                title="Fit Confirmed Before You Buy"
+                description="Not sure which pack you have? Send us your model or a photo of the label and we'll confirm the match."
             />
             <ContentCard
-                title="Faster Turnaround"
-                description="Our specialized focus means quicker diagnostics and repairs, minimizing your critical downtime."
+                title="An Alternative to OEM"
+                description="A cost-effective replacement for original packs, built to the same voltage as the battery it replaces."
             />
             <ContentCard
-                title="Cost Savings"
-                description="Repair your equipment for a fraction of the cost of replacement, with transparent and fair pricing."
+                title="Longer Runtime Options"
+                description="NiMH packs store more energy at the same voltage, so operators get more work out of every charge."
             />
             <ContentCard
-                title="Nationwide Service"
-                description="We serve clients nationwide, with a commitment to excellence and customer satisfaction."
+                title="Buying for a Plant?"
+                description="Purchase orders and multi-pack quotes are available for fleets. Packs ship from MoverBattery, our battery store."
             />
 
 
@@ -84,49 +82,9 @@ const latestPosts = (await getCollection('blog')).sort(
     <SectionBlock>
       <Fragment>
         <div>
-          <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Core Services</h2>
-          </div>
-          <div class="flex flex-wrap -mx-4">
-            <div class="w-full md:w-1/2 px-4">
-              <ServiceCard
-                  image={rollMoverTech}
-                  imageAlt="Technician repairing a roll mover"
-                  title="Expert Repair Services"
-                  description="We diagnose and resolve common and complex issues to get your equipment back to work quickly. Our process includes diagnostics, component-level repair, and full performance testing."
-                  listHeading="Common Problems We Solve:"
-                  listItems={[
-                      "Motor or gearbox failure",
-                      "Battery and charging issues",
-                      "Unresponsive controls & electrical faults",
-                      "Worn drive wheels and casters"
-                  ]}
-                  buttonText="Request Repair Info"
-                  buttonUrl="#contact"
-                  class="mb-12 md:mb-0"
-              />
-            </div>
-            <div class="w-full md:w-1/2 px-4">
-              <ServiceCard
-                  image={compatibleBatteries}
-                  imageAlt="Compatible replacement battery packs for roll movers"
-                  title="Premium Replacement Parts"
-                  description="Keep your equipment running with our extensive inventory of high-quality components compatible with many roll mover systems, including the RollMover™ series."
-                  listItems={[
-                      "Drive Wheels & Casters",
-                      "Batteries & Chargers",
-                      "Motors & Gearboxes",
-                      "Controls, Switches & Electrical Components"
-                  ]}
-                  buttonText="Find Your Parts"
-                  buttonUrl="/parts"
-              />
-            </div>
-          </div>
-
-          <div class="mt-16 text-center">
-            <h3 class="text-2xl md:text-3xl font-bold text-foreground mb-3">Find Your Battery by Appleton Part Number</h3>
-            <p class="text-muted-foreground mb-8">Check the label on your current pack, then pick the matching number.</p>
+          <div class="text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Find Your Battery by Appleton Part Number</h2>
+            <p class="text-lg text-muted-foreground mb-10">Check the label on your current pack, then pick the matching number.</p>
             <div class="grid gap-4 md:grid-cols-3 max-w-[960px] mx-auto">
               {Object.entries(APPLETON_BATTERY_PAGES).map(([part, page]) => (
                 <a
@@ -139,6 +97,10 @@ const latestPosts = (await getCollection('blog')).sort(
                 </a>
               ))}
             </div>
+            <p class="text-muted-foreground mt-8">
+              Can't read the label or not sure which pack you have? <a href="#contact" class="text-primary underline">Send us your equipment model</a> and we'll match it for you.
+              Or <a href="/parts" class="text-primary underline">browse all battery packs</a>.
+            </p>
           </div>
         </div>
       </Fragment>
@@ -204,18 +166,18 @@ const latestPosts = (await getCollection('blog')).sort(
               <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">About Artic Power Solutions</h2>
             </div>
             <p class="text-lg text-muted-foreground">
-              <strong class="text-foreground">Artic Power Solutions is your trusted independent partner for material handling equipment
-                repair.</strong> We were founded on the principle that businesses need a reliable, expert alternative to
-              slow and costly OEM service.
+              <strong class="text-foreground">Artic Power Solutions supplies compatible replacement batteries for Appleton
+                RollMover™ roll pushers and CartMover™ cart tuggers.</strong> We started because replacing an original pack
+              was too often expensive and slow, and a worn-out battery shouldn't keep a working machine parked.
             </p>
             <p class="text-lg text-muted-foreground mb-4">
-              Our team has deep, hands-on experience with the specific machinery used in the paper, converting, and
-              nonwovens industries. We understand the critical nature of your equipment and are committed to providing
-              solutions that are not only effective but also make financial sense.
+              Many of the plants that rely on this equipment are in the paper, converting and nonwovens industries. We know
+              a mover that dies mid-shift holds up the whole line, so every pack we offer is matched to the Appleton part
+              number it replaces.
             </p>
             <p class="text-lg text-muted-foreground">
-              We proudly serve clients nationwide, offering specialized repair services and a comprehensive catalog of
-              compatible parts to keep your operations moving.
+              Our packs are sold through MoverBattery, our battery store, and ship UPS Ground anywhere in the US. Not sure
+              which one you need? Ask us and we'll help you match it.
             </p>
           </div>
         </div>
