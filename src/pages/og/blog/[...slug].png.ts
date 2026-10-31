@@ -35,9 +35,9 @@ export const GET: APIRoute = async ({ props }) => {
 	const u = W / 100; // 1cqi equivalent
 
 	const body = h('div', { display: 'flex', flexDirection: 'column' }, [
-		kicker && h('div', { color: '#e11414', fontSize: 2.3 * u, fontWeight: 500, textTransform: 'uppercase', marginBottom: 1.6 * u }, kicker),
-		h('div', { color: '#fff', fontSize: 5.8 * u, fontWeight: 700, lineHeight: 1.12, letterSpacing: '-0.01em', maxWidth: 75 * u }, title),
-		subtitle && h('div', { color: '#a3a8b5', fontSize: 2.6 * u, fontWeight: 500, lineHeight: 1.4, maxWidth: 66 * u, marginTop: 1.4 * u }, subtitle),
+		kicker && h('div', { color: '#e11414', fontSize: 2.7 * u, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: 1.8 * u }, kicker),
+		h('div', { color: '#fff', fontSize: 6.8 * u, fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.015em', maxWidth: 82 * u }, title),
+		subtitle && h('div', { color: '#b3b8c4', fontSize: 3.1 * u, fontWeight: 500, lineHeight: 1.35, maxWidth: 76 * u, marginTop: 2 * u }, subtitle),
 	].filter(Boolean));
 
 	// Satori sizes boxes content-box style, so everything is positioned
@@ -55,8 +55,9 @@ export const GET: APIRoute = async ({ props }) => {
 		},
 		[
 			h('div', { position: 'absolute', left: 0, top: 0, width: 1.4 * u, height: H, backgroundColor: '#e11414' }),
-			h('div', { position: 'absolute', left: 7.6 * u, top: 8 * u, display: 'flex' }, [body]),
-			h('div', { position: 'absolute', left: 7.6 * u, bottom: 4.5 * u, color: '#fff', fontSize: 1.95 * u, fontWeight: 600, textTransform: 'uppercase' }, 'Artic Power Solutions'),
+			// Text block is vertically centred in the space above the brand line, so the card has no empty band.
+			h('div', { position: 'absolute', left: 7.6 * u, right: 7.6 * u, top: 0, bottom: 10 * u, display: 'flex', alignItems: 'center' }, [body]),
+			h('div', { position: 'absolute', left: 7.6 * u, bottom: 5 * u, color: '#fff', fontSize: 2.2 * u, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }, 'Artic Power Solutions'),
 		],
 	);
 
