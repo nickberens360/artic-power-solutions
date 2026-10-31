@@ -10,6 +10,14 @@ const blog = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 		heroImage: image().optional(),
 		heroAlt: z.string().optional(),
+		// Live-text hero card (rendered as HTML; og:image PNG generated at build)
+		heroCard: z
+			.object({
+				kicker: z.string().optional(),
+				title: z.string(),
+				subtitle: z.string().optional(),
+			})
+			.optional(),
 		author: z.string().default('Jim Motz'),
 	}),
 });

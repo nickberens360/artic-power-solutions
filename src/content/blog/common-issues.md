@@ -3,7 +3,10 @@ title: '5 Common RollMover™ Problems and How to Troubleshoot Them'
 description: 'Roll mover dying mid-shift, stalling under load or not moving at all? Work through the 5 most common RollMover™ problems, starting with the battery.'
 pubDate: 'Jun 12 2025'
 updatedDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/common-issues.png'
+heroCard:
+  kicker: 'Troubleshooting'
+  title: '5 Common RollMover™ Problems'
+  subtitle: 'Dying mid-shift, stalling under load or not moving at all? Start with the battery'
 ---
 
 When an Appleton RollMover™ roll pusher or CartMover™ cart tugger starts acting up, the whole line feels it. The good news is that most problems trace back to a short list of causes, and the most common one is also the easiest to fix: a worn-out battery.

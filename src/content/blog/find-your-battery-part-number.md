@@ -2,8 +2,10 @@
 title: 'How to Find Your RollMover™ or CartMover™ Battery Part Number'
 description: 'Match the Appleton part number to order the right replacement battery. Where to find it, what the numbers mean, and what to do if the label is gone.'
 pubDate: 'Oct 31 2026'
-heroImage: '../../assets/compatible-batteries.png'
-heroAlt: 'Compatible replacement battery packs in front of a roll mover'
+heroCard:
+  kicker: 'Battery Guide'
+  title: 'Find Your Battery Part Number'
+  subtitle: 'Match the Appleton number to order the right RollMover™ or CartMover™ pack'
 ---
 
 Ordering a replacement battery for an Appleton RollMover™ or CartMover™ is simple once you know one thing: the **Appleton part number** of the pack you're replacing. Match that number and you know the voltage, size and connector are right.

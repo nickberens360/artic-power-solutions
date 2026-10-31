@@ -3,7 +3,10 @@ title: 'Replace the Battery or the Whole Unit? A RollMover™ Cost Guide'
 description: 'Before you budget for a new roll mover, check the battery. How to tell whether a replacement pack or a whole new unit makes more financial sense.'
 pubDate: 'Jun 12 2025'
 updatedDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/repair-replace.png'
+heroCard:
+  kicker: 'Cost Guide'
+  title: 'Replace the Battery or the Whole Unit?'
+  subtitle: 'Check the battery before you budget for a new roll mover'
 ---
 
 When an Appleton RollMover™ or CartMover™ starts slowing down, stalling under load or dying before the end of a shift, it's tempting to assume the whole machine is worn out. Sometimes it is. But very often the frame, motor and drive are fine, and the real problem is a battery that has reached the end of its life.

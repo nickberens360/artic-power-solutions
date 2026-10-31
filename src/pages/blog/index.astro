@@ -6,6 +6,7 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../../consts';
 import {getCollection} from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import {Image} from 'astro:assets';
+import HeroCard from '../../components/HeroCard.astro';
 import SectionBlock from "../../components/SectionBlock.astro";
 import OrganizationSchema from '../../components/OrganizationSchema.astro';
 
@@ -48,7 +49,9 @@ const posts = (await getCollection('blog')).sort(
                     href={`/blog/${post.id.replace(/\.md$/, '')}`}
                     class="block no-underline group transition-all duration-200 ease-in-out"
                 >
-                  {post.data.heroImage && (
+                  {post.data.heroCard ? (
+                      <HeroCard {...post.data.heroCard} class="mb-2 group-hover:shadow-xl" />
+                  ) : post.data.heroImage && (
                       <Image
                           width={720}
                           height={360}

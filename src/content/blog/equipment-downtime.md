@@ -3,7 +3,10 @@ title: 'Reducing RollMover™ Downtime in Print and Paper Plants'
 description: 'Paper dust, heavy rolls and long shifts are hard on roll movers. Maintenance tips for print and paper plants, from motor cleaning to battery care.'
 pubDate: 'Jun 12 2025'
 updatedDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/reduce-downtime.png'
+heroCard:
+  kicker: 'Print & Paper Plants'
+  title: 'Reducing RollMover™ Downtime'
+  subtitle: 'Maintenance tips for dusty floors, heavy rolls and long shifts'
 ---
 
 The print and paper industry runs on tight deadlines and thin margins, so every minute of uptime counts. An Appleton RollMover™ is a workhorse in a pressroom or paper mill, but heavy rolls, long shifts and constant paper dust put real demands on it.

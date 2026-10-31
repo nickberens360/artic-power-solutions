@@ -13,9 +13,12 @@
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.1",
     "@astrojs/vue": "^5.1.0",
+    "@fontsource/inter": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.9.2",
     "nanostores": "^1.0.1",
+    "satori": "^0.63.2",
     "sharp": "^0.34.2",
     "tailwindcss": "^4.1.10",
     "vue": "^3.5.16"

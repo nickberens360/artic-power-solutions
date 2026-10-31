@@ -3,7 +3,10 @@ title: 'OEM vs. Compatible RollMover™ Batteries: Which Should You Buy?'
 description: 'Comparing an original Appleton battery with a compatible replacement pack? How they differ on cost, fit, chemistry and lead time, and what to check.'
 pubDate: 'Jun 12 2025'
 updatedDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/oem-vs-compatible.png'
+heroCard:
+  kicker: 'Battery Guide'
+  title: 'OEM vs. Compatible Batteries'
+  subtitle: 'How they differ on cost, fit, chemistry and lead time'
 ---
 
 When the battery in your Appleton RollMover™ or CartMover™ wears out, you have two choices: buy an original (OEM) replacement, or buy a compatible pack from another supplier.

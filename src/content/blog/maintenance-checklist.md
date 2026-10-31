@@ -3,7 +3,10 @@ title: 'RollMover™ Maintenance Checklist: Daily, Weekly and Monthly'
 description: 'A simple daily, weekly and monthly maintenance checklist for roll movers and cart movers, plus battery care habits that help packs last longer.'
 pubDate: 'Jun 12 2025'
 updatedDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/checklist.png'
+heroCard:
+  kicker: 'Maintenance'
+  title: 'RollMover™ Maintenance Checklist'
+  subtitle: 'Daily, weekly and monthly checks, plus battery care habits'
 ---
 
 An Appleton RollMover™ or CartMover™ is a hard-working machine, and regular maintenance keeps it that way. Consistent care extends the life of the equipment and its battery, keeps operators safe and catches small issues before they turn into downtime. It's also a cornerstone of [operating roll movers safely](/blog/safe-workplace).

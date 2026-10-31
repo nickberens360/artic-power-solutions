@@ -2,8 +2,10 @@
 title: 'CartMover™ Battery Replacement: Appleton #137819 vs. #143242'
 description: 'Both are 24V CartMover™ batteries, but they are not the same pack. How Appleton #137819 and #143242 compare and how to order the right replacement.'
 pubDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/cartmover-batteries.png'
-heroAlt: 'CartMover battery comparison: Appleton 137819 vs 143242'
+heroCard:
+  kicker: 'CartMover™ Batteries'
+  title: '#137819 vs. #143242'
+  subtitle: 'Two 24V packs, not the same battery. How to order the right one'
 ---
 
 If you run Appleton CartMover™ cart tuggers, you may find two different battery part numbers in your fleet: **#137819** and **#143242**. Both are 24V packs, which makes it easy to assume they're interchangeable. They aren't the same battery, so it pays to know which one each unit takes.

@@ -2,8 +2,10 @@
 title: 'How Long Does a RollMover™ Battery Last?'
 description: 'What determines how long a roll mover or cart mover battery lasts, how to estimate its life from charge cycles, and the signs a pack is wearing out.'
 pubDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/battery-life.png'
-heroAlt: 'How long does a RollMover battery last: charge cycles and replacement signs'
+heroCard:
+  kicker: 'Battery Guide'
+  title: 'How Long Does a RollMover™ Battery Last?'
+  subtitle: 'Charge cycles, what shortens battery life, and signs it’s time to replace it'
 ---
 
 Every rechargeable battery wears out eventually, including the pack in your Appleton RollMover™ or CartMover™. How long it lasts depends less on the calendar and more on how hard it's used and how it's treated.

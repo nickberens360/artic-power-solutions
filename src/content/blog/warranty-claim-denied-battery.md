@@ -2,8 +2,10 @@
 title: 'Warranty Claim Denied? Options for a Worn-Out RollMover™ Battery'
 description: 'Batteries wear out, and warranties often exclude normal wear. What to do if your claim for a roll mover or cart mover battery was denied.'
 pubDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/warranty-denied.png'
-heroAlt: 'Warranty claim denied: options for a worn-out roll mover battery'
+heroCard:
+  kicker: 'Battery Guide'
+  title: 'Warranty Claim Denied?'
+  subtitle: 'Your options for a worn-out roll mover or cart mover battery'
 ---
 
 You file a warranty claim for a weak battery in your Appleton RollMover™ or CartMover™, and it comes back denied. It's frustrating, but it's also common, because rechargeable batteries wear out with normal use.

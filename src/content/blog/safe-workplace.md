@@ -3,7 +3,10 @@ title: 'Roll Mover Safety: 7 Best Practices for RollMover™ Operators'
 description: 'Seven practical safety habits for operating roll movers, from pre-shift checks and load handling to safe battery charging and storage.'
 pubDate: 'Jun 12 2025'
 updatedDate: 'Oct 31 2026'
-heroImage: '../../assets/blog/safe-workplace.png'
+heroCard:
+  kicker: 'Safety'
+  title: '7 Safety Practices for RollMover™ Operators'
+  subtitle: 'Pre-shift checks, load handling and safe battery charging'
 ---
 
 An Appleton RollMover™ makes moving heavy rolls faster and far easier on your team. Like any powered material handling equipment, it needs to be operated with care to prevent accidents and injuries.
