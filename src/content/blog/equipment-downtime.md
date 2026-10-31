@@ -35,7 +35,7 @@ The constant, precise moves needed to load a press or position a multi-ton roll 
 
 In a multi-shift operation, the battery is the part most likely to take a mover out of service. A few habits help:
 
-* **Track runtime.** If operators start needing a mid-shift charge, the pack is wearing out. Order a replacement before it fails completely.
+* **Track runtime.** If operators start needing a mid-shift charge, the pack is wearing out. Order a replacement before it fails completely. See [how long a RollMover™ battery lasts](/blog/how-long-do-rollmover-batteries-last) to plan ahead.
 * **Keep a spare pack charged.** For critical movers, a charged spare lets you swap and keep running while the other pack charges.
 * **Choose the right chemistry.** For the 36V RollMover™ (Appleton #139082), NiMH stores more energy at the same voltage for longer runtime. NiCd is the like-for-like choice and handles cold areas well.
 

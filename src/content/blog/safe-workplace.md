@@ -66,7 +66,7 @@ Never operate a mover you suspect isn't working properly.
 - Report unusual noises, overheating, burning smells or control problems to your supervisor.
 - Have mechanical and electrical problems repaired by a qualified technician.
 
-A unit that slows down or stalls under load often has a worn-out battery. Our [troubleshooting guide](/blog/common-issues) explains how to tell.
+A unit that slows down or stalls under load often has a worn-out battery. Our [troubleshooting guide](/blog/common-issues) explains how to tell, and [this guide covers how long batteries last](/blog/how-long-do-rollmover-batteries-last).
 
 ## Safety Is a Team Effort
 

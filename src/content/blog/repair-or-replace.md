@@ -57,6 +57,7 @@ Match your replacement by the Appleton part number on your current battery's lab
     * For motor, gearbox or electrical faults, get a quote from Appleton Mfg. or a qualified material-handling shop. A common rule of thumb: if the repair costs more than half the price of a new unit, consider replacing it.
 4. **How often has it been breaking down?**
     * One worn-out battery after years of service is normal. Repeated mechanical failures may justify a new unit.
+    * Under warranty but your battery claim was denied? See [your options after a denied warranty claim](/blog/warranty-claim-denied-battery).
 5. **Does the unit still fit your needs?**
     * If your rolls or carts have gotten heavier, or your layout has changed, a different model may be the better investment.
 
@@ -64,4 +65,4 @@ Match your replacement by the Appleton part number on your current battery's lab
 
 If your mover is mechanically sound, a replacement battery is almost always the smartest first step. It's the least expensive way to get your equipment back to full performance.
 
-Not sure which pack your unit takes? [Contact us](#contact) with your equipment model or a photo of the battery label, and we'll confirm the right replacement.
+Not sure which pack your unit takes? Here's [how to find your battery part number](/blog/find-your-battery-part-number), or [contact us](#contact) with your equipment model or a photo of the battery label, and we'll confirm the right replacement.

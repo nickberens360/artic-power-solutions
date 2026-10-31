@@ -26,7 +26,7 @@ Whichever route you take, a replacement battery must match the original in a few
 * **Physical fit and connector.** The pack has to fit the battery compartment and plug into your unit without modification.
 * **Chemistry your charger supports.** Make sure the pack's chemistry (NiCd or NiMH) works with your charger. If you're unsure, ask the supplier before you order.
 
-The simplest way to get all three right is to match the **Appleton part number** printed on your current battery's label. Every pack we offer is cross-referenced that way.
+The simplest way to get all three right is to match the **Appleton part number** printed on your current battery's label. Every pack we offer is cross-referenced that way. Here's [how to find your battery part number](/blog/find-your-battery-part-number).
 
 ## Comparing the Key Factors
 
@@ -65,7 +65,7 @@ When a mover is down, lead time matters. Original packs can take a while to arri
 
 ## When OEM Makes Sense
 
-* **Your unit is still under warranty.** Check the warranty terms before using a non-OEM battery.
+* **Your unit is still under warranty.** Check the warranty terms before using a non-OEM battery. If a battery claim has already been denied, see [your options](/blog/warranty-claim-denied-battery).
 * **There's no compatible pack for your model.** Newer units may use battery types that compatible suppliers don't offer yet.
 
 ## The Bottom Line
@@ -77,5 +77,7 @@ Find your pack by part number:
 - [Appleton #139082: 36V RollMover™ roll pusher battery](/parts/appleton-139082-battery)
 - [Appleton #137819: 24V CartMover™ cart tugger battery](/parts/appleton-137819-battery)
 - [Appleton #143242: 24V CartMover™ NiMH battery](/parts/appleton-143242-battery)
+
+Running CartMover™ units? The two 24V packs aren't interchangeable. See our [CartMover™ #137819 vs. #143242 comparison](/blog/cartmover-battery-137819-vs-143242).
 
 Not sure which one you have? [Contact us](#contact) and we'll help you match it.

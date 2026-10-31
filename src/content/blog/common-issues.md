@@ -29,7 +29,7 @@ This is the problem we hear about most, and it's usually the root of several oth
 - **The charger's indicator lights.** If your charger has status lights, check its manual to see whether they're signaling a fault.
 - **The battery terminals and connector.** Look for corrosion, loose connections or damaged wiring. A poor connection can look exactly like a bad battery.
 - **Runtime after a full charge.** Charge the pack fully, then note how long the mover runs under normal work. If it's well short of what it used to be, the cells are likely worn out.
-- **The battery's age.** Rechargeable packs wear out with use. If yours is several years old and runtime has been steadily dropping, it's time for a replacement.
+- **The battery's age.** Rechargeable packs wear out with use. If yours is several years old and runtime has been steadily dropping, it's time for a replacement. Here's [how long a RollMover™ battery typically lasts](/blog/how-long-do-rollmover-batteries-last).
 
 **The fix:** Replace the pack. Check the label on your current battery for the Appleton part number, then match it:
 
@@ -37,7 +37,7 @@ This is the problem we hear about most, and it's usually the root of several oth
 - [Appleton #137819: 24V CartMover™ cart tugger battery](/parts/appleton-137819-battery)
 - [Appleton #143242: 24V CartMover™ NiMH battery](/parts/appleton-143242-battery)
 
-Can't read the label? [Send us your equipment model](#contact) and we'll help you find the right pack.
+Not sure where the label is, or can't read it? Here's [how to find your battery part number](/blog/find-your-battery-part-number). You can also [send us your equipment model](#contact) and we'll help you find the right pack.
 
 ## 2. It Slows Down or Stalls Under a Full Load
 

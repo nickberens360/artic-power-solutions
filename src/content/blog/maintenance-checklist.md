@@ -43,9 +43,9 @@ The battery is the part most likely to take a mover out of service, and how you 
 - **Charge in a suitable spot.** Use a designated, well-ventilated area away from heat sources.
 - **Avoid extreme heat.** Heat shortens battery life. Don't store packs near heaters, in direct sun or in hot vehicles.
 - **Store packs charged.** If a unit will sit unused for a while, store the battery charged and top it up periodically, following the manufacturer's guidance.
-- **Plan replacement.** When runtime no longer covers a shift, order a replacement before the pack fails completely.
+- **Plan replacement.** When runtime no longer covers a shift, order a replacement before the pack fails completely. Here's [how long a RollMover™ battery lasts and the signs it's wearing out](/blog/how-long-do-rollmover-batteries-last).
 
-When it's time for a new pack, match the Appleton part number on the label:
+When it's time for a new pack, match the Appleton part number on the label ([here's where to find it](/blog/find-your-battery-part-number)):
 
 - [Appleton #139082: 36V RollMover™ roll pusher battery](/parts/appleton-139082-battery)
 - [Appleton #137819: 24V CartMover™ cart tugger battery](/parts/appleton-137819-battery)
