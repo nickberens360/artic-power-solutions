@@ -1,51 +1,64 @@
 ---
-title: 'Repair or Replace? A Cost-Benefit Analysis for Your RollMover'
-description: 'Struggling to decide whether to repair or replace your aging RollMover? This guide from Artic Power Solutions breaks down the costs and benefits to help you make the best financial decision for your business.'
+title: 'Replace the Battery or the Whole Unit? A RollMover™ Cost Guide'
+description: 'Before you budget for a new roll mover, check the battery. How to tell whether a replacement pack or a whole new unit makes more financial sense.'
 pubDate: 'Jun 12 2025'
+updatedDate: 'Oct 31 2026'
 heroImage: '../../assets/blog/repair-replace.png'
 ---
 
-When a critical piece of equipment like your RollMover starts to show its age or breaks down, it can bring your operations to a halt. This leaves you with a major decision: should you invest in a repair, or is it time to replace the unit entirely?
+When an Appleton RollMover™ or CartMover™ starts slowing down, stalling under load or dying before the end of a shift, it's tempting to assume the whole machine is worn out. Sometimes it is. But very often the frame, motor and drive are fine, and the real problem is a battery that has reached the end of its life.
 
-This isn't just a technical question—it's a significant financial one. At Artic Power Solutions, we believe in providing long-term value to our customers. To help you make a smart investment, we've put together this cost-benefit analysis to guide you through the decision-making process.
+Here's how to think through the decision before you spend money on a new unit.
 
-## The Upfront Cost of Replacement
+## Why the Battery Is the First Thing to Check
 
-The most obvious factor is the cost of a new RollMover. A new machine is a significant capital expenditure. While it comes with the latest features and a full warranty, the high upfront cost can be a major hurdle for many businesses.
+Rechargeable battery packs wear out with use. Every charge cycle reduces capacity a little, and in multi-shift operations a pack goes through a lot of cycles. The symptoms of a worn pack look a lot like a worn-out machine:
 
-Beyond the sticker price, you should also consider the "hidden costs" of replacement:
+- Runtime has dropped to a fraction of a shift.
+- The mover slows down or stalls with a full roll or a heavy cart.
+- The charger shows full, but the unit dies quickly.
 
-- **Training:** Your team will need to be trained on the new model.
-- **Integration:** You may need to update your internal records and maintenance schedules.
-- **Disposal:** There may be costs associated with disposing of your old unit.
+If those sound familiar, a replacement battery may be all your unit needs. Our [troubleshooting guide](/blog/common-issues) walks through how to rule out other causes.
 
-## The Long-Term Value of Repair
+## The Real Cost of a New Unit
 
-In many cases, repairing your existing RollMover is the most cost-effective solution. Here's why:
+A new roll mover is a capital expense. It comes with the latest features and a full warranty, but the price tag is only part of the cost:
 
--   **Significant Cost Savings:** The cost of common repairs, such as replacing a [battery](/parts), a [wheel](#contact), or even a [motor controller](#contact), is often just a fraction of the price of a new machine. When considering the price of parts, it's also worth weighing the benefits of [OEM vs. Compatible RollMover Parts](/blog/oem-vs-compatible). For batteries, compare replacement packs by part number: [Appleton #139082 (36V RollMover™)](/parts/appleton-139082-battery), [#137819 (24V CartMover™)](/parts/appleton-137819-battery) or [#143242 (24V CartMover™, NiMH)](/parts/appleton-143242-battery).
--   **Extend the Lifespan of Your Asset:** A well-built RollMover can last for many years with proper maintenance and high-quality repairs. By replacing worn components, you can significantly extend the life of your initial investment.
--   **No Hidden Costs:** With a repair, your team can get back to work with the equipment they already know and trust. There are no new procedures to learn or integrate into your workflow.
+- **Approval and lead time.** Capital purchases often need sign-off, and new equipment may not ship right away.
+- **Training.** Operators need time to get comfortable with a different model.
+- **Disposal.** You'll need to deal with the old unit.
+
+## The Case for a Replacement Battery
+
+If the rest of the machine is in good shape, replacing the pack is usually the most cost-effective option:
+
+- **A fraction of the cost.** A replacement pack costs far less than a new mover.
+- **Back to full runtime.** A fresh pack restores the runtime and pushing power your operators are used to.
+- **No learning curve.** Your team keeps the equipment they already know.
+- **Fast to install.** Swap the pack and the unit is back in service.
+
+Match your replacement by the Appleton part number on your current battery's label:
+
+- [Appleton #139082: 36V RollMover™ roll pusher battery](/parts/appleton-139082-battery)
+- [Appleton #137819: 24V CartMover™ cart tugger battery](/parts/appleton-137819-battery)
+- [Appleton #143242: 24V CartMover™ NiMH battery](/parts/appleton-143242-battery)
 
 ## A Checklist to Help You Decide
 
-Ask yourself these questions to determine the best course of action for your business:
+1. **Do the symptoms point to the battery?**
+    * Short runtime, stalling under load and not holding a charge all point to the pack. Start there.
+2. **Is the rest of the machine sound?**
+    * If the frame, handle, controls and drive are in good condition, a new battery is likely all you need.
+    * If the frame is damaged or the drive is badly worn, replacement may make more sense.
+3. **What would a non-battery repair cost?**
+    * For motor, gearbox or electrical faults, get a quote from Appleton Mfg. or a qualified material-handling shop. A common rule of thumb: if the repair costs more than half the price of a new unit, consider replacing it.
+4. **How often has it been breaking down?**
+    * One worn-out battery after years of service is normal. Repeated mechanical failures may justify a new unit.
+5. **Does the unit still fit your needs?**
+    * If your rolls or carts have gotten heavier, or your layout has changed, a different model may be the better investment.
 
-1.  **What is the age and overall condition of the RollMover?**
-    * If the unit is relatively new and has been well-maintained, a repair is almost always the best option.
-    * If the unit is very old and the frame or other major components are in poor condition, replacement might be a more logical choice.
-2.  **What is the estimated cost of the repair?**
-    * Get a quote for the repair. If the cost is less than 50% of the price of a new unit, a repair is likely the more financially sound decision.
-3.  **How frequently has the unit been breaking down?**
-    * If this is the first major issue after years of reliable service, a repair makes sense.
-    * If the unit is breaking down constantly, the cumulative cost and downtime might justify a replacement.
-4.  **Does the current model still meet your needs?**
-    * If your operational needs have changed and your current RollMover is no longer adequate, a new model with different features might be necessary.
+## Start With the Cheapest Fix That Works
 
-## Your Partner in Smart Decisions
+If your mover is mechanically sound, a replacement battery is almost always the smartest first step. It's the least expensive way to get your equipment back to full performance.
 
-For many businesses, repairing an existing RollMover is the most logical and financially responsible choice. It saves money, extends the life of your equipment, and gets you back to work quickly.
-
-Before you make a final decision, let the experts at Artic Power Solutions provide you with a comprehensive repair estimate. We'll give you a clear, honest assessment of your RollMover's condition and help you make the best choice for your budget and your business.
-
-**Contact us today for a repair quote or to order high-quality compatible parts for your RollMover!**
+Not sure which pack your unit takes? [Contact us](#contact) with your equipment model or a photo of the battery label, and we'll confirm the right replacement.

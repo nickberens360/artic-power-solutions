@@ -18,6 +18,7 @@ const { Content } = await render(post);
 ---
 <BlogPost
 	{...post.data}
+	isArticle
 	breadcrumbs={[
 		{ name: 'Resources', path: '/blog' },
 		{ name: post.data.title, path: `/blog/${post.id.replace(/\.md$/, '')}` },

@@ -13,15 +13,18 @@ export interface Props {
     description: string;
     noindex?: boolean;
     image?: ImageMetadata | string;
+    ogType?: 'website' | 'article';
+    publishedTime?: Date;
+    modifiedTime?: Date;
 }
 
-const { title, description, noindex = false, image } = Astro.props;
+const { title, description, noindex = false, image, ogType, publishedTime, modifiedTime } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 <head>
-  <BaseHead title={title} description={description} noindex={noindex} image={image}>
+  <BaseHead title={title} description={description} noindex={noindex} image={image} ogType={ogType} publishedTime={publishedTime} modifiedTime={modifiedTime}>
     <OrganizationSchema slot="head" />
     <slot name="head" slot="head" />
   </BaseHead>

@@ -6,12 +6,19 @@ import FeaturedImage from '../components/FeaturedImage.astro';
 import { Image } from 'astro:assets';
 import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
 
-type Props = CollectionEntry<'blog'>['data'] & { heading?: string; breadcrumbs?: Crumb[] };
+type Props = CollectionEntry<'blog'>['data'] & { heading?: string; breadcrumbs?: Crumb[]; isArticle?: boolean };
 
-const { title, description, pubDate, updatedDate, heroImage, heading, author, breadcrumbs } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heading, author, breadcrumbs, isArticle = false, heroAlt } = Astro.props;
 ---
 
-<BaseLayout title={title.includes('Artic Power Solutions') ? title : `${title} | Artic Power Solutions`} description={description} image={heroImage}>
+<BaseLayout
+	title={title.includes('Artic Power Solutions') ? title : `${title} | Artic Power Solutions`}
+	description={description}
+	image={heroImage}
+	ogType={isArticle ? 'article' : 'website'}
+	publishedTime={isArticle ? pubDate : undefined}
+	modifiedTime={isArticle ? (updatedDate ?? pubDate) : undefined}
+>
 	<slot name="head" slot="head" />
 	<style>
 		/* Keep your existing styles */
@@ -122,7 +129,7 @@ const { title, description, pubDate, updatedDate, heroImage, heading, author, br
 		{breadcrumbs && <div class="post-breadcrumbs"><Breadcrumbs items={breadcrumbs} /></div>}
 		{heroImage && (
 			<FeaturedImage>
-				<Image width={720} height={360} src={heroImage} alt={title} />
+				<Image width={720} height={360} src={heroImage} alt={heroAlt ?? title} />
 			</FeaturedImage>
 		)}
 		<div class="prose">
