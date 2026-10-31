@@ -7,8 +7,8 @@
   <div class="container mx-auto px-6">
     <div class="text-center mb-12">
       <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Need Help Finding the Right Battery?</h2>
-      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Tell us your equipment model or the part number on your
-        current pack, and we'll confirm the right replacement. We ship nationwide.</p>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Tell us the part number on your current pack, or your equipment model. We'll confirm the
+        right replacement and reply with pricing, availability and shipping. We ship nationwide.</p>
     </div>
     <div class="max-w-3xl mx-auto bg-background border border-border p-8 md:p-12 rounded-xl shadow-sm">
       {/* --- NETLIFY FORM CHANGES START --- */}
@@ -20,6 +20,14 @@
       >
         {/* This hidden input is required for Netlify to identify the form */}
         <input type="hidden" name="sales-form" value="contact" />
+        {/* Lead source fields, filled in by the script below so each submission shows where it came from */}
+        <input type="hidden" name="lead_page" value="" />
+        <input type="hidden" name="lead_cta" value="" />
+        <input type="hidden" name="landing_page" value="" />
+        <input type="hidden" name="first_referrer" value="" />
+        <input type="hidden" name="utm_source" value="" />
+        <input type="hidden" name="utm_medium" value="" />
+        <input type="hidden" name="utm_campaign" value="" />
         {/* --- NETLIFY FORM CHANGES END --- */}
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -106,7 +114,7 @@
                 class="mt-1 block w-full px-4 py-3 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent sm:text-sm"
             >
               <option value="">Select Inquiry Type</option>
-              <option value="Battery order">Ordering a battery</option>
+              <option value="Battery order">Requesting a quote / ordering a battery</option>
               <option value="Help matching battery">Not sure which pack I need</option>
               <option value="Multi-pack quote">Multi-pack or fleet quote</option>
               <option value="General Question">General Question</option>
@@ -150,6 +158,66 @@
     </div>
   </div>
 </section>
+
+<script>
+  // Lead tracking + quote prefill for the contact form (shared by every page).
+  //
+  // 1. Remember how the visitor first arrived this session (landing page, outside referrer, UTM tags).
+  // 2. Any link with class "contact-sales-link" pre-fills the form for that product (only empty fields)
+  //    and records which button was clicked.
+  // 3. On submit, copy all of that into hidden fields so it shows up in the Netlify form submission.
+  const SESSION_KEY = 'artic_lead_source';
+  type LeadSource = { landing_page: string; first_referrer: string; utm_source: string; utm_medium: string; utm_campaign: string };
+
+  const readSource = (): LeadSource | null => {
+    try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null'); } catch { return null; }
+  };
+
+  const source: LeadSource = readSource() ?? (() => {
+    const params = new URLSearchParams(location.search);
+    const ref = document.referrer && !document.referrer.startsWith(location.origin) ? document.referrer : '';
+    const fresh = {
+      landing_page: location.pathname + location.search,
+      first_referrer: ref || '(direct)',
+      utm_source: params.get('utm_source') ?? '',
+      utm_medium: params.get('utm_medium') ?? '',
+      utm_campaign: params.get('utm_campaign') ?? '',
+    };
+    try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(fresh)); } catch { /* storage blocked: still works for this page */ }
+    return fresh;
+  })();
+
+  const form = document.querySelector<HTMLFormElement>('#contact form');
+
+  if (form) {
+    const field = (name: string) =>
+      form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
+    const setIfEmpty = (name: string, value?: string) => {
+      const el = field(name);
+      if (el && value && !el.value) el.value = value;
+    };
+    const setValue = (name: string, value: string) => {
+      const el = field(name);
+      if (el) el.value = value;
+    };
+
+    document.querySelectorAll<HTMLAnchorElement>('.contact-sales-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        setIfEmpty('inquiry_type', 'Battery order');
+        setIfEmpty('rollmover_model', link.dataset.equipment);
+        setIfEmpty('message', link.dataset.message);
+        setValue('lead_cta', link.dataset.cta || link.textContent?.trim() || 'quote link');
+        setTimeout(() => (field('name') as HTMLInputElement | null)?.focus({ preventScroll: true }), 400);
+      });
+    });
+
+    form.addEventListener('submit', () => {
+      setValue('lead_page', location.pathname);
+      if (!field('lead_cta')?.value) setValue('lead_cta', 'contact form');
+      (Object.keys(source) as (keyof LeadSource)[]).forEach((key) => setValue(key, source[key]));
+    });
+  }
+</script>
 
 <style>
   form input::placeholder,

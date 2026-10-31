@@ -103,7 +103,8 @@ const faqSchema = {
                     href="#contact"
                     data-equipment={page.equipment}
                     data-message={`I'd like a quote for the ${o.title} (replaces Appleton #${part}).\n\nQuantity: `}
-                  >Contact Sales</a>
+                    data-cta={`#${part} page: ${o.title}`}
+                  >Request a Quote</a>
                   <a class="details-link" href={`/parts/${o.handle}`}>Full product details</a>
                 </td>
               ))}
@@ -119,7 +120,7 @@ const faqSchema = {
       <p>
         Check the label on your current battery for <strong>#{part}</strong>, the Appleton Manufacturing part number. Or send us a photo of the label and
         we'll confirm the match before you order.
-        <a href="#contact" class="underline contact-sales-link" data-equipment={page.equipment} data-message={quoteMessage}>Contact us</a>
+        <a href="#contact" class="underline contact-sales-link" data-equipment={page.equipment} data-message={quoteMessage} data-cta={`#${part} page: fit question`}>Contact us</a>
       </p>
 
       <h2>Signs your {part} pack is failing</h2>
@@ -131,7 +132,7 @@ const faqSchema = {
           ? 'Keep a charged spare on the shelf so a mover never sits idle. We offer multi-pack pricing and accept purchase orders.'
           : 'We accept purchase orders and quote multiple packs.'}
       </p>
-      <a class="buy-button secondary contact-sales-link" href="#contact" data-equipment={page.equipment} data-message={quoteMessage}>Request a quote</a>
+      <a class="buy-button secondary contact-sales-link" href="#contact" data-equipment={page.equipment} data-message={quoteMessage} data-cta={`#${part} page: multi-pack quote`}>Request a multi-pack quote</a>
 
       <h2>FAQ</h2>
       <dl class="faq">
@@ -141,24 +142,6 @@ const faqSchema = {
     <p class="text-sm text-center text-muted-foreground max-w-[600px] mx-auto mt-10">Artic Power Solutions is an independent supplier. RollMover™ and CartMover™ are trademarks of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
   </SectionBlock>
 </Layout>
-
-<script>
-  // Quote/contact links scroll to the footer form and pre-fill it (only empty fields), same as part pages.
-  document.querySelectorAll<HTMLAnchorElement>('.contact-sales-link').forEach((link) => {
-    link.addEventListener('click', () => {
-      const form = document.querySelector<HTMLFormElement>('#contact form');
-      if (!form) return;
-      const setIfEmpty = (name: string, value?: string) => {
-        const field = form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
-        if (field && value && !field.value) field.value = value;
-      };
-      setIfEmpty('inquiry_type', 'Parts');
-      setIfEmpty('rollmover_model', link.dataset.equipment);
-      setIfEmpty('message', link.dataset.message);
-      setTimeout(() => (form.elements.namedItem('name') as HTMLInputElement | null)?.focus({ preventScroll: true }), 400);
-    });
-  });
-</script>
 
 <style>
   .part-landing { max-width: 820px; margin: 0 auto; color: hsl(var(--foreground)); }

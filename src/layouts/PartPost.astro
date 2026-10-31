@@ -159,6 +159,11 @@ if (isShopify && variantId && shopDomain) {
       display: inline-block;
       text-decoration: none;
     }
+    .quote-note {
+      margin-top: .75rem;
+      font-size: .9rem;
+      color: hsl(var(--muted-foreground));
+    }
     .buy-button:hover, .add-to-cart-button:hover {
       background-color: var(--accent-dark);
     }
@@ -250,9 +255,11 @@ if (isShopify && variantId && shopDomain) {
               href="#contact"
               data-equipment={equipment ?? ''}
               data-message={`I'd like a quote for the ${title}${partNumber && buyUrl ? ` (replaces Appleton #${partNumber})` : ''}.\n\nQuantity: `}
+              data-cta={`Product page: ${title}`}
           >
-            Contact Sales
+            Request a Quote
           </a>
+          <p class="quote-note">We'll reply with pricing, availability and shipping for this pack.</p>
           )}
 
         </div>
@@ -260,25 +267,6 @@ if (isShopify && variantId && shopDomain) {
     </Fragment>
     <p class="text-sm text-center text-muted-foreground max-w-[600px] mx-auto mt-6">Artic Power Solutions is an independent supplier. RollMover™ and CartMover™ are trademarks of Appleton Mfg. Artic Power Solutions is not affiliated with, sponsored by, or endorsed by Appleton Mfg.</p>
   </SectionBlock>
-
-  <script>
-    // "Contact Sales" scrolls to the footer contact form and pre-fills it for this part.
-    // Only empty fields are filled, so anything the visitor already typed is kept.
-    document.querySelectorAll<HTMLAnchorElement>('.contact-sales-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        const form = document.querySelector<HTMLFormElement>('#contact form');
-        if (!form) return;
-        const setIfEmpty = (name: string, value?: string) => {
-          const field = form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
-          if (field && value && !field.value) field.value = value;
-        };
-        setIfEmpty('inquiry_type', 'Parts');
-        setIfEmpty('rollmover_model', link.dataset.equipment);
-        setIfEmpty('message', link.dataset.message);
-        setTimeout(() => (form.elements.namedItem('name') as HTMLInputElement | null)?.focus({ preventScroll: true }), 400);
-      });
-    });
-  </script>
 
   <script>
     // Script with error handling

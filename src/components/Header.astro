@@ -26,7 +26,7 @@ import { isFeatureEnabled } from '../utils/featureFlags';
         <HeaderLink href="/parts">Parts</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
       </div>
-      <a href="#contact" class="btn btn-primary btn-sm desktop-nav header-cta">Contact Sales</a>
+      <a href="#contact" class="btn btn-primary btn-sm desktop-nav header-cta contact-sales-link" data-cta="Header: Request a Quote">Request a Quote</a>
       {isFeatureEnabled('ENABLE_SHOP') && (
           <button
               class="cart-link"
@@ -58,7 +58,7 @@ import { isFeatureEnabled } from '../utils/featureFlags';
     <HeaderLink href="/blog">Resources</HeaderLink>
     <HeaderLink href="/parts">Parts</HeaderLink>
     <HeaderLink href="/about">About</HeaderLink>
-    <a href="#contact" class="mobile-cta">Contact Sales</a>
+    <a href="#contact" class="mobile-cta contact-sales-link" data-cta="Header (mobile): Request a Quote">Request a Quote</a>
   </div>
 </header>
 
