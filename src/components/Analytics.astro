@@ -1,0 +1,69 @@
+---
+// src/components/Analytics.astro
+//
+// Google Analytics 4 + search-engine ownership tags, included on every page via BaseHead.
+// Everything here is switched off until the IDs in src/consts.ts (ANALYTICS) are filled in,
+// and GA only loads on the production build so local `astro dev` visits aren't counted.
+//
+// Events sent to GA4 (mark generate_lead as a "key event" in GA to count it as a conversion):
+//   generate_lead        - Contact Sales form submitted (with lead_cta + page)
+//   contact_sales_click  - a "Contact Sales" / quote button that jumps to the form
+//   email_click          - a mailto: link
+//   phone_click          - a tel: link
+//   outbound_click       - a link to another site (e.g. moverbattery.com)
+import { ANALYTICS } from '../consts';
+
+const gaId = import.meta.env.PROD ? ANALYTICS.GA4_MEASUREMENT_ID : '';
+---
+
+{ANALYTICS.GOOGLE_SITE_VERIFICATION && (
+	<meta name="google-site-verification" content={ANALYTICS.GOOGLE_SITE_VERIFICATION} />
+)}
+{ANALYTICS.BING_SITE_VERIFICATION && <meta name="msvalidate.01" content={ANALYTICS.BING_SITE_VERIFICATION} />}
+
+{gaId && (
+	<>
+		<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+		<script is:inline define:vars={{ gaId }}>
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = function () { window.dataLayer.push(arguments); };
+			window.gtag('js', new Date());
+			window.gtag('config', gaId);
+		</script>
+	</>
+)}
+
+<script>
+	type Gtag = (command: 'event', name: string, params?: Record<string, unknown>) => void;
+	const track = (name: string, params: Record<string, unknown> = {}) => {
+		const gtag = (window as unknown as { gtag?: Gtag }).gtag;
+		// beacon transport so the hit still goes out while the browser navigates away
+		gtag?.('event', name, { transport_type: 'beacon', page_path: location.pathname, ...params });
+	};
+
+	document.addEventListener('click', (event) => {
+		const link = (event.target as Element | null)?.closest?.('a');
+		if (!link) return;
+		const href = link.getAttribute('href') || '';
+		const label = link.dataset.cta || link.textContent?.trim().slice(0, 80) || '';
+
+		if (link.classList.contains('contact-sales-link')) {
+			track('contact_sales_click', { cta: label, equipment: link.dataset.equipment || '' });
+		} else if (href.startsWith('mailto:')) {
+			track('email_click', { email: href.slice(7).split('?')[0] });
+		} else if (href.startsWith('tel:')) {
+			track('phone_click', { phone: href.slice(4) });
+		} else if (link.host && link.host !== location.host && /^https?:/.test(link.protocol)) {
+			track('outbound_click', { link_domain: link.host, link_url: link.href });
+		}
+	});
+
+	// Bubbles up after the contact form's own submit handler has filled in lead_cta.
+	document.addEventListener('submit', (event) => {
+		const form = event.target as HTMLFormElement;
+		if (form.getAttribute('name') !== 'contact') return;
+		const cta = (form.elements.namedItem('lead_cta') as HTMLInputElement | null)?.value || 'contact form';
+		const type = (form.elements.namedItem('inquiry_type') as HTMLSelectElement | null)?.value || '';
+		track('generate_lead', { form_name: 'contact', lead_cta: cta, inquiry_type: type });
+	});
+</script>
