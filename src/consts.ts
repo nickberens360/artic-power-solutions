@@ -17,7 +17,7 @@ export const SHIPPING = {
 // Leave a value empty to turn that piece off.
 export const ANALYTICS = {
     // Google Analytics 4 > Admin > Data streams > Web > Measurement ID, e.g. 'G-XXXXXXXXXX'
-    GA4_MEASUREMENT_ID: '',
+    GA4_MEASUREMENT_ID: 'G-DJW95P9G61',
     // Google Search Console > Add property (URL prefix) > HTML tag: just the content="..." value
     GOOGLE_SITE_VERIFICATION: '',
     // Bing Webmaster Tools > Add site > HTML Meta Tag: just the content="..." value
