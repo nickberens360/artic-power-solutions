@@ -24,3 +24,7 @@
   to = "/blog/maintenance-checklist"
   status = 301
   force = true
+
+# IndexNow: notify Bing & co. of changed pages after each production deploy
+[[plugins]]
+  package = "/netlify/plugins/indexnow"
