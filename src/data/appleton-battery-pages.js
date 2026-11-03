@@ -39,9 +39,12 @@ export const APPLETON_BATTERY_PAGES = {
   '137819': {
     equipment: 'Appleton Cart Mover',
     titleSuffix: '24V CartMover™',
+    // Search title override (Nov 2026): the default title got impressions but no clicks, so this one
+    // leads with the part number and price. Compare clicks in Search Console against 143242/139082.
+    seoTitle: (from) => `Appleton 137819 Battery Replacement, 24V CartMover™ | From ${from}`,
     heading: 'Replacement Battery for Appleton Mfg. #137819 (24V CartMover™ Cart Tugger)',
     metaDescription: (from) =>
-      `24V NiCd replacement for Appleton Mfg. part #137819 CartMover™ cart tugger batteries. ${from}, ships UPS Ground. Purchase orders and multi-pack quotes available.`,
+      `Need a new battery for your Appleton CartMover™? This 24V 3000mAh NiCd pack replaces part #137819. ${from} and ships UPS Ground. Purchase orders and multi-pack quotes welcome.`,
     intro: "If your cart mover's pack is labeled Appleton 137819, this 24V NiCd pack is built to replace it.",
     why: {
       title: 'Why NiCd for cart movers',

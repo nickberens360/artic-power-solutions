@@ -36,7 +36,9 @@ const rows = [
   { label: 'Availability', value: (o: any) => spec(o, 'Availability') },
 ].filter((r) => sorted.some((o) => r.value(o)));
 
-const seoTitle = `Appleton Mfg. ${part} Replacement Battery for ${page.titleSuffix} | ${SITE_TITLE}`;
+const seoTitle = page.seoTitle
+  ? page.seoTitle(fromPrice)
+  : `Appleton Mfg. ${part} Replacement Battery for ${page.titleSuffix} | ${SITE_TITLE}`;
 const seoDescription = page.metaDescription(fromPrice);
 const heroImage = sorted[0].images.edges[0]?.node.url;
 const quoteMessage = `I'd like a quote for replacement batteries for Appleton #${part}.\n\nQuantity: `;
