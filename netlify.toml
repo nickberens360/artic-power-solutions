@@ -28,3 +28,29 @@
 # IndexNow: notify Bing & co. of changed pages after each production deploy
 [[plugins]]
   package = "/netlify/plugins/indexnow"
+
+# Part pages consolidated (Nov 2026): each Appleton part number has one page.
+# The per-product pages duplicated the part-number pages and competed with them in search.
+[[redirects]]
+  from = "/parts/3000mah-24v-nicd-battery-pack"
+  to = "/parts/appleton-137819-battery"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/parts/9000mah-24v-nimh-battery-pack"
+  to = "/parts/appleton-143242-battery"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/parts/3000mah-36v-nicd-battery-pack"
+  to = "/parts/appleton-139082-battery"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/parts/5000mah-36v-nimh-battery-pack"
+  to = "/parts/appleton-139082-battery"
+  status = 301
+  force = true

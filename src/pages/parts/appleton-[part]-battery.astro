@@ -33,6 +33,9 @@ const rows = [
   { label: 'Capacity', value: (o: any) => spec(o, 'Capacity') },
   { label: 'Chemistry', value: (o: any) => spec(o, 'Chemistry') },
   ...(page.bestFor ? [{ label: 'Best for', value: (o: any) => page.bestFor[chemistry(o)] }] : []),
+  { label: 'Cycle life', value: (o: any) => spec(o, 'Cycle life') },
+  { label: 'Charge time', value: (o: any) => spec(o, 'Charge time') },
+  { label: 'Operating temperature', value: (o: any) => spec(o, 'Operating temperature') },
   { label: 'Availability', value: (o: any) => spec(o, 'Availability') },
 ].filter((r) => sorted.some((o) => r.value(o)));
 
@@ -107,7 +110,6 @@ const faqSchema = {
                     data-message={`I'd like a quote for the ${o.title} (replaces Appleton #${part}).\n\nQuantity: `}
                     data-cta={`#${part} page: ${o.title}`}
                   >Request a Quote</a>
-                  <a class="details-link" href={`/parts/${o.handle}`}>Full product details</a>
                 </td>
               ))}
             </tr>
@@ -117,6 +119,18 @@ const faqSchema = {
 
       {page.chooser && <p><strong>Not sure which to pick?</strong> {page.chooser}</p>}
       {page.why && <p><strong>{page.why.title}:</strong> {page.why.text}</p>}
+
+      {sorted.some((o) => o.features?.length) && (
+        <Fragment>
+          <h2>Features</h2>
+          {sorted.map((o) => o.features?.length > 0 && (
+            <Fragment>
+              {sorted.length > 1 && <h3>{o.title}</h3>}
+              <ul>{o.features.map((f: string) => <li>{f}</li>)}</ul>
+            </Fragment>
+          ))}
+        </Fragment>
+      )}
 
       <h2>Will this battery fit my unit?</h2>
       <p>
@@ -169,7 +183,7 @@ const faqSchema = {
   }
   .buy-button:hover { background-color: var(--accent-dark); }
   .buy-button.secondary { background-color: transparent; border: 1px solid var(--accent); }
-  .details-link { display: block; margin-top: 0.5rem; font-size: 0.9rem; color: hsl(var(--muted-foreground)); text-decoration: underline; }
+  .part-landing h3 { margin: 1.25rem 0 0.5rem; font-size: 1.15rem; }
   .faq dt { font-weight: 700; margin-top: 1rem; }
   .faq dd { margin: 0.25rem 0 0; color: hsl(var(--muted-foreground)); }
 </style>

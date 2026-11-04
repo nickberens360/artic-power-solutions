@@ -8,7 +8,9 @@ import { APPLETON_BATTERY_PAGES, appletonBatteryPagePath } from '../../data/appl
 export async function getStaticPaths() {
     const products = await getAllProducts();
 
-    const shopifyPaths = products.map((product) => ({
+    // A product with an Appleton part-number page lives there (/parts/appleton-<part>-battery);
+    // its old /parts/<handle> URL 301-redirects to it (netlify.toml), so one page owns each part number.
+    const shopifyPaths = products.filter((product) => !APPLETON_BATTERY_PAGES[product.partNumber]).map((product) => ({
         params: { slug: product.handle },
         props: { product },
     }));

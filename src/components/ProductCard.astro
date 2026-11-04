@@ -1,4 +1,5 @@
 ---
+import { APPLETON_BATTERY_PAGES, appletonBatteryPagePath } from '../data/appleton-battery-pages.js';
 // Import a fallback image from your assets directory.
 // Make sure you have an image file at this location.
 import fallBackImage from '../assets/parts/placeholder.png';
@@ -21,7 +22,7 @@ const altText = productImage ? (productImage.altText || product.title) : product
 ---
 {(isFeatureEnabled('ENABLE_SHOP') || product.buyUrl) && (
 <a
-    href={`/parts/${product.handle}`}
+    href={APPLETON_BATTERY_PAGES[product.partNumber] ? appletonBatteryPagePath(product.partNumber) : `/parts/${product.handle}`}
     class="card"
 >
   <div class="card-media">
