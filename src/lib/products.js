@@ -43,13 +43,23 @@ function buildSpecs(p) {
   return specs.filter(([, v]) => v).map(([label, value]) => ({ label, value }));
 }
 
+// Generic catalog lines ("Ideal for automated machinery, robotics...", "Perfect for emergency lighting...")
+// that don't fit roll/cart mover batteries. MoverBattery owns the descriptions, so they're dropped here
+// rather than edited at the source.
+const OFF_TOPIC_FEATURE = /^(Ideal|Perfect|Excellent choice|Great|Suitable) for\b/i;
+
 // First sentence becomes the intro; the rest become a feature list.
 function splitDescription(text = '') {
   const sentences = text.match(/[^.]+(\.(?!\d)|$)/g)?.map((s) => s.trim()).filter(Boolean) ?? [];
   return { intro: sentences[0] ?? '', features: sentences.slice(1) };
 }
 
+// The description minus the off-topic lines, so page text and Product schema match.
+const cleanDescription = (text = '') =>
+  (text.match(/[^.]+(\.(?!\d)|$)/g) ?? []).map((s) => s.trim()).filter((s) => s && !OFF_TOPIC_FEATURE.test(s)).join(' ');
+
 function toProduct(p) {
+  p = { ...p, description: cleanDescription(p.description) };
   const imageUrl = p.image ? `${STORE_ORIGIN}${encodeURI(p.image)}` : null;
   const price = { amount: p.price, currencyCode: 'USD' };
   return {
